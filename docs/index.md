@@ -10,7 +10,7 @@ graph TD
 
 feedly --> pocket
 socmed[twitter/mastdn/bsky]  --> pocket
-pocket --> | summarize | compendiums[compendiums@personal KB] 
+pocket --> | summarize | compendiums[compendiums@local KB] 
 try[thoughts, experiments, experience] --> compendiums 
 compendiums --> | fix markdown | GitGudSecurity
 ```
