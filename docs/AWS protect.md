@@ -40,8 +40,7 @@ reference: [fogsecurity.io](https://www.fogsecurity.io/blog/ransomware-in-aws-s3
 
 ### Reducing usage of static creds, long-term credentials/ tokens
 
-Access Keys in AWS are typically tied to long-term credentials such as IAM users. In AWS, security best practices recommend moving away from long-term credentials to short term credentials. Instead of IAM Users, IAM roles are preferred.
-[fogsecurity.io](https://www.fogsecurity.io/blog/ransomware-in-aws-s3-sse-c)
+Access Keys in AWS are typically tied to long-term credentials such as IAM users. In AWS, security best practices recommend moving away from long-term credentials to short term credentials. Instead of IAM Users, IAM roles are preferred.-- [fogsecurity.io](https://www.fogsecurity.io/blog/ransomware-in-aws-s3-sse-c)
 
 For more details about temporary credentials in AWS, [AWS has extensive documentation and AWS STS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html).
 
