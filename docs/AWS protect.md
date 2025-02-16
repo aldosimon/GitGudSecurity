@@ -1,5 +1,5 @@
 ---
-title: AWS Protect
+title: AWS protect
 created: 2025-01-31
 tags:
   - protect

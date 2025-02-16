@@ -1,6 +1,11 @@
 # Home
 GitGudSecurity is an information security knowledge base made from bunch of infosec stuff I read and compile when I have the will power.
 
+Due to the my workflow, this is to be expected:
+- stub article, broken link within this KB. 
+- unclear source/ references
+These issues, in due time, will be fixed - but my take a while since this is a side project.
+
 ## Workflow
 
 Here is the workflow
