@@ -25,12 +25,12 @@ Evaluation criteria to judge good detection
 - the cost of that ability to the organization
 - the cost to the adversary to evade detection
 
-#### the ability to detect adversary
+#### Ability to detect adversary
 can be broken to detection **coverage** and detection **durability**.
 Coverage is scope of activity that detection identifies. (example coverage over MITRE).
 how long the detection to be effective. Increasing a detection’s coverage by detecting multiple procedures associated with a technique or creating a detection that works across multiple techniques often increases the complexity of the detection but can also improve a detection’s **durability**.
 
-#### the cost of that ability to the organization
+#### Cost of that ability to the organization
 this covers the creation, running, and maintenance of detections, the resources spent reviewing associated alerts, and the actions taken based on those alerts
 some factor that contribute:
 - *complexity*: how hard to understand the detection for maintenance
@@ -41,7 +41,7 @@ some factor that contribute:
 - *specificity*: As an example, a machine learning model may provide increased coverage in detection with a high confidence level but may be unable to explain specifically why the alert was created
 For example, a detection might identify reconnaissance scanning of the network. The lack of actionability on this activity, despite the confidence in the detection, might result in the noisiness of the detection being unacceptable.For example, a detection might identify reconnaissance scanning of the network. The lack of actionability on this activity, despite the confidence in the detection, might result in the noisiness of the detection being unacceptable.
 
-#### cost to the adversary
+#### Cost to the adversary
 this is related to the pyramid of pain.
 
 ### Advantages of detection program
@@ -98,8 +98,10 @@ The requirement come from CTI, business requirement - legal, red team exercise, 
 
 ### Triage
 
-**output**: triaged and prioritized requirements
+#### Output:
+Triaged and prioritized requirements
 
+#### Steps
 Triage the requirement using: 
 - severity of the threat
 	- is this an active exploit: log4j! (see common ways of judging exploit severity: is our estate affected, how easy it is to exploit, impact, is it currently happening, how fast to patch)
@@ -107,13 +109,13 @@ Triage the requirement using:
 - detection coverage
 
 
-#### severity of the threat
+#### Severity of the threat
 system of scoring that you assign to threat severity. e.g. CVSS, DREAD, NIST CMSS, custom?
 
-#### organizational alignment
+#### Organizational alignment
 a scoring system that see if detection related to the threat is something we should worry about. e.g. 0 - threat is irrelevant, while 4 - threat specifically target your org.
 
-#### detection coverage
+#### Detection coverage
 another scoring system. e.g. 0 - this technique detection have in depth coverage; 1 - this technique detection need update; 2 - this technique detection is not present 
 another point to think about is how the new requirement is an improvement of current detection
 
@@ -146,7 +148,7 @@ Important that these knowledge base follow a certain nomenclatures/ standards in
 
 ### Develop
 
-**output**: detection code
+#### Output: detection code
 
 this step consist of: design, development, and unit testing.
 things to keep in mind: 
@@ -154,10 +156,8 @@ things to keep in mind:
 	- do this detection need to run real-time? if not how many times a day should it run?
 	- how specific should the query be? overly specific will have true negative, and overly general will be too noisy/ false positive.
 	- these thing will also show up in next step i.e. testing
-	- [ ] is there any writing on cost of detection, false positive fatigue etc. ⏫ 
 - standards: this goes for details and wording in alert, this will determine how easy it is for SOC to action on.
 
-- [x] continue from here on book detection eng. ⏫ ✅ 2025-02-10
 
 ### Testing
 Test-driven development is a software development technique that adapts well to this purpose. Tests are designed before development and are first added to the automated acceptance testing infrastructure. The development process starts with running the tests against your existing detection capabilities. This may result in you identifying already existing detection capabilities or confirming the failure of these tests, which identifies the need to create or update a detection. During the development process, these tests are continuously applied and used to influence the improvement of the detection
@@ -173,11 +173,11 @@ Output: Deployed detection code
 
 things to keep in mind:
 
-#### deployment tags
+#### Deployment tags
 
 Use deployment tags to differentiate between deployed detection (e.g. experimental - not tested, tested - deployed; tested; LowPriority , stable - fully deployed)
 
-#### documentation (also see [[Detection Engineering#^a94351]] )
+#### Documentation (also see [[Detection Engineering#^a94351]] )
 
 Documentation should have a set of standards on what to document and how to document it. A minimal of these information should be available on documentation:
 - Information used to maintain detection
@@ -187,7 +187,7 @@ Documentation should have a set of standards on what to document and how to docu
 - information on how to action on  detection
 	related detection (to help confirm true positive), investigation suggestion, remediation actions, false positive (what action is know false positive), severity, confidence
 
-##### maintain coverage map (see [[Detection Engineering#^065d90]])
+##### Maintain coverage map (see [[Detection Engineering#^065d90]])
 
 ## Detection components
 
