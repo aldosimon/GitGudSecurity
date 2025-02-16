@@ -12,11 +12,11 @@ tags:
 
 ### Definition
 
-[practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
-Detection engineering definition Detection engineering can be defined as a set of processes that enable potential threats to be detected within an environment. These processes encompass the end-to-end life cycle, from collecting detection requirements, aggregating system telemetry, and implementing and maintaining detection logic to validating program effectiveness.
+>Detection engineering definition Detection engineering can be defined as a set of processes that enable potential threats to be detected within an environment. These processes encompass the end-to-end life cycle, from collecting detection requirements, aggregating system telemetry, and implementing and maintaining detection logic to validating program effectiveness.
+
+-- [practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
 
 ### Quality of good detections
-[practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
 
 Evaluation criteria to judge good detection
 - the ability to detect adversary
@@ -24,6 +24,7 @@ Evaluation criteria to judge good detection
 	- detection **durability**
 - the cost of that ability to the organization
 - the cost to the adversary to evade detection
+
 
 #### Ability to detect adversary
 can be broken to detection **coverage** and detection **durability**.
@@ -45,7 +46,6 @@ For example, a detection might identify reconnaissance scanning of the network. 
 this is related to the pyramid of pain.
 
 ### Advantages of detection program
-[practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
 key advantages: 
 
 - detection bundles that come with vendor is one size fit all. Homebrew detection will get specific with your need
@@ -61,10 +61,8 @@ detection program will set standards for **how detections are written**. This al
 reduced the risk code introducing error into prod. automation also decrease time and cost for engineer vs manual testing.
 
 
-	- [ ] continue chapter 2 on practical threat detection book
-
 ## Types of detection rules
-[[Atomic & Stateful Detection Rules]]
+[Atomic & Stateful Detection Rules](./Atomic & Stateful Detection Rules.md)
 
 **atomic detection**: focus on *single, isolated events* or activities that can be identified as malicious or benign without further context. These are quick and precise but limited in scope. 
 
@@ -73,7 +71,6 @@ reduced the risk code introducing error into prod. automation also decrease time
 Simply put, atomic detections focus on identifying a single event as potentially harmful, while stateful rules analyze multiple events to reveal behaviors that might indicate a larger issue.
 
 ## Detection engineering life cycle
-[practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
 
 ```mermaid
 flowchart LR
@@ -83,6 +80,8 @@ Investigate --> Requirement
 Deploy --> Develop
 
 ```
+-- [practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
+
 
 **Continuous activity inside life cycle** ^ContAct
 Aside from the life cycle, this activity is done continuously:  ^065d90
@@ -94,7 +93,8 @@ Aside from the life cycle, this activity is done continuously:  ^065d90
 ### Requirement
 things to include in the requirement: requesting party, description, reason, exception, scope, evidence
 
-The requirement come from CTI, business requirement - legal, red team exercise, SOC request, and [[Detection Engineering#^7db3dd | continous activity]].
+The requirement come from CTI, business requirement - legal, red team exercise, SOC request, and 
+[continous activity inside life cycle](#detection-engineering-life-cycle).
 
 ### Triage
 
@@ -132,7 +132,7 @@ Detection of technical specifications and data engineering requirements (if appl
 - research: identify attacker goals and TTP, see our current TTP coverage is this TTP already detected? can this requirement improve? do we need new one? think of variation of the techniques that needed to be detected.
 - establish validation criteria: identify how to test detection
 
-read more on [[Detection engineering data source |data sources]]
+read more on [Detection engineering data sources](./detection engineering data sources.md)
 #### Tools
 
 **Ticketing and communication system:** take and document requirements. see if possible integration of both ticket and comm. system.
@@ -177,7 +177,7 @@ things to keep in mind:
 
 Use deployment tags to differentiate between deployed detection (e.g. experimental - not tested, tested - deployed; tested; LowPriority , stable - fully deployed)
 
-#### Documentation (also see [[Detection Engineering#^a94351]] )
+#### Documentation (also see [Tools](#tools) )
 
 Documentation should have a set of standards on what to document and how to document it. A minimal of these information should be available on documentation:
 - Information used to maintain detection
@@ -187,7 +187,7 @@ Documentation should have a set of standards on what to document and how to docu
 - information on how to action on  detection
 	related detection (to help confirm true positive), investigation suggestion, remediation actions, false positive (what action is know false positive), severity, confidence
 
-##### Maintain coverage map (see [[Detection Engineering#^065d90]])
+##### Maintain coverage map (also see [continous activity inside life cycle](#detection-engineering-life-cycle))
 
 ## Detection components
 
@@ -198,13 +198,15 @@ This is a simplified version of components on a detection
 - Detection and detection development: this component provide detection and detection development capability. e.g. elasticsearch
 - Monitoring and alerting: this component provide implementation of detection and interface for monitoring and alerting. e.g. Kibana
 - Detection engineering pipeline
-- [ ] continue at page 193 practical threat detection eng. book⏫ 
 
 ## Maturity Model
 
-[[02_compendiums/Maturity Model]] for detection engineering
+[maturity model](./Maturity model.md) for detection engineering
 [https://detectionengineering.io/](https://detectionengineering.io/)
-- [ ] read on [[Elastic releases the Detection Engineering Behavior Maturity Model — Elastic Security Labs]]
 
 
 
+## References:
+[practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
+
+[https://detectionengineering.io/](https://detectionengineering.io/)
