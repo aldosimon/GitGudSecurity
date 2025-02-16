@@ -1,5 +1,5 @@
 ---
-title: Detection Engineering
+title: Detection engineering
 created: 2025-01-30
 author:
   - Ewaldo Hiras
