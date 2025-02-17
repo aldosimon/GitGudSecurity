@@ -1,0 +1,918 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="compediums related to AWS DR">
+      
+      
+      
+        <link rel="canonical" href="https://aldosimon.github.io/gitgudsecurity/AWS%20detect%20and%20response/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../AWS%20protect/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>AWS detection and response - GitGudSecurity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-detect-and-response" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GitGudSecurity" class="md-header__button md-logo" aria-label="GitGudSecurity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GitGudSecurity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS detection and response
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GitGudSecurity" class="md-nav__button md-logo" aria-label="GitGudSecurity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GitGudSecurity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    AWS detection and response
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    AWS detection and response
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-account-security-contact-root-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Account, Security Contact &amp; Root Email
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asset-inventory-and-cmdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asset Inventory and CMDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correlate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correlate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Tooling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detect-and-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detect and Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detect and Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-high-level-flowchart-of-detect-and-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      A high level flowchart of detect and analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lateral-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lateral Movement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-initial-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify initial access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#containment-and-eradication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Containment and Eradication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Containment and Eradication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Key
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disable-access-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disable Access Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revoke-active-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revoke Active Session
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deny-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deny Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-ip-address-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply IP Address Condition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20protect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS protect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Detection%20engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Detection engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-account-security-contact-root-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Account, Security Contact &amp; Root Email
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asset-inventory-and-cmdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asset Inventory and CMDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correlate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correlate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Tooling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detect-and-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detect and Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detect and Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-high-level-flowchart-of-detect-and-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      A high level flowchart of detect and analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lateral-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lateral Movement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-initial-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify initial access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#containment-and-eradication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Containment and Eradication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Containment and Eradication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Key
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disable-access-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disable Access Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revoke-active-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revoke Active Session
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deny-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deny Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-ip-address-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply IP Address Condition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-detect-and-response">AWS detect and response</h1>
+<h2 id="prepare">Prepare</h2>
+<h3 id="logging">Logging</h3>
+<p>Variety of service that relate to AWS logging: (stubs)</p>
+<p>[GuardDuty]</p>
+<p>[CloudTrail]</p>
+<p>[EC2 Logs]</p>
+<p>[Amazon VPC log]</p>
+<p>[Lambda log]</p>
+<p>[CloudFront log]</p>
+<p>[RDS log]</p>
+<p>[CloudWatch]</p>
+<h3 id="security-account-security-contact-root-email">Security Account, Security Contact &amp; Root Email</h3>
+<p><strong>Security Account</strong></p>
+<ul>
+<li>Have a Security Account, as per AWS best practice.</li>
+<li>Have an responder role account, with permission to run containment actions</li>
+<li>Do not use these account for security engineering activities</li>
+</ul>
+<p><strong>Security Contact</strong></p>
+<p>AWS will send critical abuse and security notices to the root email address on the account. So establish a cloudsecurity-alerts distribution list for your company and set that as the Security Contact in all your AWS Accounts. AWS now allows you to do that via the API.</p>
+<hr />
+<h3 id="asset-inventory-and-cmdb">Asset Inventory and CMDB</h3>
+<p>You must have the ability to view you asset inventory. is the asset prod/ testing? is there any PII? contact person for the asset? All of this is the critical business context that AWS cannot provide. </p>
+<p>chris have a script to pull using steampipe.io and send to <a href="https://github.com/jchrisfarris/steampipe_splunk_tables/tree/main">splunk</a></p>
+<hr />
+<h3 id="correlate">Correlate</h3>
+<p>You must have the ability to search  and correlate AWS logs, on-prem, VPN logs, SSO logs, etc. This usually comes in a form of SIEM, or log management.</p>
+<p>There are myriads of way of doing SIEM and AWS, one from <a href="https://www.chrisfarris.com/post/aws-ir/">Chris Farris</a></p>
+<pre class="mermaid"><code>graph TD
+
+CloudTrail --&gt; S3 --&gt; AWS_SQS --&gt; SIEM
+GuardDuty --&gt; EventBridge --&gt; Lambda --&gt; SIEM
+CMDB/steampipe --&gt; SIEM
+SIEM --&gt; AWS_Detective
+SIEM --&gt; Analyst
+AWS_Detective --&gt; Analyst
+OtherLog/VPN/SSO --&gt; SIEM</code></pre>
+<hr />
+<h3 id="other-tooling">Other Tooling</h3>
+<ul>
+<li>VPC FlowLogs will help you understand the network plane stuff. Who is coming and going from your castle?</li>
+<li>Preparing to conduct an EC2 or Container forensic operation is best done before you need to do that.</li>
+<li>Detective is a managed capability from AWS to help you understand and investigate events, but it’s pretty expensive. This is useful if you don’t already have the tooling to help</li>
+<li>Macie is great for finding the PII in your environment. <a href="https://www.chrisfarris.com/post/revisiting-macie/">Chris Farris Macie</a>.</li>
+</ul>
+<h2 id="detect-and-analysis">Detect and Analysis</h2>
+<h3 id="a-high-level-flowchart-of-detect-and-analysis">A high level flowchart of detect and analysis</h3>
+<pre class="mermaid"><code>flowchart TD
+
+    A[Event] --&gt; B[what the event about?]
+
+      B --&gt; |Resources| C[investigate resources]
+
+    B --&gt; |Identity| D[investigate identity]
+
+    B --&gt; |IP| Y[investigate IP]
+
+    C --&gt; E[who created the resources]
+
+    E --&gt; F[delete resources]
+
+    E --&gt; D
+
+    D --&gt; G[what action identity did]
+
+    G --&gt; H[identity create resources?]
+
+    H --&gt; |Yes| F
+
+    G --&gt; I[identity pivot or create identity]
+
+    I --&gt; D
+
+    Y --&gt; J[do other identity using this IP]
+
+    J --&gt; D
+
+    D --&gt; K[do identity use other IP]
+
+    K --&gt; Y</code></pre>
+<p>-- <a href="https://www.chrisfarris.com/post/aws-ir/">Chris Farris</a>, with changes</p>
+<p>read more on ARN here:  [[AWS ARN Explained Amazon Resource Name Guide]] (stub)</p>
+<h3 id="lateral-movement">Lateral Movement</h3>
+<p>Movement can be cloud to cloud (AssumeRole), cloud to ground (EC2/ Compute Engine), or ground to cloud see more on [[Cloud Detection Catalogue]]</p>
+<p>lateral movement query example</p>
+<div class="highlight"><pre><span></span><code>index=cloudtrail eventName=AssumeRole OR StartSession OR SendCommand OR SendSSHPublicKey 
+| stats count by eventName, userIdentity.arn, sourceIPAddress
+</code></pre></div>
+<p>(stub)
+[[Lateral movement risks in the cloud and how to prevent them – Part 1 the network layer (VPC)  Wiz Blog]]
+[[EC2-Instance-Connect Lateral Movement Strategy for Data Exfiltration]]
+[[How to Compromise AWS Using the Metadata Service - risk3sixty 1]]</p>
+<h3 id="identify-initial-access">Identify initial access</h3>
+<p>One key thing you’ll need to do as part of containment is to figure out how they got in in the first place. If it was leaked keys to GitHub, that’s easy. If attacker exfiltrated the credentials from an EC2 instance or container due to an application issue, that will be a bit harder to find. </p>
+<p>With EC2 Instance Roles, the Instance ID is part of the Role Session Name, which may help you.</p>
+<p>But if you can’t find the initial vector, you’ll play wack-a-mole with containment, or you’ll have to be more impactful with the containment policies you apply. This is one reason that best-practice is to have one role per resource or app (the other is to maintain least-privilege).</p>
+<h2 id="containment-and-eradication">Containment and Eradication</h2>
+<h3 id="access-key">Access Key</h3>
+<h4 id="disable-access-key">Disable Access Key</h4>
+<p>The Quarantine Policy isn’t enough. You want to disable the key ASAP! Note: you want to disable the key, don’t delete it. You may not know the service impact of disabling the key at the outset of the incident. You may need to re-enable it to recover from a service impact.</p>
+<p>responder role should have this permission [[AWS detect and response#Security Account, Security Contact &amp; Root Email]]</p>
+<p><img alt="20250212130822.png" src="../img/20250212130822.png" /></p>
+<h4 id="revoke-active-session">Revoke Active Session</h4>
+<p>Temporary credentials that Lambda, EC2 Instances, and Containers use, you need to invalidate the compromised credentials. Via the AWS console, you can say, “Deny everything for all sessions created before X date-time”.</p>
+<p>attackers may be able to use the same exploit again if you don't know initial access.</p>
+<p><img alt="20250212131016.png" src="../img/20250212131016.png" /></p>
+<h3 id="deny-policy">Deny Policy</h3>
+<p>Based on your needs, either deny everything (broke Prod) or pick allow with developer help.</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Deny&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Deny&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="nt">&quot;NotAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;THINGS YOU NEED&quot;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">        </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">]</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="apply-ip-address-condition">Apply IP Address Condition</h3>
+<p>Another alternative is to limit the use of the credentials to a handful of known and trusted IP addresses. This can reduce the service impact while also limiting your attacker’s ability to use the credentials.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Deny&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;Condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Bool&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;aws:ViaAWSService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;NotIpAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;aws:SourceIp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;192.0.2.0/24&quot;</span><span class="p">,</span><span class="s2">&quot;203.0.113.19/32&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="references">References</h2>
+<p><a href="https://www.chrisfarris.com/post/aws-ir/">Chris Farris</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
