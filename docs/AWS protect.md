@@ -124,6 +124,13 @@ Resource Control Policies apply to the resources in your organization and can co
 **Resource Control Policies** are more complicated to preview because you’ll need to enable very expensive **CloudTrail DataEvents** and review the vast data produced. For some RCPs, you can probably use: [IAM Access Analyser](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification)
 [- PrimeHarbor](https://www.primeharbor.com/blog/security-invariants/#:~:text=A%20security%20invariant%20is%20a,for%20your%20business%20and%20applications.)
 
+#### RCP samples
+[samples of RCP](https://github.com/aws-samples/resource-control-policy-examples)
+
+You should not attach RCPs without thoroughly testing the impact that the policy has on resources in your accounts. Once you have a policy ready that you would like to implement, we recommend testing in a separate organization or OU that can represent your production environment. Once tested, you should deploy changes to test OUs and then progressively deploy the changes to a broader set of OUs over time.
+
+
+
 ### Declarative Policies (DPs)
 These policies exist outside of IAM evaluation and enforce **specific controls** at the AWS Service.
 You can determine the impactof DP with a simple CSPM review for public images and snapshots. For IMDSv2 enforcement, you can review the CloudWatch Metric `MetadataNoToken` to see how many API calls still use the old system. 
