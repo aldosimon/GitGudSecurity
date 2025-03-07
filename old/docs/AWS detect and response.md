@@ -48,10 +48,7 @@ AWS will send critical abuse and security notices to the root email address on t
 
 ### Asset Inventory and CMDB
 
-You must have the ability to view you asset inventory. is the asset prod/ testing? is there any PII? contact person for the asset? All of this is the critical business context that AWS cannot provide. 
-
-chris have a script to pull using steampipe.io and send to [splunk](https://github.com/jchrisfarris/steampipe_splunk_tables/tree/main)
-
+You must have the ability to view you asset inventory[^1]. is the asset prod/ testing? is there any PII? contact person for the asset?
 
 ----
 
@@ -81,10 +78,10 @@ OtherLog/VPN/SSO --> SIEM
 - VPC FlowLogs will help you understand the network plane stuff. Who is coming and going from your castle?
 - Preparing to conduct an EC2 or Container forensic operation is best done before you need to do that.
 - Detective is a managed capability from AWS to help you understand and investigate events, but it’s pretty expensive. This is useful if you don’t already have the tooling to help
-- Macie is great for finding the PII in your environment. [Chris Farris Macie](https://www.chrisfarris.com/post/revisiting-macie/).
+- Macie is great for finding the PII in your environment[^2]. 
 ## Detect and Analysis
 
-### A high level flowchart of detect and analysis
+### A high level flowchart of detect and analysis [^3]
 ```mermaid
 flowchart TD
 
@@ -120,8 +117,6 @@ flowchart TD
 
     K --> Y
 ```
-
--- [Chris Farris](https://www.chrisfarris.com/post/aws-ir/), with changes
 
 read more on ARN here:  [[AWS ARN Explained Amazon Resource Name Guide]] (stub)
 
@@ -225,3 +220,7 @@ Another alternative is to limit the use of the credentials to a handful of known
 
 ## References
 [Chris Farris](https://www.chrisfarris.com/post/aws-ir/)
+
+[^1]: [Feed splunk with steampipe](https://github.com/jchrisfarris/steampipe_splunk_tables/tree/main)
+[^2]: [About Macie](https://www.chrisfarris.com/post/revisiting-macie/)
+[^3]: [Chris Farris](https://www.chrisfarris.com/post/aws-ir/), with changes
