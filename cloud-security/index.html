@@ -1,0 +1,1720 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="cloudsec compediums">
+      
+      
+      
+        <link rel="canonical" href="https://aldosimon.github.io/gitgudsecurity/cloud-security/">
+      
+      
+        <link rel="prev" href="../cloud-detection-catalogue/">
+      
+      
+        <link rel="next" href="../cloud-threat-hunt/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Cloud Security - GitGudSecurity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#about" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GitGudSecurity" class="md-header__button md-logo" aria-label="GitGudSecurity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GitGudSecurity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud Security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GitGudSecurity" class="md-nav__button md-logo" aria-label="GitGudSecurity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GitGudSecurity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-vpc-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Amazon VPC Log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application-security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-detect-and-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS Detection and Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-iam-quick-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS IAM Quick Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-protect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS Protect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-security-baby-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS Security Baby Steps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../best-practice-to-allow-3p-to-access-aws-accounts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Allow 3P/SaaS to access AWS accounts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-detection-catalogue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Detection Catalogue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Cloud Security
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Security
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-security-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      cloud-security-program
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="cloud-security-program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10x-cloudsec" class="md-nav__link">
+    <span class="md-ellipsis">
+      10x-cloudsec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30-60-90-180d-chris-farris" class="md-nav__link">
+    <span class="md-ellipsis">
+      30-60-90-180d chris farris
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rami-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      rami-mac
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="rami-mac">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#30-60-90d" class="md-nav__link">
+    <span class="md-ellipsis">
+      30-60-90d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      philosophy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      security-program
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      invariants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="invariants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-allowlisting" class="md-nav__link">
+    <span class="md-ellipsis">
+      service-allowlisting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-and-asset-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      vulnerability-and-asset-management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="vulnerability-and-asset-management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asset-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      asset-inventory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      hygiene
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vuln-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      vuln-management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cheatsheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      cheatsheet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      iam
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="iam">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#least-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      least-privilege
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infra-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      infra-access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      services-identity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      detection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-of-the-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      state-of-the-cloud
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="state-of-the-cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#big-picture-of-attack-vector-and-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      big picture of attack vector and remediation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remediate-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      remediate with
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="remediate with">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lost-stolen-or-exposed-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lost, stolen, or exposed credentials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publicly-exposed-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publicly exposed resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credentials-exposed-via-application-security-flaws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credentials exposed via application security flaws
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unpatched-vulnerabilities-and-zero-days-in-overly-exposed-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unpatched vulnerabilities and zero-days in overly exposed systems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#denial-of-service-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Denial of Service attacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supply-chain-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supply chain compromise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-detection-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      cloud-detection-catalogue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detection-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      detection-response
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protect" class="md-nav__link">
+    <span class="md-ellipsis">
+      protect
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-and-related" class="md-nav__link">
+    <span class="md-ellipsis">
+      references-and-related
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-threat-hunt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Threat Hunt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudfront%20log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CloudFront log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudtrail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CloudTrail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudwatch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CloudWatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering-data-source/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Detection Engineering Data Source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Detection Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ec2-logs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EC2 Logs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guardduty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GuardDuty
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infosec-compendiums/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infosec Compendiums
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lambda-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lambda log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maturity-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Maturity Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rds-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RDS log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threat-modelling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Threat Modelling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vulnerability-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vulnerability Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-security-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      cloud-security-program
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="cloud-security-program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10x-cloudsec" class="md-nav__link">
+    <span class="md-ellipsis">
+      10x-cloudsec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30-60-90-180d-chris-farris" class="md-nav__link">
+    <span class="md-ellipsis">
+      30-60-90-180d chris farris
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rami-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      rami-mac
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="rami-mac">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#30-60-90d" class="md-nav__link">
+    <span class="md-ellipsis">
+      30-60-90d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      philosophy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      security-program
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      invariants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="invariants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-allowlisting" class="md-nav__link">
+    <span class="md-ellipsis">
+      service-allowlisting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-and-asset-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      vulnerability-and-asset-management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="vulnerability-and-asset-management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asset-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      asset-inventory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      hygiene
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vuln-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      vuln-management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cheatsheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      cheatsheet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      iam
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="iam">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#least-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      least-privilege
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infra-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      infra-access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      services-identity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      detection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-of-the-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      state-of-the-cloud
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="state-of-the-cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#big-picture-of-attack-vector-and-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      big picture of attack vector and remediation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remediate-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      remediate with
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="remediate with">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lost-stolen-or-exposed-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lost, stolen, or exposed credentials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publicly-exposed-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publicly exposed resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credentials-exposed-via-application-security-flaws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credentials exposed via application security flaws
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unpatched-vulnerabilities-and-zero-days-in-overly-exposed-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unpatched vulnerabilities and zero-days in overly exposed systems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#denial-of-service-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Denial of Service attacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supply-chain-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supply chain compromise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-detection-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      cloud-detection-catalogue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detection-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      detection-response
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protect" class="md-nav__link">
+    <span class="md-ellipsis">
+      protect
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-and-related" class="md-nav__link">
+    <span class="md-ellipsis">
+      references-and-related
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="about">about</h1>
+<h2 id="cloud-security-program">cloud-security-program</h2>
+<h3 id="10x-cloudsec">10x-cloudsec</h3>
+<p><a href="https://www.youtube.com/@fwdcloudsec">How to 10X Your Cloud Security (Without the Series D) ~ Rami McCarthy</a></p>
+<h3 id="30-60-90-180d-chris-farris">30-60-90-180d chris farris</h3>
+<p>this is from <a href="https://www.chrisfarris.com/post/ghost-of-cloudsec-yet-to-come/">ghost of cloudsec yet to come</a></p>
+<p>The 30-day plan is about ensuring the <strong>basics</strong> are in place. </p>
+<ol>
+<li>Is <strong>CloudTrail</strong> enabled and feeding the SEIM?</li>
+<li>Are there dedicated <strong>security &amp; logging accounts</strong>?</li>
+<li>Does the security account have <strong>audit capability</strong> to the environment?</li>
+<li>Do you have <strong>GuardDuty</strong> enabled?</li>
+<li>Do you know all of the accounts you have and who is accountable for them? What is the multi-account strategy?</li>
+<li>Are cloud users leveraging federated <strong>identities or IAM Users</strong>?</li>
+<li>Is there a security baseline for cloud usage? What security policies, standards, and baselines do exist?</li>
+<li>Who are the core cloud constituencies? How do they see the current security team? Who will be allies, and who do you need to influence?</li>
+</ol>
+<p>The 60-day plan would focus on <strong>situational awareness</strong> and <strong>introducing the cloud security program</strong> to the company’s broader cloud user community.</p>
+<ol>
+<li>Deploy a CSPM solution. Probably something free.</li>
+<li>Deploy IAM Access Analyzer</li>
+<li>Review the CSPM and access analyzer results for the most egregious issues and target them as part of the initial outreach. By egregious issues, I’m referring to 3389 open to the world on a windows box or unauthenticated elastic search clusters. Encryption, public buckets, etc., are not on this list.</li>
+<li>Deploy an auto-remediation tool like Cloud Custodian, but do it in notify-only mode. Hold the findings internally for a risk-based targeted outreach.</li>
+<li>If you’re ambitious, price out and consider using Macie to scan the public buckets for PII.</li>
+<li>Start creating your KRIs. <em>Don’t share them with anyone just yet.</em> Understand how your KRI automation reflects the risk to the business and adjust accordingly.</li>
+<li>Leverage the CSPM and auto-remediation tools findings to advise how to proceed.
+For the last point - which teams or accounts have the most findings? Is there a pattern of opening security groups because there is no architectural pattern for secure on-prem or on-network connectivity? If so, fix that.</li>
+</ol>
+<p>Begin the user education phase of things -&gt; democratizing security. also see <a href="#rami-mac">rami</a></p>
+<ol>
+<li>Write a security baseline or security best practices document for the development community. Be careful here. If this document becomes part of the formal GRC/Policy framework, you’ve fallen into the Tar-Pit of CSPM, and you’ve become part of the compliance police. The goal is a secure environment, so focus on developer education.</li>
+<li>Introduce a core set of SCPs to cover the security invariants that the security and cloud user community can agree on. Develop a mutual understanding of how exceptions might be handled.</li>
+<li>Work with teams to get the CloudCustodian notifications delivered to the teams themselves, rather than just the security team. Still, in notify-only mode, they now start to see in real-time the new issues being created. This avoids swamping them with eight years of un-encrypted snapshots and databases and demoralizing them with thousands of findings.</li>
+<li>Start building out the IaC scanning according to your company’s risk profile.</li>
+</ol>
+<p>Now you’re ready to enable the full suite of preventative controls
+1. Ensure the developers are using IaC scanning. They know what is coming via the auto-remediation and Service Control Policies. They know their deployments will fail if certain things are not resolved.
+2. Enable the next level of SCPs to prevent things at the IAM phase. This will cause pipelines to break and throw weird errors at users doing ClickOps.
+3. Enable the auto-remediation capability in Cloud Custodian (first in dev accounts, then in prod). IaC scanning should prevent these policies from firing in automated accounts, so this is a way to catch errors via ClickOps or pipeline operators who ignore the warnings. Remember: actual remediation must be against high security-risk misconfigurations, where the remediation is low operational risk.
+4. Start monitoring your KRIs. Do you see a drop-off in the older CSPM findings? If yes, great, keep things moving along.
+5. If your KRIs indicate a certain class of risk is not going down, consider a targeted effort to resolve those.
+6. If you deploy a CSPM vulnerability management program with SLAs, ensure that high-effort-to-remediate findings aren’t just added to a spreadsheet. They must be part of a risk-informed architectural review.</p>
+<h3 id="rami-mac">rami-mac</h3>
+<p>this is from his podcast talk on <a href="https://www.youtube.com/watch?v=pOUfXgRVsF8&amp;pp=ygUNUmFtaSBNY0NhcnRoeQ%3D%3D">O3 cyber podcast</a></p>
+<pre class="mermaid"><code>mindmap
+    root(program)
+        visibility
+            horizontal: asset, csp, stack?
+            vertical: prioritize on key risk, not too deep
+        posture
+            asses critical risk
+        defense
+            monitoring, IR plan, log scaling
+        democratizing security
+            guardrail vs gatekeep
+            empower developer </code></pre>
+<ul>
+<li><strong>Visibility First:</strong> Ramy emphasizes the importance of visibility in security, focusing on both organizational and technical aspects.  <ul>
+<li>He suggests a 30-60-90 day plan for new roles, prioritizing understanding relationships and business context. The visibility should be horizontal and vertical (altitude)</li>
+<li>horizontal example: what asset? what CSP we use? what tech stack?</li>
+<li>vertical example: since this is a strategy, we still need a bit of a height, so the vertical should not be too deep on everything, but prioritize on key risk.</li>
+<li>A way of prioritizing is using <strong>Three Perimeters Model:</strong> rami introduces a model focusing on identity, network, and application perimeters in the cloud. <ul>
+<li><strong>Identity Perimeter:</strong> Cloud management plane, infrastructure access, and third-party identities. </li>
+<li><strong>Network Perimeter:</strong> Public resources and managed services (s3 buckets), public network access and hosted services (i.e. public IP) and exposure management. </li>
+<li><strong>Application Perimeter:</strong> Vulnerability management and insecure platforms. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Visibility, Posture, and Defense:</strong> Follow a cycle that starts with visibility, moves to assessing critical risks (posture), and then focuses on monitoring, detection, and response (defense). </li>
+<li><strong>Business Context:</strong> Understand the business context and strategy to make security relevant and gain support. </li>
+<li><strong>Strategy Post 90 Days:</strong> Ramy suggests that a cloud security strategy should provide a consistent model to discuss progress. He recommends using maturity models or frameworks, like the Cyber Defense Matrix, to benchmark and track progress. </li>
+<li><strong>The Next Big Thing:</strong> Ramy believes the focus should be on making the basics easier and more achievable, particularly in identity security. He highlights AI's role in driving awareness of existing gaps, especially in data security. </li>
+<li><strong>Democratized Security:</strong> Ramy advocates for empowering local experts with shared context, emphasizing the shift towards developers owning their code and the need for security tools to facilitate collaboration. </li>
+</ul>
+<h4 id="30-60-90d">30-60-90d</h4>
+<p>30d: <strong>assess</strong> •Assess •Build relationships •Establish baseline
+60d: <strong>better</strong> •Do one thing better •Nail it •Add invariants for your baseline
+90d: <strong>scale and ROI</strong> •Plan for scale •Reproducible process •Security ROI •Kill a class of risk</p>
+<p>scaling -&gt; democratizing security</p>
+<h4 id="philosophy">philosophy</h4>
+<p>Do things that don’t scale, automate as much as possible to scale
+High-signal, low-noise tools and alerting 
+     - okay not to catch everything, but when it catch something, it is impactful
+Guardrails, not gatekeepers 
+Security as partnership. Embed security in development process 
+    - try to eventually scale this: automate, guardrail, baseline
+Tools devs can build, others can operate 
+The limits of desirable security</p>
+<h4 id="security-program">security-program</h4>
+<p>basically create baseline, meet the baseline, increase baseline -&gt; ratcheting your security to not backslide
+metrics: 
+    <a href="https://alsmola.medium.com/building-effective-security-okrs-94f249230a39">building metrics</a>
+    <a href="http://collingreene.com/product_security_primitives.html">product security primitives</a>
+    <a href="https://medium.com/starting-up-security/a-key-performance-indicator-for-infosec-organizations-7f654b7cd256">kpi infosec org</a>
+<a href="https://ramimac.me/scorecarding">scorecard</a>
+proactive efficiency: 
+    “why not ask ourselves how the team would cope if the workload went up another 30%, but bad financial results precluded any team growth? It's actually fun to think about such hypotheticals ahead of the time - and hey, if the ideas sound good, why not try them out today?“ from <a href="https://lcamtuf.blogspot.com/2018/02/getting-product-security-engineering.html">here</a>
+evangelism: use this two questions: how'll we get hacked, and why security matters.</p>
+<h4 id="invariants">invariants</h4>
+<p>enforce/ alert on things that should <strong>always</strong> or <strong>never</strong> be true. idea is if there is no need for context (these things should always or never), no need for sec team time</p>
+<h5 id="aws-policy">aws-policy</h5>
+<p>example: aws scp, examples: <a href="https://rami.wiki/scps/">rami scps</a></p>
+<p><a href="https://alsmola.medium.com/security-invariants-or-gtfo-d7db2950f95">alex smolen</a>
+<a href="https://www.primeharbor.com/blog/security-invariants/">chris farris</a></p>
+<h5 id="service-allowlisting">service-allowlisting</h5>
+<p>basically do what GCP is by default. that is deny service unless it is in allow list. this also works for regions too (same thing invariants some regions that will <strong>never</strong> be used)</p>
+<p>more here: <a href="https://ramimac.me/aws-allowlisting">rami allowlisting</a></p>
+<h4 id="vulnerability-and-asset-management">vulnerability-and-asset-management</h4>
+<h5 id="asset-inventory">asset-inventory</h5>
+<h5 id="hygiene">hygiene</h5>
+<p>ownership issue; unused asset --&gt; use financial issue
+<a href="ramimac.me/finops">finops</a></p>
+<h5 id="vuln-management">vuln-management</h5>
+<h5 id="cheatsheet">cheatsheet</h5>
+<p>use these to help structure your vulns
+<a href="https://www.trendmicro.com/cloudoneconformity/knowledge-base/">cloud conformity</a>
+<a href="https://securitylabs.datadoghq.com/cloud-security-atlas/">cloudsec atlas</a></p>
+<h4 id="iam">iam</h4>
+<h5 id="least-privilege">least-privilege</h5>
+<p>do we need absolute least priv. or good enough for human, because the needs changes. try service level least privileges, but maybe yes on least priv on crown jewels </p>
+<h5 id="infra-access">infra-access</h5>
+<ul>
+<li>use ssm to access instances</li>
+<li>use proxy/ wireguard</li>
+</ul>
+<h5 id="services-identity">services-identity</h5>
+<ul>
+<li>clean up unused services periodically. use steampipe <a href="https://ramimac.me/access-advisor-steampipe">here</a></li>
+<li>use imdsv2 for legacy instances</li>
+</ul>
+<h4 id="detection">detection</h4>
+<h2 id="state-of-the-cloud">state-of-the-cloud</h2>
+<h3 id="big-picture-of-attack-vector-and-remediation">big picture of attack vector and remediation</h3>
+<p>based off UCTM https://securosis.com/wp-content/uploads/2024/04/UCTM_v_1.0.pdf</p>
+<ul>
+<li>Lost, stolen, or exposed credentials </li>
+<li>Publicly exposed resources </li>
+<li>Credentials exposed via application security flaws</li>
+<li>Unpatched vulnerabilities and zero-days in overly exposed systems </li>
+<li>Denial of Service attacks </li>
+<li>Subdomain takeover </li>
+<li>Supply chain compromise</li>
+</ul>
+<h3 id="remediate-with">remediate with</h3>
+<h4 id="lost-stolen-or-exposed-credentials">Lost, stolen, or exposed credentials</h4>
+<ul>
+<li>Reduce or eliminate static credentials and tokens for the cloud management plane. Where possible use alternatives like IAM Roles and Azure Managed Identities. Automation is your friend. There are plenty of free and commercial tools to hunt these down. </li>
+<li>Scan code for stored credentials in CI/CD pipelines and repositories, even if they are private. </li>
+<li>Require MFA for all human access, even when using API keys. </li>
+<li>Limit the duration of temporary access credentials so they expire after only a few hours. </li>
+<li>Migrate administrators and highly-privileged access to Just in Time access and/or use hardware tokens (e.g., Yubikeys). </li>
+<li>Implement a “data perimeter” (this can be difcult in established enterprises, but can be very effective, even if only some basics are implemented).</li>
+</ul>
+<h4 id="publicly-exposed-resources">Publicly exposed resources</h4>
+<ul>
+<li>Use your cloud service provider’s built-in assessment tools or a free or third-party scanner to identify public resources.  The key is sufficient coverage and act on results.</li>
+<li>Use your cloud provider’s policy tools (guardrails) to prevent the creation of public resources where possible. For example Azure Policy, AWS Service Control Policies, and AWS Block Public Access for S3</li>
+<li>Automated remediation if you can't block via guardrails.</li>
+</ul>
+<h3 id="credentials-exposed-via-application-security-flaws">Credentials exposed via application security flaws</h3>
+<ul>
+<li>Reduce the exposure of applications to the public Internet. Place compute resources behind load balancers which only allow specific API routes.</li>
+<li>Do not give applications highly privileged access policies. IAM policies for applications should explicitly enumerate the resources each application needs to access. </li>
+<li>Avoid using AWS policies such as FullAccess and Basic Roles in GCP. Your tools (free or commercial) can help identify these. </li>
+<li>Scan code in CI/CD pipelines for static credentials. </li>
+<li>Ensure that access to the Instance Metadata Service requires authentication headers and limits the number of network hops permitted. For example require IMDSv2 on AWS. </li>
+<li>Use a WAF to mitigate undifferentiated application layer attacks. </li>
+<li>If your cloud provider offers credential misuse detection (e.g., session credentials used from someplace where the session didn’t originate), use it. These aren’t perfect and only catch these attacks sometimes, but they can really help. AWS GuardDuty is one option.</li>
+<li>While challenging and complex, implementing a data perimeter is one of the best defenses for this. Prioritize this option if you are the target of differentiated attacks.</li>
+<li>[ ] research on data perimeter practical🔼 </li>
+</ul>
+<h3 id="unpatched-vulnerabilities-and-zero-days-in-overly-exposed-systems">Unpatched vulnerabilities and zero-days in overly exposed systems</h3>
+<ul>
+<li>Minimize the number of systems which are exposed to the entire Internet. But we understand some of these systems are exposed to the Internet for legitimate reason, such as VPN servers and jump boxes, which you cannot always eliminate like the inadvertently exposed public resources mentioned earlier. You should still scan them and know where and how they are configured.<ul>
+<li>see your CWPP, or CNAPP, or CSP for this.</li>
+</ul>
+</li>
+<li>For containers consider using a container security platform or your cloud provider's container scanning features. Make sure your tool can identify vulnerabilities in <strong>running containers</strong>, not just <strong>images</strong> in storage — or can identify which containers are running vulnerable images.</li>
+<li>Enable your cloud provider’s threat detection service (e.g., GuardDuty), which can help detect cryptomining; it is a common result of this attack vector.</li>
+<li>Exposed systems should <strong>never</strong> hold static credentials and should have least-privilege IAM permissions. We know this is hard, but if you are going to stick a target on the Internet, don’t be surprised if someone takes you up on your offer. At least try to minimize the potential damage.</li>
+<li>Develop SBOM capabilities to discover and respond to zero-day threats when they arise quickly.</li>
+</ul>
+<h3 id="denial-of-service-attacks">Denial of Service attacks</h3>
+<ul>
+<li>Never expose workloads directly to the Internet. Even when they need to be exposed, stick them behind a load balancer, Content Delivery Network (CDN), or similar insulating service.</li>
+<li>For critical workloads/applications plan for DoS attacks and use standard precautions, such as a service from your CSP or a third-party vendor (AWS shield advance; Google cloud armour)</li>
+</ul>
+<h3 id="supply-chain-compromise">Supply chain compromise</h3>
+<ul>
+<li>use base trusted image, packages from trusted sources</li>
+<li>SBOM</li>
+<li>use Software Composition Analysis SCA</li>
+</ul>
+<hr />
+<h2 id="cloud-detection-catalogue">cloud-detection-catalogue</h2>
+<p>[[cloud-detection-catalogue]]</p>
+<hr />
+<h2 id="detection-response">detection-response</h2>
+<p>[[aws-detect-and-response]]</p>
+<hr />
+<h2 id="protect">protect</h2>
+<p>[[aws-protect]]</p>
+<hr />
+<h2 id="references-and-related">references-and-related</h2>
+<p><a href="https://ramimac.me">ramimac</a>
+<a href="https://www.youtube.com/watch?v=DgWLWtFbO_o">10x your cloud</a>
+<a href="https://ramimac.me/access-advisor-steampipe">steampipe ramimac</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
