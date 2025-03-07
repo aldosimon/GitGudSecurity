@@ -204,7 +204,7 @@ This is also related with **technique** and **procedures** and **procedures vari
 If detection_of_procedureA OR detection_of_procedureB OR detection_ of_procedureC ALERT ON TechniqueXYZ.
 ```
 
-![[Pasted image 20250225154639.png]]
+![image](../img/Pasted-image-20250225154639.png)
 [practical threat detection engineering](https://ieeexplore.ieee.org/document/10251369)
 
 Based on those theses, when building detection: the indicator with the least amount of variability is the choke point for that **procedure** is the one we use to build detection, and this is also where our validation level should be.
