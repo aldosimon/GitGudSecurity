@@ -1,5 +1,5 @@
 ---
-title: microsoft entra
+title: Microsoft Entra
 created: 
 description: 
 tags: 

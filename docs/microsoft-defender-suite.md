@@ -1,5 +1,5 @@
 ---
-title: microsoft defender suite
+title: Microsoft Defender Suite
 created: 
 description: 
 tags: 
