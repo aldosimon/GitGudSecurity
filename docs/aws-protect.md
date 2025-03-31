@@ -25,7 +25,7 @@ guidance and best practice
 - Use Macie to scan for sensitive data outside of designated areas
 - Encrypt your data in S3
 - Protect data in S3 from accidental deletion using S3 Versioning and S3 Object Lock
-- Enable logging for S3 using CloudTrail and S3 server access logging. also see [cloudtrail](./cloudtrail.md), and [s3-logging](#s3-logging) for comparison
+- Enable logging for S3 using CloudTrail and S3 server access logging. also see [cloudtrail](cloudtrail.md), and [s3-logging](#s3-logging) for comparison
 - Backup your data in S3
 - Monitor S3 using Security Hub and CloudWatch Logs
 
@@ -48,10 +48,10 @@ read on [organizational-policy](#organizational-policy)
 - `s3:PutLifecycleConfiguration`
 - `s3:ListObjects`
 - `s3:ListBuckets` (theorized)
-[](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
+[](../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
 - [ ] research public access blocks
 ### bucket-policies
-- protect from SSE-C [](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
+- protect from SSE-C [](../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
 	- deny object uploads with SSE-C encryption
 	- denies non-KMS (AWS Managed Key or CMK)
 	+ requires a specific CMK
@@ -130,7 +130,7 @@ consider characteristics of each bucket: read/write volume expected; risk (unaut
 ## iam
 
 also see [AWS IAM quick check](aws-iam-quick-check.md)
-also see [aws-protect](aws-protect.md#aws-organization)
+also see [](.md#aws-organization)
 
 iam api call happens in N. Virginia.
 ### understand-how-user-use-iam
@@ -140,7 +140,7 @@ this should be one of the first step, understanding how user interact with aws s
 ### less-static-long-term-creds
 
 Access Keys in AWS are typically tied to long-term credentials such as IAM users. In AWS, security best practices recommend moving away from long-term credentials to short term credentials. Instead of IAM Users, IAM roles are preferred.
-[](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
+[](../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
 
 For more details about temporary credentials in AWS, [AWS has extensive documentation and AWS STS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html).
 - [ ] research more on temp creds AWS
@@ -194,7 +194,7 @@ These are related API with centralized root management that might be of interest
 		_An error occurred (NoSuchEntity) when calling the GetLoginProfile operation: Login Profile for User null cannot be found._
 	- Also check for MFA and signed certs -> delete this also
 
-### related detection and response: [aws-detect-and-response](02-compendiums/aws-detect-and-response.md)
+### related detection and response: [aws-detect-and-response](aws-detect-and-response.md)
 
 ### credential report
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html
@@ -258,7 +258,7 @@ SCPs **DO NOT** work on a management account
 
 SCP is the OG of Security Invariants- define the maximum permissions of identities in your organization.
 
-With **service control policies**, it is possible to review CloudTrail to determine who may be calling the specific actions that will be denied. [](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
+With **service control policies**, it is possible to review CloudTrail to determine who may be calling the specific actions that will be denied. [](../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
 
 **SCPs do NOT grant anyone permissions, they only restrict what actions are allowed in an account!** Service Control Policies are guardrails which restrict what can happen in an account — they cannot grant permissions to anyone or anything in an account.
 
@@ -270,16 +270,16 @@ SCPs can’t restrict service linked roles (like the one created when we enabled
 
 SCPs are applied at the Organizational Unit or account level.
 
-SCP samples: see [below](./aws-protect#rcp-samples)
+SCP samples: see [](.md#rcp-samples)
 
 ### Resource Control Policies (RCPs)
 a new type of Organization Policy that defines the maximum permissions of *resources* in your organization. 
 Resource Control Policies apply to the resources in your organization and can control any principal, even those outside of your control. [Only a few services support RCPs](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html#rcp-supported-services) at this time: S3, KMS, SQS, SecretsManager, and IAM Roles (via STS). 
-[](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Resource%20Control%20Policies)
+[](../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Resource%20Control%20Policies)
 
-**Resource Control Policies** are more complicated to preview because you’ll need to enable very expensive **CloudTrail DataEvents** and review the vast data produced. For some RCPs, you can probably use [IAM Access Analyser](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification) [](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
+**Resource Control Policies** are more complicated to preview because you’ll need to enable very expensive **CloudTrail DataEvents** and review the vast data produced. For some RCPs, you can probably use [IAM Access Analyser](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification) [](../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
 
-**RCP samples**: see [below](./aws-protect#rcp-samples)
+**RCP samples**: see [](.md#rcp-samples)
 
 ### iam-policies
 
@@ -288,7 +288,7 @@ AWS managed policies exist in every AWS account. Customer managed policies only 
 ### declarative-policies
 These policies exist outside of IAM evaluation and enforce **specific controls** at the AWS Service.
 You can determine the impactof DP with a simple CSPM review for public images and snapshots. For IMDSv2 enforcement, you can review the CloudWatch Metric `MetadataNoToken` to see how many API calls still use the old system. 
-[](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
+[](../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
 [read more on AWS](https://aws.amazon.com/blogs/security/get-the-full-benefits-of-imdsv2-and-disable-imdsv1-across-your-aws-infrastructure/)
 - [ ] read more on IMDSv2
 
@@ -301,7 +301,7 @@ note on samples: You should not attach RCPs without thoroughly testing the impac
 Once you have a policy ready that you would like to implement, we recommend testing in a separate organization or OU that can represent your production environment. 
 Once tested, you should deploy changes to test OUs and then progressively deploy the changes to a broader set of OUs over time.
 #### prime harbor security invariants
-- [Defining Security Invariants  PrimeHarbor](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md)
+- [Defining Security Invariants  PrimeHarbor](../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md)
 - enforce/ alert on things that should **always** or **never** be true. idea is if there is no need for context (these things should always or never), no need for sec team time
 #### scp-samples
 - [prime harbor AWS OP github](https://github.com/primeharbor/aws-organizational-policies)
@@ -312,12 +312,12 @@ Once tested, you should deploy changes to test OUs and then progressively deploy
 #### rcp-samples
 [samples of RCP](https://github.com/aws-samples/resource-control-policy-examples)
 #### lesson-learned-from-incidents 
-- protect from SSE-C ([](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware))
+- protect from SSE-C ([](../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware))
 	- deny object uploads with SSE-C encryption 
 	- Requires KMS Encryption (which can be either an AWS Managed Key or Customer Managed Key)
 
 ### note-on-aws-managed-policies 
-[A SaaS provider's guide to securely integrating with customers' AWS accounts   Datadog Security Labs](01-source/A%20SaaS%20provider's%20guide%20to%20securely%20integrating%20with%20customers'%20AWS%20accounts%20%20%20Datadog%20Security%20Labs.md)
+[A SaaS provider's guide to securely integrating with customers' AWS accounts   Datadog Security Labs](../01-source/A%20SaaS%20provider's%20guide%20to%20securely%20integrating%20with%20customers'%20AWS%20accounts%20%20%20Datadog%20Security%20Labs.md)
 While policies like `ReadOnlyAccess` might seem like an easy way to grant limited permissions, AWS managed policies are typically **over-privileged** and **allow overly-sensitive**, unnecessary actions. For example:
 
 do not use aws managed policy, but use aws managed policy as a starter to build your own.
@@ -362,7 +362,7 @@ https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html
 
 
 ## configuration-management
-[aws-security-best-practices-cheat-sheet](01-source/aws-security-best-practices-cheat-sheet.pdf)
+[aws-security-best-practices-cheat-sheet](../01-source/aws-security-best-practices-cheat-sheet.pdf)
 
 ### scan with AWS config
 - [ ] read more on aws config
@@ -458,5 +458,5 @@ why use organization-cloudtrail :
 - [marco lancini](https://blog.marcolancini.it/2018/blog-arsenal-cloud-native-security-tools/#aws)
 - [slaw](https://slaw.securosis.com/p/give-account-security-blanket-scps)
 - [iam references aws](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html)
-- [aws-respond](02-compendiums/aws-respond.md)
+- [aws-respond](aws-respond.md)
 

@@ -1,5 +1,5 @@
 ---
-title: microsoft entra
+title: Microsoft Entra
 created: 
 description: 
 tags: 
@@ -55,20 +55,20 @@ Microsoft refers to “[three broad categories](https://learn.microsoft.com/entr
 
 example in exchange
 
-![Pasted image 20250330100518](Pasted-image-20250330100518.png)
+![Pasted image 20250330100518](img/Pasted-image-20250330100518.png)
 
 #### role assignment
 
 - Roles in Entra ID can be assigned in various ways; the simplest method is using the "Add assignments" option to directly assign users or groups to a role.
 - Roles can also be assigned to "Enterprise Applications," requiring the Object ID found under "Enterprise Applications," as assignments are linked to the service principal, not the app itself. The reason why is that the assignment is to the service principal for an app instead of the app itself. Both enterprise apps and registered apps use service principals to hold role assignments. 
 
-![Pasted image 20250330102731](Pasted-image-20250330102731.png)
+![Pasted image 20250330102731](img/Pasted-image-20250330102731.png)
 - Assignments made in this manner are permanent and remain until removed by an administrator.
 - It is recommended to **limit** role assignments to "Enterprise Applications" to avoid over-permissioning and excessive privileges for registered apps.
 - For assigning administrative roles to user accounts, tools like Privileged Identity Management or Entitlement Management should be utilized.
 - Future discussions will cover custom RBAC roles and Administrative Units in Entra ID.
 
 ## reference-and-related
-[infosec-compendiums](02-compendiums/infosec-compendiums.md)
-[defender suite](./microsoft-defender-suite)
+[infosec-compendiums](infosec-compendiums.md)
+[defender suite](microsoft-defender-suite.md)
 [practical 365](https://practical365.com/controlling-access-to-microsoft-365-for-entra-id-apps/)

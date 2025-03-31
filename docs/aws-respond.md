@@ -1,5 +1,5 @@
 ---
-title: 
+title: AWS Respond
 created: 
 description: 
 tags: 
@@ -67,11 +67,11 @@ Each second could be the difference between successful isolation or further infe
 
 a. Create a “Step 01” security group with the following rules
 
-![Pasted image 20250330140644](02-compendiums/img/Pasted-image-2020250330140644.png)
+![Pasted image 20250330140644](img/Pasted-image-20250330140644.png)
 
 b. Create a "Step 02" security group without any rules
 
-![Pasted image 20250330140653](02-compendiums/img/Pasted-image-20250330140653.png)
+![Pasted image 20250330140653](img/Pasted-image-20250330140653.png)
 
 After creating these two security groups, users will now be able to swiftly isolate an EC2 instance while eliminating any tracked connections by using the following steps:
 
@@ -136,6 +136,6 @@ or check the automation [here](https://docs.aws.amazon.com/systems-manager-autom
 
 https://aws.amazon.com/blogs/security/what-to-do-if-you-inadvertently-expose-an-aws-access-key/
 ## reference-and-related
-[infosec-compendiums](02-compendiums/infosec-compendiums.md)
-[aws-protect](02-compendiums/aws-protect.md)
+[infosec-compendiums](infosec-compendiums.md)
+[aws-protect](aws-protect.md)
 [dev.to/aws-builders]( https://dev.to/aws-builders/aws-incident-response-how-to-contain-an-ec2-instance-pjk)

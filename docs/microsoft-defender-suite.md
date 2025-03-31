@@ -1,5 +1,5 @@
 ---
-title: Microsoft Defender Suite
+title: microsoft defender suite
 created: 
 description: 
 tags: 
@@ -10,7 +10,7 @@ source:
 This is basically note on how to setup, work with and improve microsoft defender suite
 I steal a lot of this from [GSD](https://dcaddick.github.io/gsd_public), a very comprehensive guide!
 
-more stuff on [ms. entra](./microsoft-entra) and [ms. purview](/microsoft-purview)
+more stuff on [ms. entra](microsoft-entra.md) and [ms. purview](../microsoft-purview.md)
 
 
 **high level stuff**
@@ -62,7 +62,7 @@ https://www.youtube.com/watch?v=BLqNvaF5nXg
 
 also see high level above
 
-![image](./img/Pasted-image-20250319091214.png)
+![image](img/Pasted-image-20250319091214.png)
 
 **capabilities**
 
@@ -119,7 +119,7 @@ how to assign role is [here](https://learn.microsoft.com/en-us/defender-endpoint
 depends on how you are setup, below is the recommended deployment. 
 in short: use  [Intune](https://learn.microsoft.com/en-us/defender-endpoint/onboarding-endpoint-manager?view=o365-worldwide) if you are cloud native. use [config manager](https://learn.microsoft.com/en-us/defender-endpoint/onboarding-endpoint-configuration-manager?view=o365-worldwide) if you are hybrid or on-prem. or use a local script if you do not manage your device.
 
-![deploy](./img/Pasted-image-20250321173919.png)
+![deploy](img/Pasted-image-20250321173919.png)
 ##### onboard device
 
 [onboard device](https://learn.microsoft.com/en-us/defender-endpoint/onboarding) by first choosing [method](https://learn.microsoft.com/en-us/defender-endpoint/onboarding#onboard-devices-using-any-of-the-supported-management-tools), use the [ring approach](https://learn.microsoft.com/en-us/defender-endpoint/onboarding#deploy-using-a-ring-based-approach)
@@ -365,7 +365,7 @@ https://learn.microsoft.com/en-us/microsoft-365/security/security-posture-soluti
 https://www.youtube.com/watch?v=y7m-X8AGBlM
 ### licensing and feature
 
-![image](./img/Pasted-image-20250318102107.png)
+![image](img/Pasted-image-20250318102107.png)
 
 [m365map](https://m365maps.com/) and [m365matrix](https://m365maps.com/matrix.htm)
 
@@ -397,8 +397,8 @@ Unified Audit Log (UAL) - The backbone of forensic investigations in Microsoft 3
 https://www.youtube.com/watch?v=wqXsCMc5lzQ&list=PLBpoVs10QWXI_gjH5_gNAFDhl_dDwE0oR&index=1
 
 ## reference-and-related
-[infosec-compendiums](02-compendiums/infosec-compendiums.md)
+[infosec-compendiums](infosec-compendiums.md)
 [marks list](https://www.linkedin.com/pulse/marks-list-mark-simos/)
 [GSD](https://dcaddick.github.io/gsd_public/) -> very good and complete steps
 [jeffreyappel blog](https://jeffreyappel.nl/)
-[ms. entra](./microsoft-entra) and [ms. purview](/microsoft-purview)
+[ms. entra](microsoft-entra.md) and [ms. purview](../microsoft-purview.md)
