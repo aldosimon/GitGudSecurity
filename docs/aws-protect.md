@@ -48,10 +48,10 @@ read on [organizational-policy](#organizational-policy)
 - `s3:PutLifecycleConfiguration`
 - `s3:ListObjects`
 - `s3:ListBuckets` (theorized)
-[[Ransomware in AWS S3 SSE-C#Securing Data in S3 and Preventing S3 SSE-C Ransomware]]
+[](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
 - [ ] research public access blocks
 ### bucket-policies
-- protect from SSE-C [[Ransomware in AWS S3 SSE-C#Securing Data in S3 and Preventing S3 SSE-C Ransomware]]
+- protect from SSE-C [](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
 	- deny object uploads with SSE-C encryption
 	- denies non-KMS (AWS Managed Key or CMK)
 	+ requires a specific CMK
@@ -140,7 +140,7 @@ this should be one of the first step, understanding how user interact with aws s
 ### less-static-long-term-creds
 
 Access Keys in AWS are typically tied to long-term credentials such as IAM users. In AWS, security best practices recommend moving away from long-term credentials to short term credentials. Instead of IAM Users, IAM roles are preferred.
-[[Ransomware in AWS S3 SSE-C#Securing Data in S3 and Preventing S3 SSE-C Ransomware]]
+[](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware)
 
 For more details about temporary credentials in AWS, [AWS has extensive documentation and AWS STS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html).
 - [ ] research more on temp creds AWS
@@ -167,9 +167,9 @@ have one role per resources or per app, follow the least privilege principle
 ### root-account
 Do not use root account. Use IAM user at least, or IAM role. better yet use aws org and accounts.
 
-with AWS Organizations, **each AWS account** in your organization comes with its own root user. These root users have unrestricted administrative access to everything in their AWS accounts. controls for this account before centralized root management is typical e.g. MFA, password rotate, limit permission via SCP [[Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)]]
+with AWS Organizations, **each AWS account** in your organization comes with its own root user. These root users have unrestricted administrative access to everything in their AWS accounts. controls for this account before centralized root management is typical e.g. MFA, password rotate, limit permission via SCP [Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)](01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md)
 
-centralized root access: [[Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)]]
+centralized root access: [Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)](01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md)
 - centralize their management
 - delete root user credentials
 - reduced attack surface (with fewer root to manage)
@@ -180,10 +180,10 @@ centralized root access: [[Hands-On Security Tips For Centralize Root Access In 
 Assuming root would look like this
 `aws sts assume-root --target-principal=123456789 --task-policy-arn arn=arn:aws:iam::aws/root-task/S3UnlockBucketPolicy`
 
-CloudTrail would show `AssumeRoot` event type see here for example [[Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)#CloudTrail Logging How (Assume)Root Actions Look Now]]
+CloudTrail would show `AssumeRoot` event type see here for example [](01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md#CloudTrail%20Logging%20How%20(Assume)Root%20Actions%20Look%20Now)
 
 #### related API with centralized root management
-These are related API with centralized root management that might be of interest when you design detection/ protect [[Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)]]
+These are related API with centralized root management that might be of interest when you design detection/ protect [Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)](01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md)
 - check if feature is enabled. `ListOrganizationsFeatures`
 - Identify Accounts with Root Access. No simple API, but use these steps:
 	- assume root with `IAMAuditRootUserCredentials ` 
@@ -194,7 +194,7 @@ These are related API with centralized root management that might be of interest
 		_An error occurred (NoSuchEntity) when calling the GetLoginProfile operation: Login Profile for User null cannot be found._
 	- Also check for MFA and signed certs -> delete this also
 
-### related detection and response: [[aws-detect-and-response]]
+### related detection and response: [aws-detect-and-response](02-compendiums/aws-detect-and-response.md)
 
 ### credential report
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html
@@ -241,7 +241,6 @@ these are types or policy
 - session policies
 
 
-
 - [ ] read more on org policies, RCP - SCP
 
 Almost all mid-to-large sized AWS environments make use of [multi-account](https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/organizing-your-aws-environment.html) architecture. Using multiple AWS accounts offers a number of [benefits](https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/benefits-of-using-multiple-aws-accounts.html) and is considered a best practice. To help organize and manage those accounts, AWS offers a service called [AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html).
@@ -259,7 +258,7 @@ SCPs **DO NOT** work on a management account
 
 SCP is the OG of Security Invariants- define the maximum permissions of identities in your organization.
 
-With **service control policies**, it is possible to review CloudTrail to determine who may be calling the specific actions that will be denied. [[Defining Security Invariants  PrimeHarbor#Safely leveraging these controls]]
+With **service control policies**, it is possible to review CloudTrail to determine who may be calling the specific actions that will be denied. [](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
 
 **SCPs do NOT grant anyone permissions, they only restrict what actions are allowed in an account!** Service Control Policies are guardrails which restrict what can happen in an account — they cannot grant permissions to anyone or anything in an account.
 
@@ -276,9 +275,9 @@ SCP samples: see [below](./aws-protect#rcp-samples)
 ### Resource Control Policies (RCPs)
 a new type of Organization Policy that defines the maximum permissions of *resources* in your organization. 
 Resource Control Policies apply to the resources in your organization and can control any principal, even those outside of your control. [Only a few services support RCPs](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html#rcp-supported-services) at this time: S3, KMS, SQS, SecretsManager, and IAM Roles (via STS). 
-[[Defining Security Invariants  PrimeHarbor#Resource Control Policies]]
+[](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Resource%20Control%20Policies)
 
-**Resource Control Policies** are more complicated to preview because you’ll need to enable very expensive **CloudTrail DataEvents** and review the vast data produced. For some RCPs, you can probably use [IAM Access Analyser](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification) [[Defining Security Invariants  PrimeHarbor#Safely leveraging these controls]]
+**Resource Control Policies** are more complicated to preview because you’ll need to enable very expensive **CloudTrail DataEvents** and review the vast data produced. For some RCPs, you can probably use [IAM Access Analyser](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification) [](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
 
 **RCP samples**: see [below](./aws-protect#rcp-samples)
 
@@ -289,7 +288,7 @@ AWS managed policies exist in every AWS account. Customer managed policies only 
 ### declarative-policies
 These policies exist outside of IAM evaluation and enforce **specific controls** at the AWS Service.
 You can determine the impactof DP with a simple CSPM review for public images and snapshots. For IMDSv2 enforcement, you can review the CloudWatch Metric `MetadataNoToken` to see how many API calls still use the old system. 
-[[Defining Security Invariants  PrimeHarbor#Safely leveraging these controls]]
+[](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls)
 [read more on AWS](https://aws.amazon.com/blogs/security/get-the-full-benefits-of-imdsv2-and-disable-imdsv1-across-your-aws-infrastructure/)
 - [ ] read more on IMDSv2
 
@@ -302,7 +301,7 @@ note on samples: You should not attach RCPs without thoroughly testing the impac
 Once you have a policy ready that you would like to implement, we recommend testing in a separate organization or OU that can represent your production environment. 
 Once tested, you should deploy changes to test OUs and then progressively deploy the changes to a broader set of OUs over time.
 #### prime harbor security invariants
-- [[Defining Security Invariants  PrimeHarbor]]
+- [Defining Security Invariants  PrimeHarbor](01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md)
 - enforce/ alert on things that should **always** or **never** be true. idea is if there is no need for context (these things should always or never), no need for sec team time
 #### scp-samples
 - [prime harbor AWS OP github](https://github.com/primeharbor/aws-organizational-policies)
@@ -313,12 +312,12 @@ Once tested, you should deploy changes to test OUs and then progressively deploy
 #### rcp-samples
 [samples of RCP](https://github.com/aws-samples/resource-control-policy-examples)
 #### lesson-learned-from-incidents 
-- protect from SSE-C ([[Ransomware in AWS S3 SSE-C#Securing Data in S3 and Preventing S3 SSE-C Ransomware]])
+- protect from SSE-C ([](01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware))
 	- deny object uploads with SSE-C encryption 
 	- Requires KMS Encryption (which can be either an AWS Managed Key or Customer Managed Key)
 
 ### note-on-aws-managed-policies 
-[[A SaaS provider's guide to securely integrating with customers' AWS accounts   Datadog Security Labs]]
+[A SaaS provider's guide to securely integrating with customers' AWS accounts   Datadog Security Labs](01-source/A%20SaaS%20provider's%20guide%20to%20securely%20integrating%20with%20customers'%20AWS%20accounts%20%20%20Datadog%20Security%20Labs.md)
 While policies like `ReadOnlyAccess` might seem like an easy way to grant limited permissions, AWS managed policies are typically **over-privileged** and **allow overly-sensitive**, unnecessary actions. For example:
 
 do not use aws managed policy, but use aws managed policy as a starter to build your own.
@@ -344,7 +343,18 @@ these are roles that related to creation of aws organization
 _Service Linked Role_: This is a unique type of IAM role directly linked to an AWS service. It’s predefined by the service and includes all the permissions the service needs to perform actions on your behalf. These roles simplify setup since you don’t need to manually add permissions for the service
 _AWSServiceRolesForOrganizations_ : This role is used by AWS Organizations to enable trusted access for other AWS services. It allows these services to perform tasks across all accounts in your organization, such as managing resources or configurations
 _OrganizationAccountAccessRole_ : allow root to assume member account
-### backup-policy
+
+### delegated-administrator
+
+Users/roles in a delegated account can administer the service. Each service is a bit different in terms of how much is delegated. For example Identity Center doesn’t let the delegated admin change any permission sets that were created directly in the management account, which helps prevent a delegated admin from making themselves an admin in the management account itself. But nearly all other capabilities are fair game. remember this when you are creating account.
+
+this help with least privilege and reducing blast radius
+
+if you are delegating IAM identity center, permission **AWSSSOMemberAccountAdministrator** should also be present in the delegated account
+
+for use cases of read more at [wiz](https://www.wiz.io/blog/use-cases-for-delegated-administrator-for-aws-organizations)
+
+## backup-policy
 
 ## AWS backup encryption
 https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html
@@ -352,7 +362,7 @@ https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html
 
 
 ## configuration-management
-[[aws-security-best-practices-cheat-sheet.pdf]]
+[aws-security-best-practices-cheat-sheet](01-source/aws-security-best-practices-cheat-sheet.pdf)
 
 ### scan with AWS config
 - [ ] read more on aws config
@@ -438,7 +448,7 @@ why use organization-cloudtrail :
 - Within an account you can’t disable or delete the organization trail, which really pisses off attackers.
 
 ## Best practice to allow 3P access to AWS account
-[[Best-practice-to-allow-3P to access AWS accounts]]
+[Best-practice-to-allow-3P to access AWS accounts](Best-practice-to-allow-3P%20to%20access%20AWS%20accounts)
 
 ## references-and-related
 - [hackingthe.clud - AWS orgs](https://hackingthe.cloud/aws/general-knowledge/aws_organizations_defaults/)
@@ -448,4 +458,5 @@ why use organization-cloudtrail :
 - [marco lancini](https://blog.marcolancini.it/2018/blog-arsenal-cloud-native-security-tools/#aws)
 - [slaw](https://slaw.securosis.com/p/give-account-security-blanket-scps)
 - [iam references aws](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html)
+- [aws-respond](02-compendiums/aws-respond.md)
 
