@@ -13,21 +13,21 @@ description: compediums related to AWS DR
 
 Variety of service that relate to AWS logging:
 
-[[guardduty]]
-[[cloudtrail]]
-[[ec2-logs]]
-[[amazon-vpc-log]]
-[[lambda-log]]
-[[cloudfront log]]
-[[rds-log]]
-[[cloudwatch]]
+[guardduty](guardduty.md)
+[cloudtrail](cloudtrail.md)
+[ec2-logs](ec2-logs.md)
+[amazon-vpc-log](amazon-vpc-log.md)
+[lambda-log](lambda-log.md)
+[cloudfront log](cloudfront%20log.md)
+[rds-log](rds-log.md)
+[cloudwatch](cloudwatch.md)
 
 
 
 ### security-account
 
 **security account**
-- Have a Security Account, as per AWS best practice [[Creating an AWS Security Account - Chris Farris]]. Does the security account have audit capability to the environment?
+- Have a Security Account, as per AWS best practice [Creating an AWS Security Account - Chris Farris](../Clippings/Creating%20an%20AWS%20Security%20Account%20-%20Chris%20Farris.md). Does the security account have audit capability to the environment?
 - Have an responder role account, with permission to run containment actions [aws IR](https://www.chrisfarris.com/post/aws-ir/)
 - **Do not** use these account for security engineering activities
 
@@ -40,7 +40,7 @@ Variety of service that relate to AWS logging:
 
 ### asset-inventory
 
-You must have the ability to view you asset inventory. is the asset prod/ testing? is there any PII? contact person for the asset? All of this is the critical business context that AWS cannot provide. [[Incident Response in AWS - Chris Farris]]
+You must have the ability to view you asset inventory. is the asset prod/ testing? is there any PII? contact person for the asset? All of this is the critical business context that AWS cannot provide. [Incident Response in AWS - Chris Farris](../Clippings/Incident%20Response%20in%20AWS%20-%20Chris%20Farris.md)
 
 chris have a script to pull using steampipe.io and send to [splunk](https://github.com/jchrisfarris/steampipe_splunk_tables/tree/main)
 
@@ -79,7 +79,7 @@ OtherLog/VPN/SSO --> SIEM
 - Macie is great for finding the PII in your environment. [Chris Farris Macie](https://www.chrisfarris.com/post/revisiting-macie/).
 ## detect-analysis
 
-[[Incident Response in AWS - Chris Farris]]
+[Incident Response in AWS - Chris Farris](../Clippings/Incident%20Response%20in%20AWS%20-%20Chris%20Farris.md)
 start with:
 ```
 index="aws_cloudtrail" "i-086c8727e55bb6d68"
@@ -133,12 +133,12 @@ flowchart TD
 
 
 
-read more on ARN here:  [[AWS ARN Explained Amazon Resource Name Guide]]
+read more on ARN here:  [AWS ARN Explained Amazon Resource Name Guide](../Clippings/AWS%20ARN%20Explained%20Amazon%20Resource%20Name%20Guide.md)
 
 - [ ] put this on a guide⏫ 
 ### Lateral Movement
 
-Movement can be cloud to cloud (AssumeRole), cloud to ground (EC2/ Compute Engine), or ground to cloud see more on [[cloud-detection-catalogue]]
+Movement can be cloud to cloud (AssumeRole), cloud to ground (EC2/ Compute Engine), or ground to cloud see more on [cloud-detection-catalogue](cloud-detection-catalogue.md)
 
 lateral movement query example
 
@@ -149,9 +149,9 @@ index=cloudtrail eventName=AssumeRole OR StartSession OR SendCommand OR SendSSHP
 
 
 - [ ] read and try🔼 lateral movement:
-[[Lateral movement risks in the cloud and how to prevent them – Part 1 the network layer (VPC)  Wiz Blog]]
-[[EC2-Instance-Connect Lateral Movement Strategy for Data Exfiltration]]
-[[How to Compromise AWS Using the Metadata Service - risk3sixty 1]]
+[Lateral movement risks in the cloud and how to prevent them – Part 1 the network layer (VPC)  Wiz Blog](Clippings/Lateral%20movement%20risks%20in%20the%20cloud%20and%20how%20to%20prevent%20them%20–%20Part%201%20the%20network%20layer%20(VPC)%20%20Wiz%20Blog.md)
+[EC2-Instance-Connect Lateral Movement Strategy for Data Exfiltration](../Clippings/EC2-Instance-Connect%20Lateral%20Movement%20Strategy%20for%20Data%20Exfiltration.md)
+[How to Compromise AWS Using the Metadata Service - risk3sixty 1](../Clippings/How%20to%20Compromise%20AWS%20Using%20the%20Metadata%20Service%20-%20risk3sixty%201.md)
 
 ### Identify initial access
 
@@ -167,15 +167,15 @@ But if you can’t find the initial vector, you’ll play wack-a-mole with conta
 #### Disable Access Key
 The Quarantine Policy isn’t enough. You want to disable the key ASAP! Note: you want to disable the key, don’t delete it. You may not know the service impact of disabling the key at the outset of the incident. You may need to re-enable it to recover from a service impact.
 
-responder role should have this permission [[aws-detect-and-response#Security Account, Security Contact & Root Email]]
+responder role should have this permission [](.md#Security%20Account,%20Security%20Contact%20&%20Root%20Email)
 
-![[Pasted image 20250212130822.png]]
+![Pasted image 20250212130822](../Pasted%20image%2020250212130822.png)
 #### Revoke Active Session
 
 Temporary credentials that Lambda, EC2 Instances, and Containers use, you need to invalidate the compromised credentials. Via the AWS console, you can say, “Deny everything for all sessions created before X date-time”.
 **remember that**: attackers may be able to use the same exploit again if you don't know initial access.
 
-![[Pasted image 20250212131016.png]]
+![Pasted image 20250212131016](../Pasted%20image%2020250212131016.png)
 
 ### Deny Policy
 
@@ -269,4 +269,12 @@ The alternative of GetObject is availble when you enable data event,
 [aws IR](https://www.chrisfarris.com/post/aws-ir/)
 [AWS playbook](https://github.com/aws-samples/aws-customer-playbook-framework/tree/main/docs) 
 [hackingthe.cloud](https://hackingthe.cloud/aws/general-knowledge/connection-tracking/)
+[guardduty](guardduty.md)
+[cloudtrail](cloudtrail.md)
+[ec2-logs](ec2-logs.md)
+[amazon-vpc-log](amazon-vpc-log.md)
+[lambda-log](lambda-log.md)
+[cloudfront log](cloudfront%20log.md)
+[rds-log](rds-log.md)
+[cloudwatch](cloudwatch.md)
 - [ ] read more on aws IR playbook 🔺 
