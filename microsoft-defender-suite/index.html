@@ -1,0 +1,2588 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://aldosimon.github.io/gitgudsecurity/microsoft-defender-suite/">
+      
+      
+        <link rel="prev" href="../maturity-model/">
+      
+      
+        <link rel="next" href="../microsoft-entra/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>microsoft defender suite - GitGudSecurity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#about" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GitGudSecurity" class="md-header__button md-logo" aria-label="GitGudSecurity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GitGudSecurity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              microsoft defender suite
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GitGudSecurity" class="md-nav__button md-logo" aria-label="GitGudSecurity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GitGudSecurity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-vpc-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon VPC Log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-detect-and-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Detection and Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-iam-quick-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS IAM Quick Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-protect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Protect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-respond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Respond
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-security-baby-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Security Baby Steps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../best-practice-to-allow-3p-to-access-aws-accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Allow 3P/SaaS to access AWS accounts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-detection-catalogue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Detection Catalogue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-threat-hunt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Threat Hunt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudfront%20log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudFront log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudtrail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudTrail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudwatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudWatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detection Engineering Data Source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detection Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ec2-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2 Logs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guardduty/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GuardDuty
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infosec-compendiums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infosec Compendiums
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lambda-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lambda log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maturity-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Maturity Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    microsoft defender suite
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    microsoft defender suite
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#azure-and-sentinel" class="md-nav__link">
+    <span class="md-ellipsis">
+      azure and sentinel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="azure and sentinel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xdr" class="md-nav__link">
+    <span class="md-ellipsis">
+      XDR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what" class="md-nav__link">
+    <span class="md-ellipsis">
+      what
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      work with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improve" class="md-nav__link">
+    <span class="md-ellipsis">
+      improve
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      what
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-mde" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare mde
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      role &amp; permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-deployment-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      architecture &amp; deployment method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      onboard device
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-with_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      work with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improve_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      improve
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdca" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDCA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDCA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      what
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      connect apps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-dlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      set up dlp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-cloud-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      set up cloud discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      set up policies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set up policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      file policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrating-with-other-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      integrating with other services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="integrating with other services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purview" class="md-nav__link">
+    <span class="md-ellipsis">
+      purview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-with_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      work with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improve_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      improve
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#office-365-cloud-app-security-vs-mdca" class="md-nav__link">
+    <span class="md-ellipsis">
+      office 365 cloud app security vs MDCA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip" class="md-nav__link">
+    <span class="md-ellipsis">
+      MIP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-query-grap-api-azure-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      graph query, grap api, azure graph
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="graph query, grap api, azure graph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#so-many-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      so many graph
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-cybersecurity-reference-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Cybersecurity Reference Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microsoft Cybersecurity Reference Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adopting-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      adopting principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentinel-data-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      sentinel data lake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      purview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o365-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      o365 security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#licensing-and-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      licensing and feature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      logs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#native-aws-stuff" class="md-nav__link">
+    <span class="md-ellipsis">
+      native aws stuff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="native aws stuff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloudtrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guardduty" class="md-nav__link">
+    <span class="md-ellipsis">
+      guardduty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      security hub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooling-for-aws-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      tooling for aws security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tooling for aws security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prowler" class="md-nav__link">
+    <span class="md-ellipsis">
+      prowler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steampipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      steampipe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xsiam" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSIAM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-and-related" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference-and-related
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microsoft-entra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microsoft Entra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rds-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDS log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threat-modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threat Modelling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vulnerability-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vulnerability Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#azure-and-sentinel" class="md-nav__link">
+    <span class="md-ellipsis">
+      azure and sentinel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="azure and sentinel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xdr" class="md-nav__link">
+    <span class="md-ellipsis">
+      XDR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what" class="md-nav__link">
+    <span class="md-ellipsis">
+      what
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      work with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improve" class="md-nav__link">
+    <span class="md-ellipsis">
+      improve
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      what
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-mde" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare mde
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      role &amp; permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-deployment-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      architecture &amp; deployment method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      onboard device
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-with_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      work with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improve_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      improve
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdca" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDCA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MDCA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      what
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      connect apps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-dlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      set up dlp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-cloud-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      set up cloud discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      set up policies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set up policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      file policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrating-with-other-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      integrating with other services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="integrating with other services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purview" class="md-nav__link">
+    <span class="md-ellipsis">
+      purview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      MDI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-with_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      work with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improve_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      improve
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#office-365-cloud-app-security-vs-mdca" class="md-nav__link">
+    <span class="md-ellipsis">
+      office 365 cloud app security vs MDCA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip" class="md-nav__link">
+    <span class="md-ellipsis">
+      MIP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-query-grap-api-azure-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      graph query, grap api, azure graph
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="graph query, grap api, azure graph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#so-many-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      so many graph
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-cybersecurity-reference-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Cybersecurity Reference Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microsoft Cybersecurity Reference Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adopting-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      adopting principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentinel-data-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      sentinel data lake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      purview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o365-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      o365 security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#licensing-and-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      licensing and feature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      logs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#native-aws-stuff" class="md-nav__link">
+    <span class="md-ellipsis">
+      native aws stuff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="native aws stuff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloudtrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guardduty" class="md-nav__link">
+    <span class="md-ellipsis">
+      guardduty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      security hub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooling-for-aws-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      tooling for aws security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tooling for aws security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prowler" class="md-nav__link">
+    <span class="md-ellipsis">
+      prowler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steampipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      steampipe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xsiam" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSIAM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-and-related" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference-and-related
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="about">about</h1>
+<p>This is basically note on how to setup, work with and improve microsoft defender suite
+I steal a lot of this from <a href="https://dcaddick.github.io/gsd_public">GSD</a>, a very comprehensive guide!</p>
+<p>more stuff on <a href="../microsoft-entra/">ms. entra</a> and <a href="../microsoft-purview.md">ms. purview</a></p>
+<p><strong>high level stuff</strong></p>
+<pre class="mermaid"><code>graph LR
+
+A[MDE] --&gt; |detect app|B[MDCA]
+B --&gt; |via XDR|C[sentinel]
+A --&gt; |via XDR|C
+B --&gt; |govern app|A</code></pre>
+<table>
+<thead>
+<tr>
+<th>assets</th>
+<th>govern</th>
+<th>identify</th>
+<th>protect</th>
+<th>detect</th>
+<th>respond</th>
+<th>recover</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>identity</td>
+<td></td>
+<td>MDI</td>
+<td>MDI, CA</td>
+<td>MDI</td>
+<td>MDI</td>
+<td></td>
+</tr>
+<tr>
+<td>endpoint</td>
+<td></td>
+<td>MDE</td>
+<td>MDE</td>
+<td>MDE</td>
+<td>MDE</td>
+<td></td>
+</tr>
+<tr>
+<td>cloud</td>
+<td>MDCA policy</td>
+<td>MDCA, MDE</td>
+<td></td>
+<td>MDCA, MDE</td>
+<td>MDCA, MDE</td>
+<td></td>
+</tr>
+<tr>
+<td>apps</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>stuff to learn</p>
+<ul>
+<li>[ ] try azure</li>
+<li>[ ] az 500 <a href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-500#study-resources">microsoft</a>  or <a href="https://learn.microsoft.com/en-us/training/courses/az-500t00">microsoft</a>  or this <a href="https://www.youtube.com/watch?v=r86YCwX_iU4">roadmap</a>?</li>
+<li>[ ] try ms graph
+https://www.youtube.com/watch?v=9qIgyYLjHnU</li>
+<li>[ ] try purview</li>
+<li>[ ] read purview, MIP</li>
+<li>[ ] read MDI, MDE, MDO</li>
+<li>[ ] find baseline for azure</li>
+<li>[ ] read azure vs aws
+https://nira.com/aws-security-vs-azure-security/#:~:text=AWS%20and%20Azure%20are%20almost,services%20and%20options%20than%20Azure.
+https://www.aquasec.com/cloud-native-academy/cspm/azure-security-vs-aws-security/
+https://www.wiz.io/academy/azure-security-vs-aws-security
+https://medium.com/@leasepacket/aws-security-vs-azure-security-a-comprehensive-cloud-security-comparison-1b182104c40e</li>
+<li>[ ] a bunch of youtube
+https://www.youtube.com/watch?v=7jUSFpsKj1E
+https://www.youtube.com/watch?v=WyGm28gHp3M
+https://www.youtube.com/watch?v=L5N9S8pKpOw</li>
+<li>[ ] sending logs
+https://www.youtube.com/watch?v=BLqNvaF5nXg</li>
+</ul>
+<h2 id="azure-and-sentinel">azure and sentinel</h2>
+<h3 id="xdr">XDR</h3>
+<p>also see high level above</p>
+<p><img alt="image" src="../img/Pasted-image-20250319091214.png" /></p>
+<p><strong>capabilities</strong></p>
+<p>unified alert from various platform.
+deception in <a href="https://learn.microsoft.com/en-us/defender-xdr/deception-overview">XDR</a></p>
+<h3 id="mdi">MDI</h3>
+<h4 id="what">what</h4>
+<p><strong>if you have domain controller, install MDI sensor.</strong> Defender for Identity uses data from across your environment, including domain controllers, Active Directory Federation Services (AD FS), and Active Directory Certificate services (AD CS), to provide you with a complete view of your identity environment.</p>
+<p>full list of alert <a href="https://learn.microsoft.com/en-us/defender-for-identity/alerts-overview">here</a></p>
+<h4 id="setup">setup</h4>
+<p>from <a href="https://dcaddick.github.io/gsd_public/MDI/">dcaddick</a>
+<a href="https://learn.microsoft.com/en-us/defender-for-identity/prerequisites">prereq</a>,  <a href="https://learn.microsoft.com/en-us/defender-for-identity/capacity-planning">plan</a>, <a href="https://github.com/microsoft/ATA-AATP-Sizing-Tool/releases">sizing tool</a>, <a href="https://learn.microsoft.com/en-us/defender-for-identity/directory-service-accounts">service account</a>, <a href="https://learn.microsoft.com/en-us/defender-for-identity/download-sensor">download</a> and <a href="https://learn.microsoft.com/en-us/defender-for-identity/install-sensor">install</a> sensor, last <a href="https://www.microsoft.com/videoplayer/embed/RWFVEX">config</a>.</p>
+<p>for <a href="https://learn.microsoft.com/en-us/defender-for-identity/active-directory-federation-services">adfs</a></p>
+<h4 id="validate">validate</h4>
+<p>select Settings &gt; Identities &gt; check if all DC have MDI sensors.
+<a href="https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-sensor-settings#validate-installations">validate sensor instlal</a>
+common error: <em>Directory Services Object Auditing is not configured as required</em>: https://aka.ms/mdi/objectauditing</p>
+<h4 id="work-with">work with</h4>
+<p>how to <a href="https://learn.microsoft.com/en-us/defender-for-identity/manage-security-alerts">investigate</a> the <a href="https://learn.microsoft.com/en-us/defender-for-identity/alerts-overview">alert</a> and <a href="https://learn.microsoft.com/en-us/defender-for-identity/remediation-actions">remediate</a> aside from that also available <a href="https://learn.microsoft.com/en-us/defender-for-identity/security-assessment#assessment-reports">reports</a></p>
+<h4 id="improve">improve</h4>
+<p><a href="https://github.com/Cyberlorians/Articles/blob/main/MDI-Hardened.md">hardened MDI</a>, and better your <a href="https://learn.microsoft.com/en-us/defender-for-identity/security-assessment#assessment-reports">posture</a> </p>
+<h3 id="mde">MDE</h3>
+<h4 id="what_1">what</h4>
+<p>end point protection. aside from <a href="https://learn.microsoft.com/en-us/defender-endpoint/migrating-mde-server-to-cloud">server</a></p>
+<h4 id="setup_1">setup</h4>
+<h5 id="prepare-mde">prepare mde</h5>
+<ol>
+<li><a href="https://learn.microsoft.com/en-us/defender-endpoint/production-deployment#check-license-state">Check license state</a>: check license from azure portal license, or billing &gt; subscription</li>
+<li><a href="https://learn.microsoft.com/en-us/defender-endpoint/production-deployment#cloud-service-provider-validation">Cloud Service Provider validation</a>: check which license is provisioned and the state of the license. CSP is MS partner that help you when you buy MS product.</li>
+<li><a href="https://learn.microsoft.com/en-us/defender-endpoint/production-deployment#tenant-configuration">Tenant Configuration</a>: Initiate Microsoft Defender for Endpoint tenant</li>
+<li><a href="https://learn.microsoft.com/en-us/defender-endpoint/production-deployment#data-center-location">Data center location</a>: Microsoft Defender for Endpoint stores and process data in the XDR</li>
+<li><a href="https://learn.microsoft.com/en-us/defender-endpoint/production-deployment#network-configuration">Network configuration</a>: follow the steps to ensure access to MDE</li>
+</ol>
+<p>good resource on <a href="https://jeffreyappel.nl/tag/mde-series/">MDE</a> settings explanation and advice </p>
+<h5 id="role-permission">role &amp; permission</h5>
+<p>how to assign role is <a href="https://learn.microsoft.com/en-us/defender-endpoint/prepare-deployment">here</a> and <a href="https://learn.microsoft.com/en-us/defender-endpoint/rbac">here</a>. least privilege principles when assigning role.</p>
+<h5 id="architecture-deployment-method">architecture &amp; deployment method</h5>
+<p><a href="https://learn.microsoft.com/en-us/defender-endpoint/deployment-strategy">Identify your architecture and choose your deployment method</a>: Identify your architecture and the deployment method that best suits your organization. pdf guide  <a href="https://download.microsoft.com/download/5/6/0/5609001f-b8ae-412f-89eb-643976f6b79c/mde-deployment-strategy.pdf">here</a> 
+depends on how you are setup, below is the recommended deployment. 
+in short: use  <a href="https://learn.microsoft.com/en-us/defender-endpoint/onboarding-endpoint-manager?view=o365-worldwide">Intune</a> if you are cloud native. use <a href="https://learn.microsoft.com/en-us/defender-endpoint/onboarding-endpoint-configuration-manager?view=o365-worldwide">config manager</a> if you are hybrid or on-prem. or use a local script if you do not manage your device.</p>
+<p><img alt="deploy" src="../img/Pasted-image-20250321173919.png" /></p>
+<h5 id="onboard-device">onboard device</h5>
+<p><a href="https://learn.microsoft.com/en-us/defender-endpoint/onboarding">onboard device</a> by first choosing <a href="https://learn.microsoft.com/en-us/defender-endpoint/onboarding#onboard-devices-using-any-of-the-supported-management-tools">method</a>, use the <a href="https://learn.microsoft.com/en-us/defender-endpoint/onboarding#deploy-using-a-ring-based-approach">ring approach</a>
+method, based your previous step/ architecture. among others are <a href="https://learn.microsoft.com/en-us/defender-endpoint/onboarding-endpoint-manager?view=o365-worldwide">Intune</a> and <a href="https://learn.microsoft.com/en-us/defender-endpoint/onboarding-endpoint-configuration-manager?view=o365-worldwide">config manager</a></p>
+<p>also deployment in <a href="https://learn.microsoft.com/en-us/defender-endpoint/linux-installer-script">linux</a></p>
+<h4 id="validate_1">validate</h4>
+<p>check it is working with <a href="https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-demonstrations">scenarios</a> and test with <a href="https://demo.wd.microsoft.com/">demo</a></p>
+<h4 id="work-with_1">work with</h4>
+<p><a href="https://learn.microsoft.com/en-us/defender-endpoint/device-discovery">device discovery</a></p>
+<h4 id="improve_1">improve</h4>
+<p>set up <a href="https://learn.microsoft.com/en-us/defender-endpoint/automation-levels">automated investigation and response - AIR</a>
+set up attack surface reduction rules (<a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction">ASR rules</a>), and see the <a href="https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-report">report</a>, improve upon it.
+see MDE device health <a href="https://learn.microsoft.com/en-us/defender-endpoint/device-health-reports">report</a> and fix unhealthy <a href="https://learn.microsoft.com/en-us/defender-endpoint/fix-unhealthy-sensors">sensors</a>
+see MDE device firewall <a href="https://learn.microsoft.com/en-us/defender-endpoint/host-firewall-reporting?view=o365-worldwide">report</a></p>
+<h3 id="mdca">MDCA</h3>
+<h4 id="what_2">what</h4>
+<p>It's a Cloud Access Security Broker (CASB) solution. focuses on SaaS application security and user behaviors.</p>
+<h4 id="setup_2">setup</h4>
+<p><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/get-started">getting started MDCA</a></p>
+<ul>
+<li>prereq: you must at least be a Security Administrator in Microsoft Entra ID or Microsoft 365</li>
+<li>RBAC for admins needed? <a href="[https://learn.microsoft.com/en-us/defender-cloud-apps/manage-admins](https://learn.microsoft.com/en-us/defender-cloud-apps/manage-admins)">manage admin</a></li>
+<li>connect cloud apps</li>
+<li>set up DLP</li>
+<li>set up policy</li>
+<li>set up cloud discovery</li>
+<li>organize data with tags and IP address</li>
+<li><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/daily-activities-to-protect-your-cloud-environment">daily activities to increase posture</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/best-practices">best practice</a></li>
+</ul>
+<p><strong>best practice</strong></p>
+<p><a href="https://dcaddick.github.io/gsd_public/MDCA/">dcaddick</a> and <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/best-practices">microsoft</a></p>
+<ul>
+<li>Discover and assess cloud apps</li>
+<li>Apply cloud governance policies</li>
+<li>Limit exposure of shared data and enforce collaboration policies</li>
+<li>Discover, classify, label, and protect regulated and sensitive data stored in the cloud</li>
+<li>Enforce DLP and compliance policies for data stored in the cloud</li>
+<li>Block and protect download of sensitive data to unmanaged or risky devices</li>
+<li>Secure collaboration with external users by enforcing real-time session controls</li>
+<li>Detect cloud threats, compromised accounts, malicious insiders, and ransomware</li>
+<li>Use the audit trail of activities for forensic investigations</li>
+<li>Secure IaaS services and custom apps</li>
+</ul>
+<h5 id="connect-apps">connect apps</h5>
+<p>this is basically posture assessment using MDCA for SaaS. see also MDC (more appropriate for azure infra as opposed to SaaS)</p>
+<p><strong>workflow</strong>:
+1. Defender for Cloud Apps scans and saves authentication permissions.
+2. Defender for Cloud Apps requests the user list. The first time the request is done, it may take some time until the scan completes. After the user scan is over, Defender for Cloud Apps moves on to activities and files. As soon as the scan starts, some activities will be available in Defender for Cloud Apps.
+3. After completion of the user request, Defender for Cloud Apps periodically scans users, groups, activities, and files. All activities will be available after the first full scan.</p>
+<p><strong>capabilities (depends on CSP)</strong>:
+- <strong>Account information</strong> - Visibility into users, accounts, profile information, status (suspended, active, disabled) groups, and privileges.
+- <strong>Audit trail</strong> - Visibility into user activities, admin activities, sign-in activities.
+- <strong>Account governance</strong> - Ability to suspend users, revoke passwords, etc.
+- <strong>App permissions</strong> - Visibility into issued tokens and their permissions.
+- <strong>App permission governance</strong> - Ability to remove tokens.
+- <strong>Data scan</strong> - Scanning of unstructured data using two processes -periodically (every 12 hours) and in real-time scan (triggered each time a change is detected).
+- <strong>Data governance</strong> - Ability to quarantine files, including files in trash, and overwrite files.</p>
+<p><strong>how to</strong>  <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/enable-instant-visibility-protection-and-governance-actions-for-your-apps">here</a></p>
+<h5 id="set-up-dlp">set up dlp</h5>
+<p>read on file policies and purview below</p>
+<h5 id="set-up-cloud-discovery">set up cloud discovery</h5>
+<p>you can set up MDCA to discover apps, guide <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/set-up-cloud-discovery">here</a></p>
+<p>Cloud discovery analyzes your traffic logs against the Microsoft Defender for Cloud Apps catalog of over 31,000 cloud apps. </p>
+<p>you can have snapshot (one time upload of your traffic to be analyzed) or continuous report (use log collector, connector or cloud API to continuously upload).</p>
+<h5 id="set-up-policies">set up policies</h5>
+<p><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/control-cloud-apps-with-policies">policy guide</a></p>
+<p>Policies allow you to define the way you want your users to behave in the cloud. If necessary, you can integrate remediation work flows to achieve complete risk mitigation.
+The following types of policies can be created:</p>
+<table>
+<thead>
+<tr>
+<th>Policy type icon</th>
+<th>Policy type</th>
+<th>Category</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="activity policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/activity-policy.png" /></td>
+<td>Activity policy</td>
+<td>Threat detection</td>
+<td>Activity policies allow you to enforce a wide range of automated processes using the app provider's APIs. These policies enable you to monitor specific activities carried out by various users, or follow unexpectedly high rates of a certain type of activity. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies">Learn more</a></td>
+</tr>
+<tr>
+<td><img alt="anomaly detection policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/anomaly-detection-policy.png" /></td>
+<td>Anomaly detection policy</td>
+<td>Threat detection</td>
+<td>Anomaly detection policies enable you to look for unusual activities on your cloud. Detection is based on the risk factors you set to alert you when something happens that is different from the baseline of your organization or from the user's regular activity. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/anomaly-detection-policy">Learn more</a></td>
+</tr>
+<tr>
+<td><img alt="OAuth app policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/oauth-policy.png" /></td>
+<td>OAuth app policy</td>
+<td>Threat detection</td>
+<td>OAuth app policies enable you to investigate which permissions each OAuth app requested and automatically approve or revoke it. These are built-in policies that come with Defender for Cloud Apps and can't be created. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/app-permission-policy">Learn more</a></td>
+</tr>
+<tr>
+<td><img alt="Malware detection policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/malware-detection-policy.png" /></td>
+<td>Malware detection policy</td>
+<td>Threat detection</td>
+<td>Malware detection policies enable you to identify malicious files in your cloud storage and automatically approve or revoke it. This is a built-in policy that comes with Defender for Cloud Apps and can't be created. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/anomaly-detection-policy#malware-detection">Learn more</a></td>
+</tr>
+<tr>
+<td><img alt="file policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/file-policy.png" /></td>
+<td>File policy/ DLP</td>
+<td>Information protection</td>
+<td>File policies enable you to scan your cloud apps for specified files or file types (shared, shared with external domains), data (proprietary information, personal data, credit card information, and other types of data) and apply governance actions to the files (governance actions are cloud-app specific). <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/data-protection-policies">Learn more</a></td>
+</tr>
+<tr>
+<td><img alt="access policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/proxy-policy.png" /></td>
+<td>Access policy</td>
+<td>Conditional Access</td>
+<td>Access policies provide you with real-time monitoring and control over user logins to your cloud apps. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/access-policy-aad">Learn more</a></td>
+</tr>
+<tr>
+<td><img alt="session policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/proxy-policy.png" /></td>
+<td>Session policy</td>
+<td>Conditional Access</td>
+<td>Session policies provide you with real-time monitoring and control over user activity in your cloud apps. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/session-policy-aad">Learn more</a></td>
+</tr>
+<tr>
+<td><img alt="cloud discovery policy icon." src="https://learn.microsoft.com/en-us/defender-cloud-apps/media/discovery-policy.png" /></td>
+<td>App discovery policy</td>
+<td>Shadow IT</td>
+<td>App discovery policies enable you to set alerts that notify you when new apps are detected within your organization. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/cloud-discovery-policies">Learn more</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>###### activity policy</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies">how to</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>To ensure that you only include results where the specified filter field has a value, we recommend adding the same field again using the <strong>is set</strong> test. For example, when filtering by <strong>Location</strong> <em>does not equal</em> a specified list of countries/regions, also add a filter for <strong>Location</strong> <em>is set</em>. You can also preview the filter results by selecting <strong>Edit and preview results</strong>.</li>
+<li>When a filter is set to <em>does not equal</em> and the attribute does not exist on the event, the event will not be filtered out. For example, filtering on <strong>Device Tag does not equal Microsoft Entra hybrid joined</strong> doesn't filter out events that do not contain <strong>Device tag</strong>, even if the device is Microsoft Entra joined.</li>
+<li>In case of a guest user, there may be cases where the <strong>User From Group</strong> filter doesn't recognize the account by its domain. To make sure all guest users are included, use the <strong>External users</strong> as the group, if it meets your needs for the policy.</li>
+</ul>
+<h6 id="file-policy">file policy</h6>
+<p><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/data-protection-policies">how to</a>
+You are limited to 50 file policies in Defender for Cloud Apps.
+also read <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/policies-information-protection">common data protection policy</a></p>
+<p><strong>best practice</strong>
+1. Avoid resetting the file policy (by using the <strong>Reset results and apply actions again</strong> checkbox) in production environments unless it's absolutely necessary, as doing so will initiate a full scan of the files covered by the policy, which can have a negative impact on its performance.
+2. When applying labels to files in a specific parent folder <strong>and</strong> its subfolders, use the <strong>Apply to</strong> -&gt; <strong>Selected folders</strong> option. Then add each of the parent folders.
+3. When applying labels to files in a specific folder only (excluding any subfolders), use the file policy filter <strong>Parent Folder</strong> with the <strong>Equals</strong> operator.
+4. File policy is faster when narrow filtering criteria are used (as compared to wide criteria).
+5. Consolidate several file policies for the same service (such as SharePoint, OneDrive, Box, and so on) to a single policy.
+6. When enabling file monitoring (from the <strong>Settings</strong> page), create at least one file policy. When no file policy exists, or is disabled for seven consecutive days, file monitoring is autodisabled.</p>
+<h5 id="integrating-with-other-services">integrating with other services</h5>
+<h6 id="purview">purview</h6>
+<p>Microsoft Defender for Cloud Apps lets you automatically apply sensitivity labels from Microsoft Purview. These labels are applied to files as a file policy governance action, and depending on the label configuration, can apply encryption for additional protection. You can also investigate files by filtering for the applied sensitivity label within Defender for Cloud Apps. Using labels enables greater visibility and control of your sensitive data in the cloud.
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/azip-integration#how-to-integrate-microsoft-purview-with-defender-for-cloud-apps">how to</a></p>
+<p><strong>prerequisite</strong> 
+- a Defender for Cloud Apps license and a license for Microsoft Purview. 
+- To work with Microsoft Purview integration, you must enable the <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/connect-office-365">App connector for Microsoft 365</a>.</p>
+<h6 id="mde_1">MDE</h6>
+<p><strong>summary</strong>: function as <strong>detect</strong> and <strong>protect</strong> for shadow IT/ unsanction app access through end point telemetry sent by MDE.
+<strong>prerequisite</strong>: MDCA and MDE license</p>
+<p><strong>how it work</strong>: 
+<strong>detect</strong>
+- endpoint log sent to MDCA (device/user info, traffic)
+- check risky device/ user -&gt; pivot using that user/ device or detected app
+- <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/mde-investigation">investigate</a> and <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/mde-govern">govern</a> 
+<strong>protect</strong>
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/mde-govern">govern via MDE</a></p>
+<p><strong>how to</strong>:
+guide <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/mde-integration">here</a></p>
+<h6 id="mdi_1">MDI</h6>
+<p>guide and capabilities <a href="https://learn.microsoft.com/en-us/defender-for-identity/microsoft-365-security-center-mdi">here</a></p>
+<h4 id="work-with_2">work with</h4>
+<p><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/investigate">investigate threat</a>
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/investigate">investigate dashboard</a>
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/tutorial-suspicious-activity">tune sus action</a>
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/investigate-risky-oauth">risky oauth</a>
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/mde-investigation">MDE investigation</a>
+discover and govern Gen AI app: 
+- The cloud app catalog now contains hundreds of new Generative AI apps that enable security teams to discover and understand the risk associated with each app.
+- Configure policies to automatically trigger alerts when new Generative AI apps are used within your organization.
+- For organizations using Defender for Endpoint integration, apps tagged as “unsanctioned” will be instantly blocked on onboarded devices.
+govern gen AI tutorial: <a href="https://youtu.be/8ysJBowXzGU?si=c8wVLJK0ritrzaLl">youtube</a></p>
+<h4 id="improve_2">improve</h4>
+<p>Investigate Apps discovered by MDE <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/mde-investigation">https://learn.microsoft.com/en-us/defender-cloud-apps/mde-investigation</a></p>
+<p>Governance for Connected Apps <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/governance-actions">https://learn.microsoft.com/en-us/defender-cloud-apps/governance-actions</a> </p>
+<p>Governance for discovered Apps <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/governance-discovery">https://learn.microsoft.com/en-us/defender-cloud-apps/governance-discovery</a> Now we can take this one step further and we can now determine which of the 26,000 SaaS Apps I want to allow or block - the only real limitation (to a certain extent) is that the user is using corporate credentials from our AAD via an endpoint enabled with MDE</p>
+<p>use it with <a href="https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/discover-monitor-and-protect-the-use-of-generative-ai-apps/3999228">gen AI</a></p>
+<h4 id="office-365-cloud-app-security-vs-mdca">office 365 cloud app security vs MDCA</h4>
+<p>Office 365 Cloud App Security is a subset of Microsoft Defender for Cloud Apps that provides enhanced visibility and control for Office 365. <a href="https://learn.microsoft.com/en-us/defender-cloud-apps/editions-cloud-app-security-o365">source</a></p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Feature</th>
+<th>Microsoft Defender for Cloud Apps</th>
+<th>Office 365 Cloud App Security</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud discovery</td>
+<td>Discovered apps</td>
+<td>31,000 + cloud apps</td>
+<td>750+ cloud apps with similar functionality to Office 365</td>
+</tr>
+<tr>
+<td></td>
+<td>Deployment for discovery analysis</td>
+<td>- Manual upload  <br>    <br>- Automated upload - Log collector and API  <br>    <br>- Native Defender for Endpoint integration</td>
+<td>Manual log upload</td>
+</tr>
+<tr>
+<td></td>
+<td>Log anonymization for user privacy</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Access to full cloud app catalog</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Cloud app risk assessment</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Cloud usage analytics per app, user, IP address</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Ongoing analytics &amp; reporting</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Anomaly detection for discovered apps</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Information Protection</td>
+<td>Data Loss Prevention (DLP) support</td>
+<td>Cross-SaaS DLP and data sharing control</td>
+<td>Uses existing Office DLP (available in Office E3 and above)</td>
+</tr>
+<tr>
+<td></td>
+<td>App permissions and ability to revoke access</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Policy setting and enforcement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Integration with Microsoft Purview</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Integration with third-party DLP solutions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Threat Detection</td>
+<td>Anomaly detection and behavioral analytics</td>
+<td>For Cross-SaaS apps including Office 365</td>
+<td>For Office 365 apps</td>
+</tr>
+<tr>
+<td></td>
+<td>Manual and automatic alert remediation</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>SIEM connector</td>
+<td>Yes. Alerts and activity logs for cross-SaaS apps.</td>
+<td>For Office 365 alerts only</td>
+</tr>
+<tr>
+<td></td>
+<td>Integration to Microsoft Intelligent Security Graph</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Activity policies</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Conditional access app control</td>
+<td>Real-time session monitoring and control</td>
+<td>Any cloud and on-premises app</td>
+<td>For Office 365 apps</td>
+</tr>
+<tr>
+<td>Cloud Platform Security</td>
+<td>Security configurations</td>
+<td>For Azure, AWS, and GCP</td>
+<td>For Azure</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>### MDO</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Defender for Office</p>
+<h3 id="mip">MIP</h3>
+<p>microsoft information protection</p>
+<p>guides <a href="https://microsoft.github.io/ComplianceCxE/">here</a></p>
+<h3 id="graph-query-grap-api-azure-graph">graph query, grap api, azure graph</h3>
+<h4 id="so-many-graph">so many graph</h4>
+<p><strong>Azure Resource Graph</strong>: <strong>Azure Resource Graph</strong> - This is used for <a href="https://docs.microsoft.com/azure/governance/resource-graph/concepts/query-language?WT.mc_id=modinfra-47971-socuff">querying resources that exist in Microsoft Azure</a>, and their basic properties
+<strong>GraphQL</strong> - GraphQL is an open source language used in applications for communication between the client and the server
+<strong>Microsoft Graph Security API</strong> - This is just one of the underlying APIs that targets a particular service via the Microsoft Graph,</p>
+<h3 id="microsoft-cybersecurity-reference-architecture">Microsoft Cybersecurity Reference Architecture</h3>
+<p>these are from <a href="https://learn.microsoft.com/en-gb/security/adoption/mcra">MCRA</a></p>
+<h5 id="adopting-principles">adopting principles</h5>
+<ul>
+<li>End to End Security: Consider the whole problem</li>
+<li>Ruthlessly Prioritize: Identify top gaps + quick wins</li>
+<li>Get started: Start somewhere &amp; continuously improve</li>
+</ul>
+<h3 id="sentinel-data-lake">sentinel data lake</h3>
+<p>https://learn.microsoft.com/en-us/azure/sentinel/best-practices-data</p>
+<h3 id="purview_1">purview</h3>
+<p><a href="https://learn.microsoft.com/en-us/training/modules/intro-to-microsoft-purview/">purview</a>
+<a href="https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp?view=o365-worldwide&amp;preserve-view=true">DLP</a>
+<a href="https://learn.microsoft.com/en-us/purview/insider-risk-management?view=o365-worldwide&amp;preserve-view=true">insider risk</a>
+<a href="https://learn.microsoft.com/en-us/purview/ediscovery-overview">ediscovery</a></p>
+<p>https://setup.cloud.microsoft/purview</p>
+<h3 id="o365-security">o365 security</h3>
+<p>https://learn.microsoft.com/en-us/microsoft-365/security/security-posture-solution-overview?view=o365-worldwide</p>
+<p>https://www.youtube.com/watch?v=y7m-X8AGBlM</p>
+<h3 id="licensing-and-feature">licensing and feature</h3>
+<p><img alt="image" src="../img/Pasted-image-20250318102107.png" /></p>
+<p><a href="https://m365maps.com/">m365map</a> and <a href="https://m365maps.com/matrix.htm">m365matrix</a></p>
+<p>https://infusedinnovations.com/blog/secure-modern-workplace/complete-office-365-and-microsoft-365-licensing-comparison</p>
+<h2 id="logs">logs</h2>
+<p>expand here </p>
+<p>Unified Audit Log (UAL) - The backbone of forensic investigations in Microsoft 365, capturing activity across Exchange, SharePoint, Teams, and more. → Sign-in &amp; Audit Logs - Essential for tracking account takeovers, MFA bypass attempts, and privilege escalation. Defender for Office 365 - Analyzing phishing, email delivery, and malicious attachments. Defender XDR - Mapping user behavior, anomalies, and lateral movement.</p>
+<h2 id="aws-security">aws security</h2>
+<h3 id="native-aws-stuff">native aws stuff</h3>
+<h4 id="cloudtrail">cloudtrail</h4>
+<h4 id="guardduty">guardduty</h4>
+<h4 id="security-hub">security hub</h4>
+<h3 id="tooling-for-aws-security">tooling for aws security</h3>
+<h4 id="prowler">prowler</h4>
+<h4 id="steampipe">steampipe</h4>
+<h2 id="xsiam">XSIAM</h2>
+<p>https://www.youtube.com/watch?v=wqXsCMc5lzQ&amp;list=PLBpoVs10QWXI_gjH5_gNAFDhl_dDwE0oR&amp;index=1</p>
+<h2 id="reference-and-related">reference-and-related</h2>
+<p><a href="../infosec-compendiums/">infosec-compendiums</a>
+<a href="https://www.linkedin.com/pulse/marks-list-mark-simos/">marks list</a>
+<a href="https://dcaddick.github.io/gsd_public/">GSD</a> -&gt; very good and complete steps
+<a href="https://jeffreyappel.nl/">jeffreyappel blog</a>
+<a href="../microsoft-entra/">ms. entra</a> and <a href="../microsoft-purview.md">ms. purview</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
