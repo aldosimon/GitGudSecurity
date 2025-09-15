@@ -1,5 +1,5 @@
 # About
-GitGudSecurity is an information security knowledge base made from bunch of infosec stuff I read and compile when I have the will power. GitGudSecurity will hopefully help you [Git Gud](https://www.dictionary.com/e/slang/git-gud/) on Security topics.
+GitGud Security Notes is an information security knowledge base made from bunch of infosec stuff I read and compile when I have the will power. GitGud Security Notes will hopefully help you [Git Gud](https://www.dictionary.com/e/slang/git-gud/) on Security topics.
 
 Due to the my [workflow](#workflow), these are to be expected:
 
