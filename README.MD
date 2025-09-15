@@ -4,4 +4,4 @@ The repo is an information security knowledge base made from bunch of infosec st
 
 it is mkdocs from a bunch of private obsidian document I collected over the years.
 
-GitGudSecurity can be accessed [here](https://aldosimon.github.io/GitGudSecurity/)
+GitGud Security Notes can be accessed [here](https://notes.aldosimon.com)
