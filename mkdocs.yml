@@ -2,6 +2,30 @@ site_name: GitGud Security Notes
 site_url: https://notes.aldosimon.com
 theme:
   name: material
+  pallette: 
+    primary: black
+    accent: white
+  features:
+    - navigation.footer
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/mastodon
+      link: https://infosec.exchange/@aldosimon
+      name: ewaldo simon hiras on mastodon
+    - icon: fontawesome/brands/twitter
+      link: https://www.twitter.com/aldosimon
+      name: ewaldo simon hiras on twitter
+    - icon: fontawesome/brands/linkedin
+      link: https://infosec.exchange/@aldosimon
+      name: ewaldo simon hiras on linkedin
+    - icon: fontawesome/brands/hashnode
+      link: https://aldosimon.com
+      name: ewaldo simon hiras's blog
+    - icon: fontawesome/brands/github
+      link: https://github.com/aldosimon
+      name: ewaldo simon hiras's github     
 
 markdown_extensions:
  - pymdownx.superfences:

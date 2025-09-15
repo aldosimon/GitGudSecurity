@@ -24,6 +24,6 @@ compendiums --> | fix markdown | GitGudSecurity
 
 ## Contact
 
-I can be contacted on my main [blog](https://aldosimon.com)
+I can be contacted on my blog [aldosimon.com](https://aldosimon.com)
 
 [^1]: inspired by this glorious note taking [article](https://ilyashabanov.substack.com/p/note-taking-system-for-success-in?sd=pf)
