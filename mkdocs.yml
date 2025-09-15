@@ -2,9 +2,10 @@ site_name: GitGud Security Notes
 site_url: https://notes.aldosimon.com
 theme:
   name: material
-  pallette: 
+  palette:
+    scheme: default 
     primary: black
-    accent: white
+    accent: blue
   features:
     - navigation.footer
 
