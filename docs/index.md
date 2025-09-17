@@ -6,7 +6,7 @@ Due to the my [workflow](#workflow), these are to be expected:
 - stub article, broken link, etc. Since not all locally stored notes are hosted here
 - unclear source/ references. This was essentially a personal notes and references might not be very good.
 
-These issues, in due time, will be fixed - but my take a while since this is a side<sup>2</sup> project.
+These issues, in due time, will be fixed - but my take a while since this is a side project.
 
 ## Workflow
 
