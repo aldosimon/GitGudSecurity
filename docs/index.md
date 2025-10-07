@@ -10,7 +10,7 @@ These issues, in due time, will be fixed - but my take a while since this is a s
 
 ## Workflow
 
-Currently I use obsidian, but have just moved from notion, so a bunch of notes is missing and/or still in process of moving. In general this is the workflow[^1] for GitGugSecurity:
+Currently I use obsidian, but have just moved from notion, so a bunch of notes is missing and/or still in process of moving. In general this is the workflow[^1] for GitGudSec Notes:
 
 ```mermaid
 graph TD
@@ -19,7 +19,7 @@ feedly --> raindrop
 socmed[twitter/mastdn/bsky]  --> raindrop
 raindrop --> | summarize | compendiums[local KB] 
 try[tinker, experience] --> compendiums 
-compendiums --> | fix markdown | notes.aldosimon.com
+compendiums --> | fix markdown | gg.aldosimon.com
 ```
 
 ## Contact
