@@ -15,11 +15,11 @@ Currently I use obsidian, but have just moved from notion, so a bunch of notes i
 ```mermaid
 graph TD
 
-feedly --> pocket
-socmed[twitter/mastdn/bsky]  --> pocket
-pocket --> | summarize | compendiums[local KB] 
-try[thoughts, experiments, experience] --> compendiums 
-compendiums --> | fix markdown | GitGudSecurity
+feedly --> raindrop
+socmed[twitter/mastdn/bsky]  --> raindrop
+raindrop --> | summarize | compendiums[local KB] 
+try[tinker, experience] --> compendiums 
+compendiums --> | fix markdown | notes.aldosimon.com
 ```
 
 ## Contact
