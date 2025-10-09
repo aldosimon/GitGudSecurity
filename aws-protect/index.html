@@ -1,0 +1,2860 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="protect AWS asset using these methods from various source">
+      
+      
+      
+        <link rel="canonical" href="https://notes.aldosimon.com/aws-protect/">
+      
+      
+        <link rel="prev" href="../aws-iam-quick-check/">
+      
+      
+        <link rel="next" href="../aws-respond/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>AWS Protect - GitGud Security Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-protect" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GitGud Security Notes" class="md-header__button md-logo" aria-label="GitGud Security Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GitGud Security Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS Protect
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GitGud Security Notes" class="md-nav__button md-logo" aria-label="GitGud Security Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GitGud Security Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-vpc-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon VPC Log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-detect-and-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Detection and Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-detection-catalogue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Detection Catalogue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-iam-quick-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS IAM Quick Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AWS Protect
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Protect
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-s3
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-s3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-security-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-security-guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bucket-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      bucket-policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bucket-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      bucket-lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block-public-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      block-public-access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-versioning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-logging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="s3-logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-server-vs-cloudtrail-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-server-vs-cloudtrail-logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      iam
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="iam">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understand-how-user-use-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      understand-how-user-use-iam
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-static-long-term-creds" class="md-nav__link">
+    <span class="md-ellipsis">
+      less-static-long-term-creds
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="less-static-long-term-creds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#akia-asia" class="md-nav__link">
+    <span class="md-ellipsis">
+      AKIA-ASIA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotate-long-term-keys-to-minimize-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotate long-term keys to minimize exposure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scan-code-for-stored-credentials-in-cicd-pipelines-and-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scan code for stored credentials in CI/CD pipelines and repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#require-mfa-for-human-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Require MFA for human access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate-administrators-and-highly-privileged-access-to-just-in-time-access-andor-use-hardware-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrate administrators and highly-privileged access to Just in Time access and/or use hardware tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-reduction-and-least-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Reduction and Least Privilege
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      root-account
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="root-account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-api-with-centralized-root-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      related API with centralized root management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-detection-and-response-aws-detect-and-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      related detection and response: aws-detect-and-response
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credential-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      credential report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitor-network-perimeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitor network perimeter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#know-your-exposed-asset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Know your exposed asset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put-guardrails-when-creating-new-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      put guardrails when creating new VPC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-remediation-of-vpc-if-guardrail-is-impossible" class="md-nav__link">
+    <span class="md-ellipsis">
+      auto-remediation of VPC if guardrail is impossible
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ec2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ec2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventory-of-internet-exposed-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      inventory-of-internet-exposed-ec2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-policy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-primer" class="md-nav__link">
+    <span class="md-ellipsis">
+      policy-primer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="policy-primer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-basic-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      policy-basic-principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-control-policies-scps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Control Policies (SCPs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-control-policies-rcps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Control Policies (RCPs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      iam-policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declarative-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      declarative-policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      permission-boundaries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-implementing-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      examples-of-implementing-policies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="examples-of-implementing-policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prime-harbor-security-invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      prime harbor security invariants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scp-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      scp-samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rcp-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      rcp-samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lesson-learned-from-incidents" class="md-nav__link">
+    <span class="md-ellipsis">
+      lesson-learned-from-incidents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-on-aws-managed-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      note-on-aws-managed-policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-organizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-organizations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-organizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#magic-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      magic-roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegated-administrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      delegated-administrator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-policy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-backup-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS backup encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      configuration-management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="configuration-management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scan-with-aws-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      scan with AWS config
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-security-hub
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-risk-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-risk-management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      tooling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tooling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic" class="md-nav__link">
+    <span class="md-ellipsis">
+      basic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      inventory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      audit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incident-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      incident response
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-organization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizational-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      organizational-unit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organization-cloudtrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      organization-cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practice-to-allow-3p-access-to-aws-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practice to allow 3P access to AWS account
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-and-related" class="md-nav__link">
+    <span class="md-ellipsis">
+      references-and-related
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-respond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Respond
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-security-tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Security Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../best-practice-to-allow-3p-to-access-aws-accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Allow 3P/SaaS to access AWS accounts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-threat-hunt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Threat Hunt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudfront%20log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudFront log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudtrail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudTrail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudwatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudWatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detection Engineering Data Source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detection Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ec2-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2 Logs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guardduty/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GuardDuty
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infosec-compendiums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infosec Compendiums
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lambda-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lambda log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maturity-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Maturity Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microsoft-defender-suite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microsoft Defender Suite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microsoft-entra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microsoft Entra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rds-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDS log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threat-modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threat Modelling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vulnerability-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vulnerability Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-s3
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-s3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-security-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-security-guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bucket-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      bucket-policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bucket-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      bucket-lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block-public-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      block-public-access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-versioning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-logging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="s3-logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-server-vs-cloudtrail-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      s3-server-vs-cloudtrail-logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      iam
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="iam">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understand-how-user-use-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      understand-how-user-use-iam
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-static-long-term-creds" class="md-nav__link">
+    <span class="md-ellipsis">
+      less-static-long-term-creds
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="less-static-long-term-creds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#akia-asia" class="md-nav__link">
+    <span class="md-ellipsis">
+      AKIA-ASIA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotate-long-term-keys-to-minimize-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotate long-term keys to minimize exposure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scan-code-for-stored-credentials-in-cicd-pipelines-and-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scan code for stored credentials in CI/CD pipelines and repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#require-mfa-for-human-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Require MFA for human access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate-administrators-and-highly-privileged-access-to-just-in-time-access-andor-use-hardware-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrate administrators and highly-privileged access to Just in Time access and/or use hardware tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-reduction-and-least-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Reduction and Least Privilege
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      root-account
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="root-account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-api-with-centralized-root-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      related API with centralized root management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-detection-and-response-aws-detect-and-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      related detection and response: aws-detect-and-response
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credential-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      credential report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitor-network-perimeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitor network perimeter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#know-your-exposed-asset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Know your exposed asset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put-guardrails-when-creating-new-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      put guardrails when creating new VPC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-remediation-of-vpc-if-guardrail-is-impossible" class="md-nav__link">
+    <span class="md-ellipsis">
+      auto-remediation of VPC if guardrail is impossible
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ec2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ec2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventory-of-internet-exposed-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      inventory-of-internet-exposed-ec2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-policy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-primer" class="md-nav__link">
+    <span class="md-ellipsis">
+      policy-primer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="policy-primer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-basic-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      policy-basic-principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-control-policies-scps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Control Policies (SCPs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-control-policies-rcps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Control Policies (RCPs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      iam-policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declarative-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      declarative-policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      permission-boundaries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-implementing-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      examples-of-implementing-policies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="examples-of-implementing-policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prime-harbor-security-invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      prime harbor security invariants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scp-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      scp-samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rcp-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      rcp-samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lesson-learned-from-incidents" class="md-nav__link">
+    <span class="md-ellipsis">
+      lesson-learned-from-incidents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-on-aws-managed-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      note-on-aws-managed-policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-organizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-organizations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-organizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#magic-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      magic-roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegated-administrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      delegated-administrator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-policy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-backup-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS backup encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      configuration-management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="configuration-management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scan-with-aws-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      scan with AWS config
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-security-hub
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-risk-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-risk-management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      tooling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tooling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic" class="md-nav__link">
+    <span class="md-ellipsis">
+      basic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      inventory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      audit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incident-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      incident response
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws-organization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aws-organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizational-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      organizational-unit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organization-cloudtrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      organization-cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practice-to-allow-3p-access-to-aws-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practice to allow 3P access to AWS account
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-and-related" class="md-nav__link">
+    <span class="md-ellipsis">
+      references-and-related
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-protect">AWS Protect</h1>
+<p>is compiled notes, concept explanation about protecting your AWS assets
+there is no order to these notes, if you want step by step go here </p>
+<h2 id="aws-s3">aws-s3</h2>
+<h3 id="s3-security-guidelines">s3-security-guidelines</h3>
+<p>guidance and best practice
+- [ ] read up on aws s3 best practice🔼 
+<a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html#security-best-practices-prevent">s3-best-practice</a>
+<a href="https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html">s3-control-securityhub</a>
+<a href="https://aws.amazon.com/blogs/security/top-10-security-best-practices-for-securing-data-in-amazon-s3/">top-10</a>
+- Block public S3 buckets at the organization level
+- Use bucket policies to verify all access granted is restricted and specific
+- Ensure that any identity-based policies don’t use wildcard actions
+- Enable S3 protection in GuardDuty to detect suspicious activities
+- Use Macie to scan for sensitive data outside of designated areas
+- Encrypt your data in S3
+- Protect data in S3 from accidental deletion using S3 Versioning and S3 Object Lock
+- Enable logging for S3 using CloudTrail and S3 server access logging. also see <a href="../cloudtrail/">cloudtrail</a>, and <a href="#s3-logging">s3-logging</a> for comparison
+- Backup your data in S3
+- Monitor S3 using Security Hub and CloudWatch Logs</p>
+<p>here is a practical guide on s3 protect, from <a href="https://ramimac.me/s3-logging#about-s3-logging">ramimac-s3-logging</a>
+1. enforce IaaC (i.e. terraform), have standard modules for core services like S3. 
+2. For S3, you can configure your module to enable S3 Access Logs by default. Take care, as you’ll need to handle each account:region pair where you will be hosting S3 buckets.
+3. With your buckets represented as code, you can use a SAST tool or linter to: detect use of non hardened s3 bucket, detect when cloudtrail data events enabled.<br />
+4. on buckets with data events, write  detections for unapproved or unexpected access.
+5. as mentioned above, S3 access log need lambda for detection (see here <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html">a Lambda trigger</a> ) for the bucket. The Lambda will need to parse the log file and implement detection logic over the logs.
+6. use CSPM to enforce invariants</p>
+<p>using policy to protect from or scope down permission of IAM role from these action. 
+read on <a href="#organizational-policy">organizational-policy</a>
+- <code>s3:DeleteObject</code>
+- <code>s3:DeleteObjectVersion</code>
+- <code>s3:PutLifecycleConfiguration</code>
+- <code>s3:PutObject</code>
+- <code>s3:GetObject</code>
+- <code>s3:PutLifecycleConfiguration</code>
+- <code>s3:ListObjects</code>
+- <code>s3:ListBuckets</code> (theorized)
+<a href="../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware"></a>
+- [ ] research public access blocks</p>
+<h3 id="bucket-policies">bucket-policies</h3>
+<ul>
+<li>protect from SSE-C <a href="../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware"></a><ul>
+<li>deny object uploads with SSE-C encryption</li>
+<li>denies non-KMS (AWS Managed Key or CMK)</li>
+<li>requires a specific CMK</li>
+</ul>
+</li>
+<li>[ ] read more on bucket policy vs s3 policy?</li>
+</ul>
+<h3 id="bucket-lifecycle">bucket-lifecycle</h3>
+<ul>
+<li>[ ] read more on bucket lifecycle🔼 </li>
+</ul>
+<h3 id="block-public-access">block-public-access</h3>
+<p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html">read more</a></p>
+<h3 id="s3-versioning">s3-versioning</h3>
+<p>from <a href="https://slaw.securosis.com/p/meaning-lifecycles-versions-ransomware">slaw</a>
+We can enable S3 versions, which keep versions of files as they are changed and deleted. The API call to delete a version is different than the one to delete a current object, so we can use IAM policies or SCPs to block version deletion.</p>
+<p>The problem is that gets a bit expensive. So we can use lifecycle policies to delete old versions, similar to how we will use it today to delete objects older than 90 days.</p>
+<p>Or if we <strong>really</strong> don’t want to lose data, we can move it to AWS Glacier, very cheap storage which offers lock policies that prevent deletion for a set period of time. The downside of Glacier is that, depending on the storage class, it can take a day to get data back.</p>
+<h3 id="s3-logging">s3-logging</h3>
+<p>also see <a href="../cloudtrail/">cloudtrail</a>
+- Only the management events/ control plane events. <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html">logging management events</a>
+- however data events can be enabled. Here is how to log data events <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html">logging data events</a>
+- There is also <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html">server log</a>, to see request logs. It can only be configured with another S3 bucket as the target for log delivery. 
+- use <a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_EventSelector.html">event selector</a> to specify <code>ReadOnly</code> or <code>WriteOnly</code> and <a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_AdvancedEventSelector.html">advance event selector</a> to specify<code>eventSource</code>, <code>eventName</code> and <code>eventCategory</code>
+- set up the log using <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html">organization trail</a>
+- guide to <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging.html">logging-s3-cloudtrail</a></p>
+<h4 id="s3-server-vs-cloudtrail-logging">s3-server-vs-cloudtrail-logging</h4>
+<p>see here for comparison <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/logging-with-S3.html">s3 server logging vs aws cloudtrail</a></p>
+<table>
+<thead>
+<tr>
+<th>Log properties</th>
+<th style="text-align: center;">AWS CloudTrail</th>
+<th style="text-align: center;">Amazon S3 server logs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can be forwarded to other systems (Amazon CloudWatch Logs, Amazon CloudWatch Events)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Deliver logs to more than one destination (for example, send the same logs to two different buckets)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Turn on logs for a subset of objects (prefix)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Cross-account log delivery (target and source bucket owned by different accounts)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Integrity validation of log file by using digital signature or hashing</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Default or choice of encryption for log files</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Object operations (by using Amazon S3 APIs)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Bucket operations (by using Amazon S3 APIs)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Searchable UI for logs</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Fields for Object Lock parameters, Amazon S3 Select properties for log records</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Fields for <code>Object Size</code>, <code>Total Time</code>, <code>Turn-Around Time</code>, and <code>HTTP Referer</code> for log records</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Lifecycle transitions, expirations, restores</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Logging of keys in a batch delete operation</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Authentication failures1</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Accounts where logs get delivered</td>
+<td style="text-align: center;">Bucket owner2, and requester</td>
+<td style="text-align: center;">Bucket owner only</td>
+</tr>
+<tr>
+<td><strong>Performance and Cost</strong></td>
+<td style="text-align: center;"><strong>AWS CloudTrail</strong></td>
+<td style="text-align: center;"><strong>Amazon S3 Server Logs</strong></td>
+</tr>
+<tr>
+<td>Price</td>
+<td style="text-align: center;">Management events (first delivery) are free; data events incur a fee, in addition to storage of logs</td>
+<td style="text-align: center;">No other cost in addition to storage of logs</td>
+</tr>
+<tr>
+<td>Speed of log delivery</td>
+<td style="text-align: center;">Data events every 5 minutes; management events every 15 minutes</td>
+<td style="text-align: center;">Within a few hours</td>
+</tr>
+<tr>
+<td>Log format</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Log file with space-separated, newline-delimited records</td>
+</tr>
+</tbody>
+</table>
+<p>or from rami mac guide on <a href="https://ramimac.me/s3-logging#about-s3-logging">s3 logging</a></p>
+<table>
+<thead>
+<tr>
+<th>Data Events</th>
+<th>S3 Server Access Logs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Support <a href="https://aws.amazon.com/about-aws/whats-new/2020/12/aws-cloudtrail-provides-more-granular-control-of-data-event-logging/">granular Event Selectors</a></td>
+<td>Offer detail that is not available in Data Events, like <code>HTTP Referer</code></td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>Log the Object Size and HTTP Referer</td>
+</tr>
+<tr>
+<td>Configured via Cloudtrail, and can easily be <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html">managed centrally</a></td>
+<td>Have to be configured on each bucket</td>
+</tr>
+<tr>
+<td>Logs can be routed to various and multiple systems</td>
+<td>Can only log to another S3 bucket in the same region and account</td>
+</tr>
+<tr>
+<td>Reliable and ~fast delivery (under 5 minutes, often much sooner)</td>
+<td>Delivery is best effort and is “within a few hours”</td>
+</tr>
+<tr>
+<td>Generally, are well supported as a data source in your SIEM of choice</td>
+<td>Require a Lambda for detective controls, date partioning can enable querying (once enabled, post 2023)</td>
+</tr>
+<tr>
+<td>Cost per Data Event, for storage (both in AWS and your SIEM), and for SIEM ingestion (often)</td>
+<td>Cost for storage in S3</td>
+</tr>
+<tr>
+<td>planning <a href="https://ramimac.me/s3-logging#about-s3-logging">s3 logging</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>consider characteristics of each bucket: read/write volume expected; risk (unauthorized write/read); frequency of user access. Then, based on those parameters, go:
+- Turn on S3 Access Logs for any non-public bucket. Save them for a rainy day, at which point you can query them with Athena, somewhat painfully at scale
+- Use Cloudtrail Data Events with Event Selectors, on buckets of reasonable volume <strong>where you require detective controls on reads or writes</strong>
+- If you have a high volume bucket that <strong>needs detective controls</strong>, you’ll want to deploy a Lambda to process S3 Access Logs as they’re delivered
+- To actually allow querying of S3 Access Logs, invest in post processing</p>
+<h2 id="iam">iam</h2>
+<p>also see <a href="../aws-iam-quick-check/">AWS IAM quick check</a>
+also see <a href=".md#aws-organization"></a></p>
+<p>iam api call happens in N. Virginia.</p>
+<h3 id="understand-how-user-use-iam">understand-how-user-use-iam</h3>
+<p>this should be one of the first step, understanding how user interact with aws services. after this then push to more secure route, by putting guardrail, not gate keeping.</p>
+<h3 id="less-static-long-term-creds">less-static-long-term-creds</h3>
+<p>Access Keys in AWS are typically tied to long-term credentials such as IAM users. In AWS, security best practices recommend moving away from long-term credentials to short term credentials. Instead of IAM Users, IAM roles are preferred.
+<a href="../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware"></a></p>
+<p>For more details about temporary credentials in AWS, <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html">AWS has extensive documentation and AWS STS</a>.
+- [ ] research more on temp creds AWS</p>
+<h4 id="akia-asia">AKIA-ASIA</h4>
+<p>IAM credentials with the <code>AKIA</code> prefix is long term access keys. These are associated with IAM users. These credentials can potentially be exposed and used by attackers, because they do not expire by default.</p>
+<p>IAM credentials with the <code>ASIA</code> prefix belong to short lived access keys which were generated using <a href="https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html">STS</a>. These credentials last for a limited time. </p>
+<h3 id="rotate-long-term-keys-to-minimize-exposure">Rotate long-term keys to minimize exposure</h3>
+<h3 id="scan-code-for-stored-credentials-in-cicd-pipelines-and-repositories">Scan code for stored credentials in CI/CD pipelines and repositories</h3>
+<h3 id="require-mfa-for-human-access">Require MFA for human access</h3>
+<p>Use MFA if you think the identity is important </p>
+<h3 id="migrate-administrators-and-highly-privileged-access-to-just-in-time-access-andor-use-hardware-tokens">Migrate administrators and highly-privileged access to Just in Time access and/or use hardware tokens</h3>
+<h3 id="permission-reduction-and-least-privilege">Permission Reduction and Least Privilege</h3>
+<p><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege"><strong>Least Privilege</strong></a>
+have one role per resources or per app, follow the least privilege principle
+- [ ] research more on least privilege </p>
+<h3 id="root-account">root-account</h3>
+<p>Do not use root account. Use IAM user at least, or IAM role. better yet use aws org and accounts.</p>
+<p>with AWS Organizations, <strong>each AWS account</strong> in your organization comes with its own root user. These root users have unrestricted administrative access to everything in their AWS accounts. controls for this account before centralized root management is typical e.g. MFA, password rotate, limit permission via SCP <a href="01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md">Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)</a></p>
+<p>centralized root access: <a href="01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md">Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)</a>
+- centralize their management
+- delete root user credentials
+- reduced attack surface (with fewer root to manage)
+- new account won't have root credentials by default
+- With managed policies, such as <em><code>IAMAuditRootUserCredentials</code></em>, <em><code>IAMCreateRootUserPassword</code></em>, <em><code>IAMDeleteRootUserCredentials</code></em>, <code>S3UnlockBucketPolicy</code>, and <code>SQSUnlockQueuePolicy</code>, you are strictly limited to using only those policies.
+- If root access is needed, it can be temporarily recovered, used for the specific task, and then removed again.</p>
+<p>Assuming root would look like this
+<code>aws sts assume-root --target-principal=123456789 --task-policy-arn arn=arn:aws:iam::aws/root-task/S3UnlockBucketPolicy</code></p>
+<p>CloudTrail would show <code>AssumeRoot</code> event type see here for example <a href="01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md#CloudTrail%20Logging%20How%20(Assume)Root%20Actions%20Look%20Now"></a></p>
+<h4 id="related-api-with-centralized-root-management">related API with centralized root management</h4>
+<p>These are related API with centralized root management that might be of interest when you design detection/ protect <a href="01-source/Hands-On%20Security%20Tips%20For%20Centralize%20Root%20Access%20In%20AWS(AssumeRoot).md">Hands-On Security Tips For Centralize Root Access In AWS(AssumeRoot)</a>
+- check if feature is enabled. <code>ListOrganizationsFeatures</code>
+- Identify Accounts with Root Access. No simple API, but use these steps:
+    - assume root with <code>IAMAuditRootUserCredentials</code> 
+        <code>aws sts assume-root --target-principal=123456789 --task-policy-arn arn=arn:aws:iam::aws/root-task/IAMAuditRootUserCredentials</code> 
+    - <code>GetLoginProfile</code> API command without providing the <code>UserName</code>
+        <code>aws iam get-login-profile</code>
+    - If the root account doesn’t have a login profile, you should get the following error: 
+        <em>An error occurred (NoSuchEntity) when calling the GetLoginProfile operation: Login Profile for User null cannot be found.</em>
+    - Also check for MFA and signed certs -&gt; delete this also</p>
+<h3 id="related-detection-and-response-aws-detect-and-response">related detection and response: <a href="../aws-detect-and-response/">aws-detect-and-response</a></h3>
+<h3 id="credential-report">credential report</h3>
+<p>https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>generate-credential-report<span class="w"> </span>--profile<span class="w"> </span>&lt;aws-cli-profile&gt;
+</code></pre></div>
+<h3 id="iam-tools">IAM tools</h3>
+<ul>
+<li><a href="https://github.com/iann0036/iamlive">iamlive</a> </li>
+<li><a href="https://policy-sentry.readthedocs.io/en/stable/">Policy Sentry</a></li>
+<li><a href="https://iamzero.dev/">IAM Zero</a></li>
+<li>[ ] put this on infosec compendium projects</li>
+</ul>
+<h2 id="network">network</h2>
+<h3 id="monitor-network-perimeter">Monitor network perimeter</h3>
+<h3 id="know-your-exposed-asset">Know your exposed asset</h3>
+<h3 id="put-guardrails-when-creating-new-vpc">put guardrails when creating new VPC</h3>
+<h3 id="auto-remediation-of-vpc-if-guardrail-is-impossible">auto-remediation of VPC if guardrail is impossible</h3>
+<h2 id="ec2">ec2</h2>
+<h3 id="inventory-of-internet-exposed-ec2">inventory-of-internet-exposed-ec2</h3>
+<p>have this, because more risky.</p>
+<h2 id="aws-policy">aws-policy</h2>
+<h3 id="policy-primer">policy-primer</h3>
+<p>these are types or policy
+- identity based policies (inline and managed)
+- instances policies
+- resources based policies
+- organizational service control policies
+- organizational resources control policies
+- permission boundaries
+- ACL
+- session policies</p>
+<ul>
+<li>[ ] read more on org policies, RCP - SCP</li>
+</ul>
+<p>Almost all mid-to-large sized AWS environments make use of <a href="https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/organizing-your-aws-environment.html">multi-account</a> architecture. Using multiple AWS accounts offers a number of <a href="https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/benefits-of-using-multiple-aws-accounts.html">benefits</a> and is considered a best practice. To help organize and manage those accounts, AWS offers a service called <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html">AWS Organizations</a>.</p>
+<p>Policies in AWS Organizations enable you to apply additional types of management to the AWS accounts in your organization</p>
+<h4 id="policy-basic-principles">policy-basic-principles</h4>
+<ul>
+<li>default deny: They are default deny, and can only "remove deny". If you see an <em>allow</em> permission that doesn’t mean something is being granted to someone— it just means the SCP won’t block it.</li>
+<li>logical sum </li>
+<li>deny override allow</li>
+</ul>
+<h3 id="service-control-policies-scps">Service Control Policies (SCPs)</h3>
+<p>SCPs <strong>DO NOT</strong> work on a management account</p>
+<p>SCP is the OG of Security Invariants- define the maximum permissions of identities in your organization.</p>
+<p>With <strong>service control policies</strong>, it is possible to review CloudTrail to determine who may be calling the specific actions that will be denied. <a href="../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls"></a></p>
+<p><strong>SCPs do NOT grant anyone permissions, they only restrict what actions are allowed in an account!</strong> Service Control Policies are guardrails which restrict what can happen in an account — they cannot grant permissions to anyone or anything in an account.</p>
+<p>SCPs do not affect your management account, even when applied to your Organization’s root. This is another good reason to limit use of management accounts. - SCPs can restrict the root (but not management) account.</p>
+<p>SCP can’t restrict access to resources from entities outside your account (e.g. if you create public s3, the SCP won’t evaluate that API call — because it happens outside your account). It can however, <strong>block creation of public s3</strong>, but previously created public s3 will still accessible.</p>
+<p>SCPs can’t restrict service linked roles (like the one created when we enabled organizations).</p>
+<p>SCPs are applied at the Organizational Unit or account level.</p>
+<p>SCP samples: see <a href=".md#rcp-samples"></a></p>
+<h3 id="resource-control-policies-rcps">Resource Control Policies (RCPs)</h3>
+<p>a new type of Organization Policy that defines the maximum permissions of <em>resources</em> in your organization. 
+Resource Control Policies apply to the resources in your organization and can control any principal, even those outside of your control. <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html#rcp-supported-services">Only a few services support RCPs</a> at this time: S3, KMS, SQS, SecretsManager, and IAM Roles (via STS). 
+<a href="../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Resource%20Control%20Policies"></a></p>
+<p><strong>Resource Control Policies</strong> are more complicated to preview because you’ll need to enable very expensive <strong>CloudTrail DataEvents</strong> and review the vast data produced. For some RCPs, you can probably use <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification">IAM Access Analyser</a> <a href="../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls"></a></p>
+<p><strong>RCP samples</strong>: see <a href=".md#rcp-samples"></a></p>
+<h3 id="iam-policies">iam-policies</h3>
+<p>references on <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html">aws</a>
+AWS managed policies exist in every AWS account. Customer managed policies only exist in the account where they are created, so AWS needs to provision those policies into accounts for it all to work.</p>
+<h3 id="declarative-policies">declarative-policies</h3>
+<p>These policies exist outside of IAM evaluation and enforce <strong>specific controls</strong> at the AWS Service.
+You can determine the impactof DP with a simple CSPM review for public images and snapshots. For IMDSv2 enforcement, you can review the CloudWatch Metric <code>MetadataNoToken</code> to see how many API calls still use the old system. 
+<a href="../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md#Safely%20leveraging%20these%20controls"></a>
+<a href="https://aws.amazon.com/blogs/security/get-the-full-benefits-of-imdsv2-and-disable-imdsv1-across-your-aws-infrastructure/">read more on AWS</a>
+- [ ] read more on IMDSv2</p>
+<h3 id="permission-boundaries">permission-boundaries</h3>
+<p>These <strong>IAM Policies</strong> don’t grant permissions but rather define the maximum permissions of the principal (<strong>IAM User or Role</strong>) to which they are attached.
+- [x] read security invariants ✅ 2025-02-02</p>
+<h3 id="examples-of-implementing-policies">examples-of-implementing-policies</h3>
+<p>note on samples: You should not attach RCPs without thoroughly testing the impact that the policy has on resources in your accounts. 
+Once you have a policy ready that you would like to implement, we recommend testing in a separate organization or OU that can represent your production environment. 
+Once tested, you should deploy changes to test OUs and then progressively deploy the changes to a broader set of OUs over time.</p>
+<h4 id="prime-harbor-security-invariants">prime harbor security invariants</h4>
+<ul>
+<li><a href="../01-source/Defining%20Security%20Invariants%20%20PrimeHarbor.md">Defining Security Invariants  PrimeHarbor</a></li>
+<li>enforce/ alert on things that should <strong>always</strong> or <strong>never</strong> be true. idea is if there is no need for context (these things should always or never), no need for sec team time</li>
+</ul>
+<h4 id="scp-samples">scp-samples</h4>
+<ul>
+<li><a href="https://github.com/primeharbor/aws-organizational-policies">prime harbor AWS OP github</a></li>
+<li><a href="https://github.com/infralicious/awesome-service-control-policies">infralicious</a></li>
+<li><a href="https://rami.wiki/scps/">rami scps</a></li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html">aws examples</a></li>
+</ul>
+<h4 id="rcp-samples">rcp-samples</h4>
+<p><a href="https://github.com/aws-samples/resource-control-policy-examples">samples of RCP</a></p>
+<h4 id="lesson-learned-from-incidents">lesson-learned-from-incidents</h4>
+<ul>
+<li>protect from SSE-C (<a href="../01-source/Ransomware%20in%20AWS%20S3%20SSE-C.md#Securing%20Data%20in%20S3%20and%20Preventing%20S3%20SSE-C%20Ransomware"></a>)<ul>
+<li>deny object uploads with SSE-C encryption </li>
+<li>Requires KMS Encryption (which can be either an AWS Managed Key or Customer Managed Key)</li>
+</ul>
+</li>
+</ul>
+<h3 id="note-on-aws-managed-policies">note-on-aws-managed-policies</h3>
+<p><a href="../01-source/A%20SaaS%20provider's%20guide%20to%20securely%20integrating%20with%20customers'%20AWS%20accounts%20%20%20Datadog%20Security%20Labs.md">A SaaS provider's guide to securely integrating with customers' AWS accounts   Datadog Security Labs</a>
+While policies like <code>ReadOnlyAccess</code> might seem like an easy way to grant limited permissions, AWS managed policies are typically <strong>over-privileged</strong> and <strong>allow overly-sensitive</strong>, unnecessary actions. For example:</p>
+<p>do not use aws managed policy, but use aws managed policy as a starter to build your own.</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ReadOnlyAccess.html"><code>ReadOnlyAccess</code></a> allows full read access to all data in S3 buckets and DynamoDB tables in the account, as well as read access to all SSM parameters, which typically (and rightly) contain secrets.</li>
+<li><a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/SecurityAudit.html"><code>SecurityAudit</code></a> contains the <code>ec2:DescribeInstanceAttribute</code> permission, which grants privileges to retrieve user data configuration from all EC2 instances, often containing sensitive data or configuration secrets. It also grants <code>lambda:ListFunctions</code>, which permits retrieval of the value of all environment variables for all Lambda functions in the account.</li>
+</ul>
+<p>In addition, AWS can add or remove permissions from these policies at any time without notice, and they do so on a <a href="https://github.com/zoph-io/MAMIP/commits/master/">daily basis</a>, granting you no control over its lifecycle.</p>
+<h2 id="aws-organizations">aws-organizations</h2>
+<p>this is the way to scale up your aws deployment. make sure you check this before going organizational:
+- Never ever ever enable Organizations (or deploy Control Tower) from an account which is running any workloads!!!
+- have at least one iam account, <strong>do not</strong> use your root.
+- use MFA
+- Protect the management account, minimize who has access, and minimize what you deploy there!!!! 
+- activate trail (make sure it is multi region)
+- activate billing alert. use sns if needs be</p>
+<h3 id="magic-roles">magic-roles</h3>
+<p>these are roles that related to creation of aws organization
+<em>Service Linked Role</em>: This is a unique type of IAM role directly linked to an AWS service. It’s predefined by the service and includes all the permissions the service needs to perform actions on your behalf. These roles simplify setup since you don’t need to manually add permissions for the service
+<em>AWSServiceRolesForOrganizations</em> : This role is used by AWS Organizations to enable trusted access for other AWS services. It allows these services to perform tasks across all accounts in your organization, such as managing resources or configurations
+<em>OrganizationAccountAccessRole</em> : allow root to assume member account</p>
+<h3 id="delegated-administrator">delegated-administrator</h3>
+<p>Users/roles in a delegated account can administer the service. Each service is a bit different in terms of how much is delegated. For example Identity Center doesn’t let the delegated admin change any permission sets that were created directly in the management account, which helps prevent a delegated admin from making themselves an admin in the management account itself. But nearly all other capabilities are fair game. remember this when you are creating account.</p>
+<p>this help with least privilege and reducing blast radius</p>
+<p>if you are delegating IAM identity center, permission <strong>AWSSSOMemberAccountAdministrator</strong> should also be present in the delegated account</p>
+<p>for use cases of read more at <a href="https://www.wiz.io/blog/use-cases-for-delegated-administrator-for-aws-organizations">wiz</a></p>
+<h2 id="backup-policy">backup-policy</h2>
+<h2 id="aws-backup-encryption">AWS backup encryption</h2>
+<p>https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html</p>
+<h2 id="configuration-management">configuration-management</h2>
+<p><a href="../01-source/aws-security-best-practices-cheat-sheet.pdf">aws-security-best-practices-cheat-sheet</a></p>
+<h3 id="scan-with-aws-config">scan with AWS config</h3>
+<ul>
+<li>[ ] read more on aws config</li>
+</ul>
+<h2 id="aws-security-hub">aws-security-hub</h2>
+<p>Security hub serve three purposes:
+- Collects events and results from nearly <em>any other AWS security service,</em> all in one place. and Security Hub normalizes findings from those services into a standard format. (i.e. AWS Security Findings Format - ASFF)
+- Work as a Cloud Security Posture Management (CSPM) tool. Think of CSPM as a vulnerability scanner for your cloud.
+- Consolidate events and findings across accounts and regions in an Organization</p>
+<p>AWS security hub enable AWS config and security standards. These are expensive, if you are looking to consolidate stuff from other security tool, disable these.</p>
+<p>read more at <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html">security hub</a>
+- [x] read more on AWS security hubs ✅ 2025-03-06</p>
+<h2 id="aws-risk-management">aws-risk-management</h2>
+<p>amazon detective
+- [ ] read on Amazon detective
+- [ ] read on AWS risk management</p>
+<h2 id="tooling">tooling</h2>
+<h3 id="basic">basic</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/aws/aws-cli">aws-cli</a></td>
+<td>the aws-cli, what else</td>
+</tr>
+<tr>
+<td><a href="https://github.com/awslabs/aws-shell">aws-shell</a></td>
+<td>interactive version of aws-cli</td>
+</tr>
+</tbody>
+</table>
+<h3 id="inventory">inventory</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/nccgroup/aws-inventory">aws-inventory</a></td>
+<td>tool that tries to discover all <a href="https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#resource">AWS resources</a> created in an account</td>
+</tr>
+<tr>
+<td><a href="https://github.com/disruptops/resource-counter">Resource Counter</a></td>
+<td>this command line tool counts the number of resources in different categories across Amazon regions.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/arkadiyt/aws_public_ips">aws_public_ips</a></td>
+<td>aws_public_ips is a tool to fetch all public IP addresses (both IPv4/IPv6) associated with an AWS account.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="audit">audit</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/SecurityFTW/cs-suite">CS-Suite</a></td>
+<td>This is a suite of cloud security tools designed to automate various security assessments and tasks</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cloudsploit/scans">CloudSploit</a></td>
+<td>CloudSploit is an open-source cloud security scanner. It's designed to detect security risks in cloud infrastructure, including AWS, Azure, Google Cloud, and others.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/awslabs/aws-security-benchmark">AWS Security Benchmark</a></td>
+<td>This project provides scripts and resources to assess AWS environments against security benchmarks,</td>
+</tr>
+<tr>
+<td><a href="https://github.com/bear/s3scan">S3Scan</a></td>
+<td>S3Scan is specifically designed for scanning Amazon S3 (Simple Storage Service) buckets.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/duo-labs/cloudmapper">CloudMapper</a></td>
+<td><strong>Note</strong> the Network Visualization functionality (command <code>prepare</code>) is no longer maintained.<br><br>CloudMapper helps you analyze your Amazon Web Services (AWS) environments</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nccgroup/PMapper">PMapper</a></td>
+<td>PMapper focuses on analyzing IAM (Identity and Access Management) policies in AWS.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/toniblyx/prowler">Prowler</a></td>
+<td>Prowler is a security assessment, auditing, hardening and forensics tool.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="incident-response">incident response</h3>
+<h2 id="aws-organization">aws-organization</h2>
+<h3 id="organizational-unit">organizational-unit</h3>
+<p>from <a href="https://slaw.securosis.com/p/aws-lego-organizing-org">slaw</a>
+At a minimum you want OUs for governance/security, infrastructure/operations, and workloads; as well as places to handle special cases such as incident response, mergers and acquisitions, and accounts you are deprovisioning.</p>
+<p>Separation of functions. Always keep in mind <em>who</em> needs to use the account and <em>what</em> the account needs to do.</p>
+<p>examples: <a href="https://github.com/primeharbor/org-kickstart/blob/main/ous.tf?utm_source=slaw.securosis.com&amp;utm_medium=referral&amp;utm_campaign=aws-lego-organizing-the-org">chris farris ou template terraform</a> and <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/architecture.html?utm_source=slaw.securosis.com&amp;utm_medium=referral&amp;utm_campaign=aws-lego-organizing-the-org">aws reference arch</a></p>
+<h3 id="accounts">accounts</h3>
+<p>from <a href="https://slaw.securosis.com/p/aws-lego-organizing-org">slaw</a>
+When deciding what accounts to create and where, try to use these guidelines:</p>
+<ul>
+<li>One of the best security tools in our hierarchy is Service Control Policies (SCPs). For example if you want different ones for development vs. production environments, you should probably have dev and prod OUs.</li>
+<li>If two things are in different security contexts — perhaps because one has a lot of compliance requirements, but the other is hosting pictures of your cats — move them into separate accounts.</li>
+<li>If application stacks are managed by different teams, put them in different accounts. This makes IAM easier because you can restrict access to the relevant teams.</li>
+<li>If two applications need to talk to each other and it’s a <strong>lot</strong> of data, then… wait until we get to that lab. This is the hardest decision point because, for cost reasons, you may need to put different workloads managed by different teams into the same account.</li>
+<li>Separate accounts are also awesome for assigning to different cost centers. <strong>Much</strong> easier than trying to use tags.</li>
+</ul>
+<h3 id="organization-cloudtrail">organization-cloudtrail</h3>
+<p>why use organization-cloudtrail :
+- Creates a trail in every account and region in the Org, all using the same configuration.
+- Centralizes all the logs <em>across accounts and regions</em> into one S3 bucket.
+- Handles all the paths and naming for that bucket so you can figure out which account and region a log came from (it uses the account ID and region in the log path).
+- Within an account you can’t disable or delete the organization trail, which really pisses off attackers.</p>
+<h2 id="best-practice-to-allow-3p-access-to-aws-account">Best practice to allow 3P access to AWS account</h2>
+<p><a href="Best-practice-to-allow-3P%20to%20access%20AWS%20accounts">Best-practice-to-allow-3P to access AWS accounts</a></p>
+<h2 id="references-and-related">references-and-related</h2>
+<ul>
+<li><a href="https://hackingthe.cloud/aws/general-knowledge/aws_organizations_defaults/">hackingthe.clud - AWS orgs</a></li>
+<li><a href="../cloud-security/">cloud-security</a></li>
+<li><a href="https://hackingthe.cloud/aws/general-knowledge/iam-key-identifiers/">hackingthe.cloud - IAM identifiers</a></li>
+<li><a href="https://www.chrisfarris.com/post/ghost-of-cloudsec-yet-to-come/">ghost of  cloudsec yet to come</a></li>
+<li><a href="https://blog.marcolancini.it/2018/blog-arsenal-cloud-native-security-tools/#aws">marco lancini</a></li>
+<li><a href="https://slaw.securosis.com/p/give-account-security-blanket-scps">slaw</a></li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html">iam references aws</a></li>
+<li><a href="../aws-respond/">aws-respond</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../aws-iam-quick-check/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AWS IAM Quick Check">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                AWS IAM Quick Check
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../aws-respond/" class="md-footer__link md-footer__link--next" aria-label="Next: AWS Respond">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                AWS Respond
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+    <a href="https://infosec.exchange/@aldosimon" target="_blank" rel="noopener me" title="ewaldo simon hiras on mastodon" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54-.6-4.6-.9-9.3-.9-13.9 85.6 20.9 158.7 9.1 178.7 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6V190.1c0-49.7-64-51.6-64 6.9v62.5H201V197c0-58.5-64-56.6-64-6.9v114.2H90.3c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.twitter.com/aldosimon" target="_blank" rel="noopener" title="ewaldo simon hiras on twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://linkedin.com/in/aldosimon" target="_blank" rel="noopener" title="ewaldo simon hiras on linkedin" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://aldosimon.com" target="_blank" rel="noopener" title="ewaldo simon hiras&#39;s blog" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M35.7 171.1c-46.9 46-46.9 122.9 0 169.8l135.9 135.9c46 46.9 122.9 46.9 169.8 0l135.9-135.9c46.9-46.9 46.9-123.8 0-169.8L341.4 35.2c-46.9-46.9-123.8-46.9-169.8 0zM196 196.5a84.5 84.5 0 1 1 120 119 84.5 84.5 0 1 1-120-119"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/aldosimon" target="_blank" rel="noopener" title="ewaldo simon hiras&#39;s github" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

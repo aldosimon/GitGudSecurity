@@ -1,0 +1,2216 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://notes.aldosimon.com/aws-detection-catalogue/">
+      
+      
+        <link rel="prev" href="../aws-detect-and-response/">
+      
+      
+        <link rel="next" href="../aws-iam-quick-check/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>AWS Detection Catalogue - GitGud Security Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-detection-catalogue" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GitGud Security Notes" class="md-header__button md-logo" aria-label="GitGud Security Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GitGud Security Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS Detection Catalogue
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GitGud Security Notes" class="md-nav__button md-logo" aria-label="GitGud Security Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GitGud Security Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-vpc-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon VPC Log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-detect-and-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Detection and Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AWS Detection Catalogue
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Detection Catalogue
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initial-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration/ Discovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration/ Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privilege Escalation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Privilege Escalation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defense-evasion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defense Evasion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Defense Evasion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credential-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credential Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Credential Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lateral-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lateral Movement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lateral Movement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exfiltration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exfiltration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exfiltration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anomalies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anomalies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anomalies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-message-from-anomaly-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error message from anomaly IP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-iam-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensitive IAM actions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-iam-quick-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS IAM Quick Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-protect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Protect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-respond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Respond
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-security-tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Security Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../best-practice-to-allow-3p-to-access-aws-accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Allow 3P/SaaS to access AWS accounts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-threat-hunt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Threat Hunt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudfront%20log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudFront log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudtrail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudTrail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudwatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudWatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detection Engineering Data Source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detection Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ec2-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2 Logs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guardduty/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GuardDuty
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infosec-compendiums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infosec Compendiums
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lambda-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lambda log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maturity-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Maturity Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microsoft-defender-suite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microsoft Defender Suite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microsoft-entra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microsoft Entra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rds-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDS log
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threat-modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threat Modelling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vulnerability-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vulnerability Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initial-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration/ Discovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration/ Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privilege Escalation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Privilege Escalation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defense-evasion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defense Evasion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Defense Evasion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credential-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credential Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Credential Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lateral-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lateral Movement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lateral Movement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exfiltration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exfiltration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exfiltration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-cloudtrail_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Cloudtrail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-examples_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anomalies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anomalies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anomalies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-message-from-anomaly-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error message from anomaly IP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-iam-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensitive IAM actions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-detection-catalogue">AWS Detection Catalogue</h1>
+<p>This page list common AWS API calls (cloudtrail) and tries to map (loosely) them to MITRE ATTACK framework. If you are hunting or handling incidents, these can be your starting points. 
+These list are collected from various article listed below.</p>
+<h2 id="initial-access">Initial Access</h2>
+<h3 id="key-cloudtrail">Key Cloudtrail</h3>
+<ul>
+<li><code>ConsoleLogin</code> - Interactive AWS console access</li>
+<li><code>PasswordRecoveryRequested</code> - Password reset attempts</li>
+<li><code>AssumeRoleWithWebIdentity</code> - Federated authentication abuse</li>
+<li><code>GetSessionToken</code> - Temporary credential requests</li>
+</ul>
+<h3 id="detection-examples">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>SELECT eventTime, sourceIPAddress, userIdentity.userName, errorCode, errorMessage  
+FROM cloudtrail_logs  
+WHERE eventName = &#39;ConsoleLogin&#39;  
+AND errorCode IN (&#39;SigninFailure&#39;, &#39;Failed authentication&#39;)  
+AND eventTime &gt; NOW() - INTERVAL &#39;1 hour&#39;  
+GROUP BY sourceIPAddress  
+HAVING COUNT(*) &gt; 5;
+</code></pre></div>
+<h2 id="execution">Execution</h2>
+<h3 id="key-cloudtrail_1">Key Cloudtrail</h3>
+<ul>
+<li><code>StartInstance</code> / <code>StartInstances</code> - EC2 instance execution</li>
+<li><code>Invoke</code> - Lambda function execution</li>
+<li><code>SendCommand</code> - Systems Manager command execution</li>
+<li><code>RunInstances</code> - New EC2 instance creation</li>
+</ul>
+<h3 id="detection-examples_1">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>-- Monitor SSM command execution  
+SELECT eventTime, userIdentity.userName, requestParameters.instanceIds,   
+       requestParameters.parameters.commands  
+FROM cloudtrail_logs   
+WHERE eventName = &#39;SendCommand&#39;  
+  AND requestParameters.parameters.commands LIKE &#39;%curl%&#39;  
+  AND requestParameters.parameters.commands LIKE &#39;%bash%&#39;;
+</code></pre></div>
+<h2 id="enumeration-discovery">Enumeration/ Discovery</h2>
+<h3 id="key-cloudtrail_2">Key Cloudtrail</h3>
+<ul>
+<li>ec2:DescribeInstances<ul>
+<li>Describes the specified instances or all instances "What type of EC2 infrastructure is present in this account?" one of the way to do it: <a href="https://hackingthe.cloud/aws/enumeration/account_id_from_ec2/">account id from ec2</a></li>
+</ul>
+</li>
+<li>s3:ListObjects - Ransomware in AWS S3 SSE-C#Explaining the S3 SSE-C Ransomware Approach<ul>
+<li>[ ] research and complete this block</li>
+</ul>
+</li>
+<li>`ListSSHPublicKeys </li>
+<li><code>SimulatePrincipalPolicy</code>: The AWS Policy Simulator allows users to test an existing policy recorded in the policySourceArn field against a set of actions recorded in the actionNames field. This helps answer the question can I perform action X with policy Y.</li>
+<li><code>ListUsers</code> - IAM user enumeration</li>
+<li><code>ListRoles</code> - IAM role enumeration</li>
+<li><code>ListIdentities</code> - SES identity listing</li>
+<li><code>ListAccessKeys</code> - Access key discovery</li>
+<li><code>ListServiceQuotas</code> - Service limit discovery</li>
+<li><code>ListInstanceProfiles</code> - EC2 service role discovery</li>
+<li><code>ListBuckets</code> - S3 bucket enumeration</li>
+<li><code>ListGroups</code> - IAM group discovery</li>
+<li><code>GetSendQuota</code> - SES sending limits</li>
+<li><code>GetCallerIdentity</code> - Current identity verification</li>
+<li><code>DescribeInstances</code> - EC2 instance discovery</li>
+<li><code>GetBucketAcl</code> - S3 permissions discovery</li>
+<li><code>GetBucketVersioning</code> - S3 versioning status</li>
+<li><code>GetAccountAuthorizationDetails</code> - Comprehensive account enumeration</li>
+<li>From - Following attackers’ (Cloud)trail in AWS Methodology and findings in the wild   Datadog Security Labs</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Enumeration API call</th>
+<th>Comment</th>
+<th>Attacker's question being answered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sts:GetCallerIdentity</code></td>
+<td>Returns the identity of the authenticated user</td>
+<td>"What are the credentials I compromised?"</td>
+</tr>
+<tr>
+<td><code>ses:GetAccount</code></td>
+<td>Returns information about the SES account, including sending limits and past usage</td>
+<td>"What's the volume of emails I can send through this account?"</td>
+</tr>
+<tr>
+<td><code>ses:GetSendQuota</code></td>
+<td>Returns SES sending limits</td>
+<td>"What's the volume of emails I can send through this account?"</td>
+</tr>
+<tr>
+<td><code>ses:ListIdentities</code></td>
+<td>Lists verified SES senders</td>
+<td>"Who can I impersonate?"</td>
+</tr>
+<tr>
+<td><code>sns:GetSMSAttributes</code></td>
+<td>Returns SMS sending settings</td>
+<td>"What's the SMS monthly spend limit?"</td>
+</tr>
+<tr>
+<td><code>iam:ListUsers</code></td>
+<td>Returns IAM users in the account</td>
+<td>"How many people are using this account?"</td>
+</tr>
+<tr>
+<td><code>ec2:DescribeRegions</code></td>
+<td>Describes the Regions that are enabled for your account, or all Regions.</td>
+<td>"What regions are enabled that infrastructure could be set up in?"</td>
+</tr>
+<tr>
+<td><code>ec2:DescribeInstances</code></td>
+<td>Describes the specified instances or all instances</td>
+<td>"What type of EC2 infrastructure is present in this account?"</td>
+</tr>
+<tr>
+<td><code>ec2:DescribeVpcs</code></td>
+<td>Describes one or more of your VPCs</td>
+<td>"How is the network infrastructure set up in this account?"</td>
+</tr>
+<tr>
+<td><code>lightsail:GetRegions</code></td>
+<td>Returns a list of all valid regions for Amazon Lightsail</td>
+<td>"What regions are enabled that infrastructure could be set up in?"</td>
+</tr>
+<tr>
+<td><code>lightsail:GetInstances</code></td>
+<td>Returns information about all Amazon Lightsail instances</td>
+<td>"What type of Lightsail infrastructure is present in this account?"</td>
+</tr>
+<tr>
+<td><code>route53:ListDomains</code></td>
+<td>Returns domain names registered in the account</td>
+<td>"What's the name and domain names of the organization I have compromised?"</td>
+</tr>
+<tr>
+<td><code>route53:GetHostedZoneCount</code></td>
+<td>Returns the number of hosted zones in the account</td>
+<td>"How large is this company?"</td>
+</tr>
+<tr>
+<td><code>s3:ListBuckets</code></td>
+<td>Returns S3 buckets</td>
+<td>"Is there sensitive data available?"</td>
+</tr>
+<tr>
+<td><code>servicequotas:ListServiceQuotas</code></td>
+<td>Returns service quotas in use for a specific service (e.g. EC2)</td>
+<td>"How many resources can I spin up in that account?"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detection-examples_2">Detection Examples</h3>
+<ul>
+<li>from <a href="../Clippings/Incident%20Response%20in%20AWS%20-%20Chris%20Farris.md">Incident Response in AWS - Chris Farris</a>
+<div class="highlight"><pre><span></span><code>index=cloudtrail eventName=GetCallerIdentity OR ListBuckets OR DescribeInstances 
+| iplocation sourceIPAddress 
+| table userIdentity.arn, sourceIPAddress, City, Country 
+| sort -City, Country
+</code></pre></div></li>
+</ul>
+<div class="highlight"><pre><span></span><code>-- Identify reconnaissance activity  
+WITH discovery_events AS (  
+  SELECT eventTime, userIdentity.userName, sourceIPAddress, eventName  
+  FROM cloudtrail_logs   
+  WHERE eventName IN (&#39;ListUsers&#39;, &#39;ListRoles&#39;, &#39;ListBuckets&#39;, &#39;DescribeInstances&#39;, &#39;GetCallerIdentity&#39;)  
+    AND eventTime &gt; NOW() - INTERVAL &#39;1 hour&#39;  
+)  
+SELECT userName, sourceIPAddress,   
+       COUNT(DISTINCT eventName) as unique_discovery_actions,  
+       COUNT(*) as total_discovery_calls  
+FROM discovery_events  
+GROUP BY userName, sourceIPAddress  
+HAVING COUNT(DISTINCT eventName) &gt; 5  
+ORDER BY unique_discovery_actions DESC;
+</code></pre></div>
+<h2 id="persistence">Persistence</h2>
+<h3 id="key-cloudtrail_3">Key Cloudtrail</h3>
+<ul>
+<li><code>CreateAccessKey</code> - New programmatic access credentials</li>
+<li><code>CreateUser</code> - New IAM user creation</li>
+<li><code>CreateNetworkAclEntry</code> - Network-level persistence</li>
+<li><code>CreateRoute</code> - Routing table modifications</li>
+<li><code>CreateLoginProfile</code> - Console access setup</li>
+<li><code>AuthorizeSecurityGroupEgress</code> / <code>AuthorizeSecurityGroupIngress</code> - Firewall rule changes</li>
+<li><code>CreateVirtualMFADevice</code> - MFA device setup</li>
+<li><code>CreateConnection</code> - Database/service connections</li>
+<li><strong>creation of a EC2 key pair</strong>, is known technique - Following attackers’ (Cloud)trail in AWS Methodology and findings in the wild   Datadog Security Labs</li>
+<li><strong>Creating root user</strong> - Following attackers’ (Cloud)trail in AWS Methodology and findings in the wild   Datadog Security Labs</li>
+<li><code>create security group</code> - Following attackers’ (Cloud)trail in AWS Methodology and findings in the wild   Datadog Security Labs</li>
+<li><code>CreateUser</code> from - The curious case of DangerDev@protonmail.me</li>
+<li><code>CreateLoginProfile</code> call which is used to give a user the ability to login through the AWS management console from <a href="../01-source/The%20curious%20case%20of%20DangerDev@protonmail.me.md">The curious case of DangerDev@protonmail.me</a></li>
+<li>Allow user to AssumeRole to a role that is privileged and preferably come from AWS default role. For example <a href="https://rootcat.de/blog/thecatflap">cat flap</a> that allow user to AssumeRole for a <code>AWSControlTowerExecution</code> role.</li>
+</ul>
+<h3 id="detection-examples_3">Detection Examples</h3>
+<p>from <a href="../Clippings/Incident%20Response%20in%20AWS%20-%20Chris%20Farris.md">Incident Response in AWS - Chris Farris</a></p>
+<div class="highlight"><pre><span></span><code>index=cloudtrail
+eventName=&quot;CreateUser&quot;
+| iplocation sourceIPAddress
+| search Country!=&quot;United States&quot;
+| table userIdentity.arn, sourceIPAddress,
+  City, Country
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>-- Monitor user creation and access key generation  
+SELECT eventTime, userIdentity.userName, requestParameters.userName as new_user,  
+       responseElements.accessKey.accessKeyId  
+FROM cloudtrail_logs   
+WHERE eventName IN (&#39;CreateUser&#39;, &#39;CreateAccessKey&#39;, &#39;CreateLoginProfile&#39;)  
+  AND userIdentity.type = &#39;IAMUser&#39;  
+ORDER BY eventTime DESC;
+</code></pre></div>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<h3 id="key-cloudtrail_4">Key Cloudtrail</h3>
+<ul>
+<li>The <code>AdministratorAccess</code> policy was attached to the newly created account with <code>AttachUserPolicy</code> that provides full access to AWS services and resources. </li>
+<li><code>AssumeRole</code> using external account from <a href="../01-source/The%20curious%20case%20of%20DangerDev@protonmail.me.md">The curious case of DangerDev@protonmail.me</a>. Attacker create malicious role, malicious role allows AssumeRole form external account.</li>
+<li><code>CreateGroup</code> - Administrative group creation</li>
+<li><code>CreateRole</code> - IAM role creation</li>
+<li><code>UpdateAccessKey</code> - Access key status changes</li>
+<li><code>PutGroupPolicy</code> - Inline group policy assignment</li>
+<li><code>PutRolePolicy</code> - Inline role policy assignment</li>
+<li><code>PutUserPolicy</code> - Inline user policy assignment</li>
+<li><code>AttachUserPolicy</code> - Managed policy attachment to users</li>
+<li><code>AttachRolePolicy</code> - Managed policy attachment to roles</li>
+<li><code>AddRoleToInstanceProfile</code> - EC2 service role assignment</li>
+<li><code>AddUserToGroup</code> - Group membership changes</li>
+<li>
+<p><code>PutAccountDetails</code></p>
+<p>read more: <a href="https://www.wiz.io/blog/wiz-discovers-cloud-email-abuse-campaign">wiz</a></p>
+<p>Amazon Simple Email Service (SES) is AWS’s cloud-based bulk email platform. By default, accounts operate in a restricted <a href="https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html">“sandbox” mode</a>, where emails can only be sent to verified addresses and volumes are capped to 200 messages per day, at a maximum rate of one message per second. An account can be moved into the unrestricted “production” mode, in which emails can be sent to arbitrary recipients and the quota is raised, typically to 50,000 emails per day. The transition requires submitting account details for AWS review through the <code>PutAccountDetails</code> API, and customers who need even higher volumes can request additional capacity through a support ticket.</p>
+<p><code>CreateCase</code> was also used: </p>
+<p>But the attacker wasn’t content with the default 50,000-emails-per-day quota. They tried to open a support ticket programmatically through the <code>CreateCase</code> API, asking AWS to further raise their limits <em>(ATT&amp;CK:</em> <a href="https://attack.mitre.org/techniques/T1098/"><em>T1098</em></a><em>)</em>, an attempt that failed due to insufficient permissions</p>
+</li>
+<li>
+<p>Root access </p>
+<p>read more: <a href="https://medium.com/@oraspir/hands-on-security-tips-for-centralize-root-access-in-aws-assumeroot-5d315de423cd">Hands-On Security Tips For <strong>Centralize Root Access</strong> In AWS</a></p>
+<ol>
+<li>Monitor for New Permissions: Keep an eye out for any addition of permissions like <code>sts:AssumeRoot</code> to identities in your organization account. Any identity with this permission will be capable of assuming root access, which can pose a significant security risk.</li>
+<li>Attack Scenario — Re-Enabling Root Login: Imagine a scenario where an attacker knows the root password of a member account, but root login for that account has been disabled. If the attacker has already compromised a principal in the organization’s AWS account that can assume root access (admittedly, an unusual situation), they might try to re-enable root login by using <code>AssumeRoot</code> with the <code>IAMCreateRootUserPassword</code> policy. They could then create a root login profile by assuming root privileges.</li>
+<li>Watch for Suspicious Actions: A compromised identity with permission to assume root access could create significant risks for member accounts by executing suspicious actions, such as <code>aws iam create-login-profile</code>. To mitigate this risk, monitor any <code>AssumeRoot</code> actions with the <code>IAMCreateRootUserPassword</code> policy and closely watch for any root <code>CreateLoginProfile</code> actions within member accounts. Such actions are highly unusual and should always be investigated.</li>
+<li>Frequent <code>**AssumeRoot**</code> Logs: If you notice frequent <code>AssumeRoot</code> actions in your logs, <strong>don't be alarmed right away</strong>. These actions are likely generated by CSPM tools that are verifying root configuration across all member accounts.</li>
+<li>[ ] research more on these detection opportunity of root access</li>
+</ol>
+</li>
+</ul>
+<h3 id="detection-examples_4">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>-- Monitor privilege escalation activities  
+SELECT eventTime, userIdentity.userName, eventName,   
+       requestParameters.groupName, requestParameters.roleName,  
+       requestParameters.policyDocument, requestParameters.policyArn  
+FROM cloudtrail_logs   
+WHERE eventName IN (&#39;PutUserPolicy&#39;, &#39;PutRolePolicy&#39;, &#39;PutGroupPolicy&#39;, &#39;AttachUserPolicy&#39;, &#39;AttachRolePolicy&#39;, &#39;AddUserToGroup&#39;)  
+  AND (requestParameters.policyDocument LIKE &#39;%&quot;*&quot;%&#39;   
+       OR requestParameters.policyArn LIKE &#39;%AdministratorAccess%&#39;  
+       OR requestParameters.policyArn LIKE &#39;%PowerUserAccess%&#39;  
+       OR requestParameters.groupName LIKE &#39;%Admin%&#39;  
+       OR requestParameters.groupName LIKE &#39;%Power%&#39;);
+</code></pre></div>
+<h2 id="defense-evasion">Defense Evasion</h2>
+<h3 id="key-cloudtrail_5">Key Cloudtrail</h3>
+<ul>
+<li><code>StopLogging</code> - CloudTrail logging disruption</li>
+<li><code>DeleteTrail</code> - Audit trail removal</li>
+<li><code>UpdateTrail</code> - Audit configuration changes</li>
+<li><code>PutEventSelectors</code> - Logging scope modification</li>
+<li><code>DeleteFlowLogs</code> - VPC flow log removal</li>
+<li><code>DeleteDetector</code> - GuardDuty detector deletion</li>
+<li><code>DeleteMembers</code> - Security service membership removal</li>
+<li><code>DeleteSnapshot</code> - Evidence destruction</li>
+<li><code>DeactivateMFADevice</code> - MFA bypass</li>
+<li><code>DeleteCertificate</code> - SSL certificate removal</li>
+<li>Removing IAM users with <code>DeleteUser</code></li>
+<li>Cleaning up policies with <code>DetachUserPolicy</code> and <code>DeleteUserPolicy</code></li>
+<li>Deactivating long term access keys with <code>UpdateAccessKey</code></li>
+<li>Cleaning up long term access keys with <code>DeleteAccessKey</code></li>
+<li>Inspecting GuardDuty findings with <code>ListFindings</code> and <code>GetFindings</code> this is unique because Amazon Relational Database Service (RDS) console is used RDSDBinstance to access GuardDuty</li>
+<li>For GuardDuty <code>DeleteDetector</code> <code>UpdateDetector</code> <code>CreateIPSet</code> are nice events to look at. The first two have explicit names but the last one can be trickier and forgotten. This event allows monitoring when someone is updating the list of the GuardDuty trusted IP addresses. An attacker can use this to <strong>whitelist its C2’s IP addresses</strong> to avoid detection</li>
+</ul>
+<h3 id="detection-examples_5">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>-- Monitor security control tampering  
+SELECT eventTime, userIdentity.userName, eventName, requestParameters.name,  
+       requestParameters.detectorId, requestParameters.trailName  
+FROM cloudtrail_logs   
+WHERE eventName IN (&#39;StopLogging&#39;, &#39;DeleteTrail&#39;, &#39;DeleteDetector&#39;, &#39;DeleteFlowLogs&#39;)  
+  AND userIdentity.type != &#39;AWSService&#39;  
+ORDER BY eventTime DESC;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>index=cloudtrail 
+eventName=StopLogging OR DeleteTrail OR PutEventSelectors OR DeleteDetector
+| iplocation sourceIPAddress 
+| table userIdentity.arn, sourceIPAddress, City, Country
+</code></pre></div>
+<h2 id="credential-access">Credential Access</h2>
+<h3 id="key-cloudtrail_6">Key Cloudtrail</h3>
+<p><code>GetSecretValue</code> - Secrets Manager access
+<code>PutSecretValue</code> - Secrets modification
+<code>CreateSecret</code> - New secret creation
+<code>DeleteSecret</code> - Secret removal
+<code>GetPasswordData</code> - EC2 Windows password retrieval
+<code>RequestCertificate</code> - SSL certificate requests
+<code>UpdateAssumeRolePolicy</code> - Trust relationship changes</p>
+<h3 id="detection-examples_6">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>-- Monitor credential access patterns  
+SELECT eventTime, userIdentity.userName, requestParameters.secretId,  
+       requestParameters.instanceId, sourceIPAddress  
+FROM cloudtrail_logs   
+WHERE eventName IN (&#39;GetSecretValue&#39;, &#39;PutSecretValue&#39;, &#39;CreateSecret&#39;, &#39;DeleteSecret&#39;, &#39;GetPasswordData&#39;)  
+  AND eventTime &gt; NOW() - INTERVAL &#39;24 hours&#39;  
+GROUP BY userIdentity.userName, sourceIPAddress  
+HAVING COUNT(*) &gt; 10;
+</code></pre></div>
+<h2 id="impact">Impact</h2>
+<h3 id="key-cloudtrail_7">Key Cloudtrail</h3>
+<ul>
+<li><code>s3:PutObject</code></li>
+<li><code>s3:GetObject</code></li>
+<li>s3 cp / <code>CopyObject</code> </li>
+</ul>
+<p>Creates a copy of an object that is already stored in Amazon S3. this is used in where ransomware operator encrypt S3 using own key (SSE-C). You can copy individual objects between general purpose buckets, between directory buckets, and between general purpose buckets and directory buckets. Both the Region that you want to copy the object from and the Region that you want to copy the object to must be enabled for your account.</p>
+<div class="highlight"><pre><span></span><code>--command<span class="w"> </span>used
+aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>s3://&lt;bucket_with_data&gt;/&lt;file_name&gt;<span class="w"> </span>s3://&lt;bucket_with_data&gt;/&lt;file_name&gt;<span class="w"> </span><span class="se">\</span>
+--sse-c<span class="w"> </span>AES256<span class="w"> </span><span class="se">\</span>
+--sse-c-key<span class="w"> </span>&lt;customer_provided_key_here&gt;<span class="w"> </span>
+</code></pre></div>
+<ul>
+<li><code>PutBucketVersioning</code> - S3 versioning manipulation</li>
+<li><code>DeleteObject</code> - S3 object deletion</li>
+<li><code>RunInstances</code> - Resource creation for impact</li>
+<li><code>DeleteAccountPublicAccessBlock</code> - S3 public access enabling</li>
+<li><code>DeleteDBInstance</code> - Database deletion</li>
+<li><code>ModifyDBInstance</code> - Database modification</li>
+<li><code>s3:DeleteObjectVersion</code></li>
+<li><code>s3:PutLifecycleConfiguration</code>  ransomware operator used to auto delete after a certain time</li>
+</ul>
+<h3 id="detection-examples_7">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>-- Monitor high-impact activities  
+SELECT eventTime, userIdentity.userName, eventName,  
+       requestParameters.instanceType, requestParameters.minCount,  
+       requestParameters.versioningConfiguration, requestParameters.bucketName,  
+       requestParameters.dbInstanceIdentifier  
+FROM cloudtrail_logs   
+WHERE (eventName = &#39;RunInstances&#39; AND requestParameters.instanceType IN (&#39;c5.xlarge&#39;, &#39;c5.2xlarge&#39;, &#39;c5.4xlarge&#39;))  
+   OR (eventName = &#39;PutBucketVersioning&#39; AND requestParameters.versioningConfiguration LIKE &#39;%Suspended%&#39;)  
+   OR eventName = &#39;DeleteAccountPublicAccessBlock&#39;  
+   OR eventName = &#39;DeleteObject&#39;  
+   OR eventName = &#39;DeleteDBInstance&#39;  
+ORDER BY eventTime DESC;
+</code></pre></div>
+<h2 id="lateral-movement">Lateral Movement</h2>
+<h3 id="key-cloudtrail_8">Key Cloudtrail</h3>
+<ul>
+<li>sts:AssumeRole (Cloud to Cloud) -- Role assumption for lateral access</li>
+<li>ssm:StartSession (Cloud to Ground)</li>
+<li>ssm:SendCommand (Cloud to Ground)</li>
+<li>ec2-instance-connect:SendSSHPublicKey (Cloud to Ground)</li>
+<li>ec2:AuthorizeSecurityGroupIngress (Cloud to Ground, or Ground to Ground)</li>
+<li>VPC Flow Logs (Ground to Ground)</li>
+<li><code>SwitchRole</code> - Console role switching</li>
+</ul>
+<h3 id="detection-examples_8">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>-- Monitor cross-account access  
+SELECT eventTime, userIdentity.arn, requestParameters.roleArn,  
+       requestParameters.roleSessionName, sourceIPAddress  
+FROM cloudtrail_logs   
+WHERE eventName = &#39;AssumeRole&#39;  
+  AND requestParameters.roleArn NOT LIKE &#39;%:123456789012:%&#39;  -- Your account ID  
+ORDER BY eventTime DESC;
+</code></pre></div>
+<h2 id="exfiltration">Exfiltration</h2>
+<h3 id="key-cloudtrail_9">Key Cloudtrail</h3>
+<ul>
+<li><code>GetObject</code> - S3 object retrieval</li>
+<li><code>CopyObject</code> - S3 object copying</li>
+<li><code>CreateSnapshot</code> - EBS snapshot creation</li>
+<li><code>ModifySnapshotAttributes</code> - Snapshot sharing configuration</li>
+<li><code>ModifyImageAttribute</code> - AMI sharing setup</li>
+<li><code>SharedSnapshotCopyInitiated</code> - Cross-region snapshot copying</li>
+<li><code>SharedSnapshotVolumeCreated</code> - Snapshot volume creation</li>
+<li><code>ModifyDBSnapshotAttribute</code> - RDS snapshot sharing</li>
+<li><code>CreateDBSnapshot</code> - Database snapshot creation</li>
+<li><code>PutBucketPolicy</code> - S3 bucket policy modification</li>
+<li><code>PutBucketAcl</code> - S3 bucket ACL changes</li>
+</ul>
+<h3 id="detection-examples_9">Detection Examples</h3>
+<div class="highlight"><pre><span></span><code>-- Monitor data exfiltration activities  
+SELECT eventTime, userIdentity.userName, eventName,  
+       requestParameters.snapshotId, requestParameters.imageId,  
+       requestParameters.userIds, requestParameters.valuesToAdd,  
+       requestParameters.bucketName, requestParameters.key  
+FROM cloudtrail_logs   
+WHERE (eventName IN (&#39;ModifySnapshotAttribute&#39;, &#39;ModifyImageAttribute&#39;, &#39;ModifyDBSnapshotAttribute&#39;)  
+       AND (requestParameters.userIds IS NOT NULL OR requestParameters.valuesToAdd IS NOT NULL))  
+   OR (eventName = &#39;GetObject&#39; AND sourceIPAddress NOT LIKE &#39;10.%&#39; AND sourceIPAddress NOT LIKE &#39;172.%&#39; AND sourceIPAddress NOT LIKE &#39;192.168.%&#39;)  
+ORDER BY eventTime DESC;
+</code></pre></div>
+<h2 id="other">Other</h2>
+<h3 id="anomalies">Anomalies</h3>
+<h4 id="error-message-from-anomaly-ip">Error message from anomaly IP</h4>
+<p><a href="../Clippings/Incident%20Response%20in%20AWS%20-%20Chris%20Farris.md">Incident Response in AWS - Chris Farris</a></p>
+<p><code>index=cloudtrail errorMessage=* | iplocation sourceIPAddress | stats count by City, Country | sort -City, Country</code></p>
+<h3 id="sensitive-iam-actions">Sensitive IAM actions</h3>
+<p>why worry on a whole lot api calls, these are the most sensitive according to 
+<a href="https://www.chrisfarris.com/post/sensitive_iam_actions/">sensitive iam</a> 
+- CredentialExposure 
+- DataAccess 
+- PrivEsc 
+- ResourceExposure</p>
+<h2 id="references">References</h2>
+<ol>
+<li><a href="../cloud-security/">cloud-security</a></li>
+<li><a href="https://www.chrisfarris.com/post/sensitive_iam_actions/">sensitive iam</a> </li>
+<li><a href="https://aws.plainenglish.io/aws-cloudtrail-event-cheatsheet-a-detection-engineers-guide-to-critical-api-calls-part-1-04fb1588556f">cloudtrail cheatsheet</a></li>
+<li><a href="https://www.invictus-ir.com/news/the-curious-case-of-dangerdev-protonmail-me">The curious case of DangerDev@protonmail.me</a></li>
+<li><a href="https://securitylabs.datadoghq.com/articles/following-attackers-trail-in-aws-methodology-findings-in-the-wild/#most-common-enumeration-techniques">Following attackers’ (Cloud)trail in AWS Methodology and findings in the wild   Datadog Security Labs</a></li>
+<li><a href="https://medium.com/@oraspir/hands-on-security-tips-for-centralize-root-access-in-aws-assumeroot-5d315de423cd">Hands-On Security Tips For <strong>Centralize Root Access</strong> In AWS</a></li>
+<li><a href="https://blog.sekoia.io/aws-detection-engineering/">AWS Detection Engineering</a></li>
+<li><a href="https://www.chrisfarris.com/post/aws-ir/">Chris Farris's AWS IR </a></li>
+<li><a href="https://www.fogsecurity.io/blog/ransomware-in-aws-s3-sse-c">Ransomware in Amazon S3: SSE-C</a></li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../aws-detect-and-response/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AWS Detection and Response">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                AWS Detection and Response
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../aws-iam-quick-check/" class="md-footer__link md-footer__link--next" aria-label="Next: AWS IAM Quick Check">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                AWS IAM Quick Check
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+    <a href="https://infosec.exchange/@aldosimon" target="_blank" rel="noopener me" title="ewaldo simon hiras on mastodon" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54-.6-4.6-.9-9.3-.9-13.9 85.6 20.9 158.7 9.1 178.7 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6V190.1c0-49.7-64-51.6-64 6.9v62.5H201V197c0-58.5-64-56.6-64-6.9v114.2H90.3c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.twitter.com/aldosimon" target="_blank" rel="noopener" title="ewaldo simon hiras on twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://linkedin.com/in/aldosimon" target="_blank" rel="noopener" title="ewaldo simon hiras on linkedin" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://aldosimon.com" target="_blank" rel="noopener" title="ewaldo simon hiras&#39;s blog" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M35.7 171.1c-46.9 46-46.9 122.9 0 169.8l135.9 135.9c46 46.9 122.9 46.9 169.8 0l135.9-135.9c46.9-46.9 46.9-123.8 0-169.8L341.4 35.2c-46.9-46.9-123.8-46.9-169.8 0zM196 196.5a84.5 84.5 0 1 1 120 119 84.5 84.5 0 1 1-120-119"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/aldosimon" target="_blank" rel="noopener" title="ewaldo simon hiras&#39;s github" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
