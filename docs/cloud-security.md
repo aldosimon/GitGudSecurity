@@ -6,12 +6,94 @@ tags:
 created: 2025-01-29
 description: cloudsec compediums
 ---
-# about
+# Cloud Security
 
-## cloud-security-program
+## cloud security program
 
+This section talks about building, maintaining, upgrading your cloudsec program.
+
+### cloudsec orienteering
+based off rami mac [cloud security orienteering](https://tldrsec.com/p/blog-cloud-security-orienteering)
+
+this is not a full cloud security program but more on how to orientate in a cloud environment, dig in to identify the risks that matter, and put together actionable plans that address short, medium, and long term goals.
+
+#### core principles
+
+these are principles you use when doing orienteering, keep these in mind.
+
+- breadth, then depth: do not go too deep, instead go wide and understand all the context;
+- anomaly detection: you are basically trying to find anomaly, things out of ordinary, out of norm;
+- inside out and outside in: do it from the inside -> maximum read access, but also try to do it/ emulate attackers perspective;
+
+#### corporate archaeology
+
+the goal is to understand your estate:
+
+1. Architecture diagrams or documentation of intended workloads.
+2. Definition of "crown jewels", the unique set of data that is identified by the business as the most sensitive if compromised. 
+3. Intended authentication and identity approach.
+
+these are ideas on how you would find information asset:
+
+- Identify and review any existing asset inventory
+- review IaC (terraform, ansible, puppet, cloudformation)
+- Review any data classification and designation of scope for those classes of data
+- Review organizational documentation: Wikis, Documents
+- Identify any existing cloud security tools or vendors in use
+
+the steps are to find environments (accounts/ orgs) -> workloads (e.g. project x; ecommerce x) -> services (EC2, S3) -> resources (individual resources)
+
+- [ ] expand on this
+
+ideas on findings environments (accounts) from [summitroute](https://summitroute.com/blog/2018/06/18/how_to_inventory_aws_accounts/)
+
+
+
+#### prioritization
+
+The next step to distill all the information you’ve gathered in actionable guidance, focused on what is **most immediately important**.
+
+##### identity perimeter
+
+1. management plane access model: you should have information how management plane access happens, and understand risk of them. in the future aim for single, auditable mechanism e.g. AWS SSO with your IdP (with phish resistant tech.)
+   Remove insecure mechanism such as Access Key/Secret Key, any use of IAM Users directly, unused users and roles, and ensure secure configurations are used for cross-account access for humans (MFA) and services (ExternalID).
+2. server access model: understand what are currently use and the risk, mitigate/remediate and try to aim for best practice in the long run. SSH w/ key (no password!) > bastion/ jump host > AWS SSM.
+   in short term, get compensating control fail2ban, bastion but aim for the ideal cloud native offering(SSM)
+3. IAM Security: do not use/secure root; clean up unused roles -> see access analyzer result; use IAM roles instead of users; understand risk of cross-account trust;
+	- [IAM Credential Report](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html): Identify unused users and roles, and well as authentication patterns, such as MFA usage.
+	- [IAM Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html): Identify resources in your accounts shared with external entities.
+	- [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/best-practice-checklist/) (free): Multi-factor authentication on root account, AWS IAM use.
+	- [AWS Config](https://aws.amazon.com/config/) and/or [Security Hub](https://aws.amazon.com/security-hub/), if in use.
+
+##### network perimeter
+
+1. Public resources in managed services: understand resources that allow to be public thorugh RCP, sharing API, network access. [read more](https://github.com/SummitRoute/aws_exposable_resources)
+2. Public network access to hosted services: leverage findings from tooling or trusted advisor, security groups that are open etc.
+3. **Default, insecure resources**
+
+##### hosted application
+
+- Out of date services, especially ones with known vulnerabilities.  
+- Unauthenticated services that are unintentionally exposed.
+- Sensitive or internal services that are needlessly public, such as CI/CD tools.
+
+understand the risk vs ticking box, example: [here](https://www.chrisfarris.com/post/cloud-encryption/?utm_source=tldrsec.com&utm_medium=referral&utm_campaign=cloud-security-orienteering)
+#### future planning
+
+To start, consider a blanket set of (fairly) universally applicable AWS hardening recommendations, including
+
+- Enable GuardDuty in all accounts, and centralize alerts.
+- Enable Cloudtrail in all accounts; turn on optional security features, including encryption at-rest and file validation; centralize and back up logs. 
+- Ensure security visibility and break-glass access to all accounts.
+- Configure account-wide security defaults, including S3 block public access, EBS and all other default encryption.
+
+use maturity framework to have a map
+[CSMM](https://www.iansresearch.com/resources/cloud-security-maturity-model/what-is-the-csmm?utm_source=tldrsec.com&utm_medium=referral&utm_campaign=cloud-security-orienteering)
+[marco lancini cloudsec map](https://roadmap.cloudsecdocs.com/?utm_source=tldrsec.com&utm_medium=referral&utm_campaign=cloud-security-orienteering)
 ### 10x-cloudsec
 [How to 10X Your Cloud Security (Without the Series D) ~ Rami McCarthy](https://www.youtube.com/@fwdcloudsec)
+
+
 
 ### 30-60-90-180d chris farris
 this is from [ghost of cloudsec yet to come](https://www.chrisfarris.com/post/ghost-of-cloudsec-yet-to-come/)
@@ -116,47 +198,50 @@ proactive efficiency:
 	“why not ask ourselves how the team would cope if the workload went up another 30%, but bad financial results precluded any team growth? It's actually fun to think about such hypotheticals ahead of the time - and hey, if the ideas sound good, why not try them out today?“ from [here](https://lcamtuf.blogspot.com/2018/02/getting-product-security-engineering.html)
 evangelism: use this two questions: how'll we get hacked, and why security matters.
 
-#### invariants
+## other categories of cloudsec program
+
+These don't fit, will probably moved to best practices
+### invariants
 enforce/ alert on things that should **always** or **never** be true. idea is if there is no need for context (these things should always or never), no need for sec team time
 
-##### aws-policy
+#### aws-policy
 example: aws scp, examples: [rami scps](https://rami.wiki/scps/)
 
 [alex smolen](https://alsmola.medium.com/security-invariants-or-gtfo-d7db2950f95)
 [chris farris](https://www.primeharbor.com/blog/security-invariants/)
 
-##### service-allowlisting
+#### service-allowlisting
 basically do what GCP is by default. that is deny service unless it is in allow list. this also works for regions too (same thing invariants some regions that will **never** be used)
 
 more here: [rami allowlisting](https://ramimac.me/aws-allowlisting)
 
-#### vulnerability-and-asset-management
+### vulnerability-and-asset-management
 
-#####  asset-inventory
-##### hygiene 
+####  asset-inventory
+#### hygiene 
 ownership issue; unused asset --> use financial issue
 [finops](ramimac.me/finops)
 
-##### vuln-management
-##### cheatsheet
+#### vuln-management
+#### cheatsheet
 use these to help structure your vulns
 [cloud conformity](https://www.trendmicro.com/cloudoneconformity/knowledge-base/)
 [cloudsec atlas](https://securitylabs.datadoghq.com/cloud-security-atlas/)
 
-#### iam
+### iam
 
-##### least-privilege 
+#### least-privilege 
 do we need absolute least priv. or good enough for human, because the needs changes. try service level least privileges, but maybe yes on least priv on crown jewels 
 
-##### infra-access
+#### infra-access
 - use ssm to access instances
 - use proxy/ wireguard
 
-##### services-identity
+#### services-identity
 - clean up unused services periodically. use steampipe [here](https://ramimac.me/access-advisor-steampipe)
 - use imdsv2 for legacy instances
 
-#### detection
+### detection
 
 
 
@@ -165,19 +250,25 @@ do we need absolute least priv. or good enough for human, because the needs chan
 
 ### big picture of attack vector and remediation
 
-based off UCTM https://securosis.com/wp-content/uploads/2024/04/UCTM_v_1.0.pdf
+#### threat model based off UCTM https://securosis.com/wp-content/uploads/2024/04/UCTM_v_1.0.pdf
+> That is why we call this the Universal Cloud Threat Model. It identifies the commonalities all organizations face equally based on cloud usage — regardless of size, vertical, or nationality. We call these the “90% of attacks experienced by 90% of organizations using the cloud
 
-- Lost, stolen, or exposed credentials 
-- Publicly exposed resources 
-- Credentials exposed via application security flaws
-- Unpatched vulnerabilities and zero-days in overly exposed systems 
-- Denial of Service attacks 
-- Subdomain takeover 
-- Supply chain compromise
+- threat model is "custom" for cloud
+- basically goes: **vector -> sequence -> objectives**
+- for instance.
+	- vector
+		- Lost, stolen, or exposed credentials 
+		- Publicly exposed resources 
+		- Credentials exposed via application security flaws
+	- sequence
+		- gain access via creds.
+		- enumerate
+		- start compute, inject mining via ssm
+	- objectives
+		- financial gain
+##### remediate with
 
-### remediate with
-
-#### Lost, stolen, or exposed credentials 
+###### Lost, stolen, or exposed credentials 
 - Reduce or eliminate static credentials and tokens for the cloud management plane. Where possible use alternatives like IAM Roles and Azure Managed Identities. Automation is your friend. There are plenty of free and commercial tools to hunt these down. 
 - Scan code for stored credentials in CI/CD pipelines and repositories, even if they are private. 
 - Require MFA for all human access, even when using API keys. 
@@ -185,14 +276,14 @@ based off UCTM https://securosis.com/wp-content/uploads/2024/04/UCTM_v_1.0.pdf
 - Migrate administrators and highly-privileged access to Just in Time access and/or use hardware tokens (e.g., Yubikeys). 
 - Implement a “data perimeter” (this can be difcult in established enterprises, but can be very effective, even if only some basics are implemented).
 
-#### Publicly exposed resources
+###### Publicly exposed resources
 - Use your cloud service provider’s built-in assessment tools or a free or third-party scanner to identify public resources.  The key is sufficient coverage and act on results.
 - Use your cloud provider’s policy tools (guardrails) to prevent the creation of public resources where possible. For example Azure Policy, AWS Service Control Policies, and AWS Block Public Access for S3
 - Automated remediation if you can't block via guardrails.
 
-### Credentials exposed via application security flaws
+###### Credentials exposed via application security flaws
 
-- Reduce the exposure of applications to the public Internet. Place compute resources behind load balancers which only allow specific API routes.
+- Reduce the exposure of applications to the public Internet. Place compute resources behind load balancer which only allow specific API routes.
 - Do not give applications highly privileged access policies. IAM policies for applications should explicitly enumerate the resources each application needs to access. 
 - Avoid using AWS policies such as FullAccess and Basic Roles in GCP. Your tools (free or commercial) can help identify these. 
 - Scan code in CI/CD pipelines for static credentials. 
@@ -201,7 +292,7 @@ based off UCTM https://securosis.com/wp-content/uploads/2024/04/UCTM_v_1.0.pdf
 - If your cloud provider offers credential misuse detection (e.g., session credentials used from someplace where the session didn’t originate), use it. These aren’t perfect and only catch these attacks sometimes, but they can really help. AWS GuardDuty is one option.
 - While challenging and complex, implementing a data perimeter is one of the best defenses for this. Prioritize this option if you are the target of differentiated attacks.
 - [ ] research on data perimeter practical🔼 
-### Unpatched vulnerabilities and zero-days in overly exposed systems
+###### Unpatched vulnerabilities and zero-days in overly exposed systems
 
 - Minimize the number of systems which are exposed to the entire Internet. But we understand some of these systems are exposed to the Internet for legitimate reason, such as VPN servers and jump boxes, which you cannot always eliminate like the inadvertently exposed public resources mentioned earlier. You should still scan them and know where and how they are configured.
 	- see your CWPP, or CNAPP, or CSP for this.
@@ -210,12 +301,12 @@ based off UCTM https://securosis.com/wp-content/uploads/2024/04/UCTM_v_1.0.pdf
 - Exposed systems should **never** hold static credentials and should have least-privilege IAM permissions. We know this is hard, but if you are going to stick a target on the Internet, don’t be surprised if someone takes you up on your offer. At least try to minimize the potential damage.
 - Develop SBOM capabilities to discover and respond to zero-day threats when they arise quickly.
 
-### Denial of Service attacks 
+###### Denial of Service attacks 
 
 - Never expose workloads directly to the Internet. Even when they need to be exposed, stick them behind a load balancer, Content Delivery Network (CDN), or similar insulating service.
 - For critical workloads/applications plan for DoS attacks and use standard precautions, such as a service from your CSP or a third-party vendor (AWS shield advance; Google cloud armour)
 
-### Supply chain compromise
+###### Supply chain compromise
 
 - use base trusted image, packages from trusted sources
 - SBOM
@@ -224,20 +315,20 @@ based off UCTM https://securosis.com/wp-content/uploads/2024/04/UCTM_v_1.0.pdf
 
 ----
 ## cloud-detection-catalogue
-[[cloud-detection-catalogue]]
+[aws-detection-catalogue](aws-detection-catalogue.md)
 
 
 ----
 
 ## detection-response 
 
-[[aws-detect-and-response]]
+[aws-detect](aws-detect.md)
 
 ----
 
 ## protect
 
-[[aws-protect]]
+[aws-protect](aws-protect.md)
 
 ----
 
